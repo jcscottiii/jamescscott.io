@@ -1,0 +1,5 @@
+baseurl: https://jamescscott.io
+disablePathToLower: true
+languageCode: en-us
+title: My New Hugo Site
+...
