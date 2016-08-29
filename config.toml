@@ -1,25 +1,26 @@
 baseurl = "https://jamescscott.io"
 languageCode = "en-us"
-title = "Hugo Future Imperfect"
+title = "James C. Scott"
 theme = "hugo-future-imperfect"
 preserveTaxonomyNames = true
 paginate = 3
 disqusShortname = "shortname"
 googleAnalytics = ""
+disablePathToLower = true
 
 [params]
     # Sets the meta tag description, usually reserved for the main page
     description          = "HTML5 UP theme, Future Imperfect with some extra goodies, ported by Julio Pescador. Powered by Hugo"
     # This will appear on the top left of the navigation bar
-    navbarTitle          = "Future Imperfect"
+    navbarTitle          = "RANDOM THOUGHTS OF A CODER"
     # Social media buttons that appear on the sidebar
     socialAppearAtTop    = true
     socialAppearAtBottom = true
     # set this to the section name if section is not post
-    viewMorePostLink     = "/blog/"
+    viewMorePostLink     = "/post/"
 
 # Optional Params
-    categoriesByCount    = true
+    # categoriesByCount    = true
     includeReadingTime   = true
     # The set of favicons used are based on the write-up from this link:
     # https://github.com/audreyr/favicon-cheat-sheet
@@ -35,29 +36,29 @@ googleAnalytics = ""
     # customJS             = ["default", "/path/to/file"]
 
     # Loading min files for exampleSite
-    customCSS            = ["/css/main.min.css"]
-    customJS             = ["/js/main.min.js"]
+    # customCSS            = ["/css/main.min.css"]
+    # customJS             = ["/js/main.min.js"]
 
 # parms.intro will appear on the sidebar
 # This is optional, but it's suggested to use
 [params.intro]
-    header    = "Hugo Future Imperfect"
+    header    = "James C. Scott's Blog"
 
-    paragraph = "Another fine responsive site template by <a href=\"http://html5up.net\">HTML5 UP</a>. Ported by Julio Pescador with some extra goodies <i class='fa fa-hand-peace-o'></i>"
+    paragraph = "These are my random ramblings. Hope you enjoy <i class='fa fa-hand-peace-o'></i>"
 
-    about     = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tellus lacus, auctor vehicula molestie quis, tempor quis velit. Quisque in quam ac leo efficitur vulputate. Phasellus ullamcorper aliquam sodales. Maecenas sit amet condimentum ipsum. Proin sit amet ligula elit. Mauris."
+    # about     = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tellus lacus, auctor vehicula molestie quis, tempor quis velit. Quisque in quam ac leo efficitur vulputate. Phasellus ullamcorper aliquam sodales. Maecenas sit amet condimentum ipsum. Proin sit amet ligula elit. Mauris."
 
 # This will also appear on the sidebar.
 # A width of less than 100px is recommended
 # This is optional
 [params.intro.pic]
-    src       = "/img/main/logo.jpg"
+    src       = "/img/jamescscott-logo.jpg"
     # modify your picture in the shape of a circle or
     # future imperfect's hexagonal shape
     circle    = false
     imperfect = true
     width     = ""
-    alt       = "Hugo Future Imperfect"
+    alt       = "James C. Scott"
 
 # Adjust the amount of recent posts on the sidebar.
 # This is optional. The default value 5 will be used
@@ -68,7 +69,7 @@ googleAnalytics = ""
 # You can use identifier to prepend a font awesome icon to your text
 [[menu.main]]
     name = "Blog"
-    url = "/blog"
+    url = "/post"
     identifier = "fa fa-newspaper-o"
     weight = 1
 
