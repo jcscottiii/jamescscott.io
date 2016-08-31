@@ -9,6 +9,7 @@ guid: http://jamescscott.io/?p=152
 id: 152
 title: 'Go and App Engine: Part 2 &#8211; Development'
 url: /2014/09/14/go-app-engine-part-2/
+type: "post"
 ---
 
 This is part 2 of a series of posts that involve developing and publishing to Google’s App Engine with Go as the backend. In addition, it will exemplify how to take advantage of the App Engine’s new module system. This post will explore the actual development and local testing.
@@ -23,11 +24,11 @@ _This post series won&#8217;t explore the &#8220;Version&#8221; aspect much. Pos
 
 ### **Overview**
 
-  1. This post will walk you through how to create two modules. 
+  1. This post will walk you through how to create two modules.
       * We will call Module A (Our frontend).
       * Module A will call Module B (The backend). Module B will produce an output and return it in the response body.
       * Module A will display some other text with the output of Module B appended to it.
-  2. This post will walk through modifying custom routing for the modules. 
+  2. This post will walk through modifying custom routing for the modules.
       * As per [App Engine Module Routing Rules (July 2014)](https://developers.google.com/appengine/docs/go/modules/routing), modules will have a URL like <span style="color: #333333;">http://module.app-id.appspot.com </span>by default. We will change that all the modules operate under the same app-id and depending on your path, it will internally trigger the correct module.
 
 We should get something like this when we visit our frontend:

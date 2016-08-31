@@ -9,6 +9,7 @@ guid: https://jamescscott.io/?p=296
 id: 296
 title: GDEC Initial Release
 url: /2015/11/22/gdec-initial-release/
+type: "post"
 ---
 
 This post is to announce the release of GDEC: the Golang Development Environment Container.
@@ -22,7 +23,7 @@ Currently, it sets up a Docker container with [Visual Studio Code](https://code.
 </div>
 
 <img src="https://jamescscott.io/wp-content/uploads/2015/11/gdec-starting-vscode1_still_tmp.jpeg" class="_hidden no-lazy" alt="bla" style="display:none;" />
-  
+
 
 
 Starting the container and Visual Studio Code.
@@ -34,7 +35,7 @@ Starting the container and Visual Studio Code.
 </div>
 
 <img src="https://jamescscott.io/wp-content/uploads/2015/11/gdec-editing-vscode_still_tmp.jpeg" class="_hidden no-lazy" alt="bla" style="display:none;" />
-  
+
 
 
 Editing a Go File
@@ -46,7 +47,7 @@ Editing a Go File
 </div>
 
 <img src="https://jamescscott.io/wp-content/uploads/2015/11/gdec-debugging-vscode_still_tmp.jpeg" class="_hidden no-lazy" alt="bla" style="display:none;" />
-  
+
 
 
 Debugging Code

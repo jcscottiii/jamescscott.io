@@ -9,6 +9,7 @@ guid: https://jamescscott.io/?p=319
 id: 319
 title: Plans for Next GDEC revision
 url: /2016/01/17/next-gdec-revision/
+type: "post"
 ---
 
 It has been while with GDEC and I found many different problems with it. That has led me to think about how to do the next GDEC revision. Right now, my current pains are:

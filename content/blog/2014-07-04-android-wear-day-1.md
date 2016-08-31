@@ -13,6 +13,7 @@ tags:
 - Setup
 title: 'Android Wear: Day 1'
 url: /2014/07/04/android-wear-day-1/
+type: "post"
 ---
 
 This post is the beginning of a mini-series of developing for Android Wear. This post will focus on setting up your environment for initial development with Android Studio. As someone who loves tinkering with new things, I was very anxious to try out the new Android Wear SDK especially after I received my e-mail notification from Motorola about the Moto 360.  ![](https://jamescscott.io/wp-content/uploads/2014/07/590.png)<!--more-->
@@ -50,7 +51,7 @@ Google has a nice little tutorial here: <http://developer.android.com/training/w
       </li>
     </ul>
   </li>
-  
+
   <li>
     <span style="font-size: 16px; line-height: 1.5;">After finishing, it took awhile but to build, but eventually everything came up. However, there were errors.</span><img style="font-family: inherit; font-style: inherit; font-weight: inherit; line-height: 1.5;" src="https://jamescscott.io/wp-content/uploads/2014/07/322.png" alt="" />
   </li>

@@ -9,6 +9,7 @@ guid: http://jamescscott.io/?p=140
 id: 140
 title: 'Go and App Engine: Part 1 &#8211; Setup'
 url: /2014/08/31/go-appengine-part-1/
+type: "post"
 ---
 
 This is part 1 of a series of posts that involve developing and publishing to Google&#8217;s App Engine with Go as the backend. In addition, it will exemplify how to take advantage of the App Engine&#8217;s new module system. This post will run through setting up your existing Go environment to develop using Google App Engine.

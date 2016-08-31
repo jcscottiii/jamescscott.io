@@ -12,6 +12,7 @@ tags:
 - WRT1900AC
 title: 'Initial Thoughts: WRT1900AC'
 url: /2014/07/10/initial-thoughts-wrt1900ac/
+type: "post"
 ---
 
 My landlord was gracious enough to provide Internet for all tenants. The service comes through AT&T&#8217;s DSL. Before moving to California, I personally have never had DSL. For all of my adult life, I have used Cable Internet.
@@ -61,7 +62,7 @@ This will allow you to administer your router from within the network or via Li
 ![](https://jamescscott.io/wp-content/uploads/2014/07/701.png)Web App
 
 <img src="https://jamescscott.io/wp-content/uploads/2014/07/321.png" alt="" width="294" height="441" />
-  
+
 iOS App
 
 After setting up the 2.4 GHz network (SSID-Name) and 5 GHz (SSID-Name_5GHz) network, I realized one thing. Not all of my devices can use the 5 GHz. Examples include my iPhone 4s (yes, expect a blog about a new phone, whenever I upgrade) and my Chromecast which both can only use 2.4 GHz while my Macbook Pro can see both networks. However, I can still cast content from my Macbook Pro on the 5 GHz network to the Chromecast on the 2.4 GHz network.
@@ -73,9 +74,9 @@ After setting up the 2.4 GHz network (SSID-Name) and 5 GHz (SSID-Name_5GHz) netw
 I chose the &#8220;[Use the RG as a modem option](http://www.sbbala.com/uverse/pg2.html)&#8220;.
 
 Plug one end of the ethernet cord into the WAN port on the WRT1900AC.
-  
+
 Plug the other end into one of the ethernet ports in the 3600HGV.
-  
+
 Log into the 3600HGV&#8217;s admin site and go to Settings &#8211;> Firewall &#8211;> Applications, Pinholes and DMZ.
 
 ![](https://jamescscott.io/wp-content/uploads/2014/07/633.png)

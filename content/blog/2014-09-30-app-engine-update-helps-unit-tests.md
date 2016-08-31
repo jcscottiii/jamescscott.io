@@ -9,6 +9,7 @@ guid: http://jamescscott.io/?p=184
 id: 184
 title: App Engine Update Which Helps My Unit Tests!
 url: /2014/09/30/app-engine-update-helps-unit-tests/
+type: "post"
 ---
 
 I began to write unit tests for my private project and ran into a weird problem that I have seen others comment on because of the inability to use fake HTTP requests for things like unit testing.
@@ -42,7 +43,7 @@ Now if I want to test from Step 2 onwards, I need to create my own incoming *htt
 <pre class="lang:default decode:true">panic: appengine: NewContext passed an unknown http.Request [recovered]
 	panic: appengine: NewContext passed an unknown http.Request</pre>
 
-### 
+###
 
 ### **Road To The Fix**
 
@@ -121,7 +122,7 @@ Now if I want to test from Step 2 onwards, I need to create my own incoming *htt
 <pre class="lang:default decode:true">panic: appengine: NewContext passed an unknown http.Request [recovered]
 	panic: appengine: NewContext passed an unknown http.Request</pre>
 
-### 
+###
 
 ### **Road To The Fix**
 
@@ -201,7 +202,7 @@ func TestGetNonExistentAccount(t *testing.T) {
 	if e != nil {
 		t.Fatal("Can't create request")
 	}
-	... 
+	...
 	// Your code that uses that request 'r'.
 	...
 }</pre>

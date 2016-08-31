@@ -7,6 +7,7 @@ guid: http://jamescscott.io/?p=84
 id: 84
 title: 'Android Wear: Day 2'
 url: /2014/07/18/android-wear-day-2/
+type: "post"
 ---
 
 ### Setting up the Android Virtual Device

@@ -17,7 +17,7 @@ disablePathToLower = true
     socialAppearAtTop    = true
     socialAppearAtBottom = true
     # set this to the section name if section is not post
-    viewMorePostLink     = "/post/"
+    viewMorePostLink     = "/blog/"
 
 # Optional Params
     # categoriesByCount    = true
@@ -69,7 +69,7 @@ disablePathToLower = true
 # You can use identifier to prepend a font awesome icon to your text
 [[menu.main]]
     name = "Blog"
-    url = "/post"
+    url = "/blog"
     identifier = "fa fa-newspaper-o"
     weight = 1
 

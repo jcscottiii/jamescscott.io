@@ -8,6 +8,7 @@ guid: http://jamescscott.io/?p=239
 id: 239
 title: Jenkins + OpenShift + Bitbucket + Play Framework
 url: /2015/02/24/jenkins-openshift-bitbucket-play/
+type: "post"
 ---
 
 First post of the new year! I have been very busy. This post will be a non-Golang post actually too. This post is just to help anyone who wants to setup their own free (that&#8217;s right, Free) hosted Jenkins CI Server, hook it up to a private repo and go over some of the GOTCHAs along the way (always some struggles when going the free route).
@@ -87,9 +88,9 @@ vim git-ssh-wrapper.sh
 
 ###Contents of git-ssh-wrapper.sh####
 #!/bin/bash
- 
+
 ID_RSA="$OPENSHIFT_DATA_DIR/.ssh/jenkins_id_rsa"
- 
+
 ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i $ID_RSA $1 $2
 </pre>
 
