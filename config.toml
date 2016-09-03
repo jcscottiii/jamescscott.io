@@ -4,8 +4,8 @@ title = "James C. Scott"
 theme = "hugo-future-imperfect"
 preserveTaxonomyNames = true
 paginate = 3
-disqusShortname = "shortname"
-googleAnalytics = ""
+disqusShortname = "james-c-scott-personal-blog"
+googleAnalytics = "UA-69532682-1"
 disablePathToLower = true
 
 [params]
