@@ -1,0 +1,24 @@
+worker_processes 1;
+error_log stderr;
+pid nginx.pid;
+daemon off;
+
+events {
+  worker_connections 768;
+}
+
+http {
+  types_hash_max_size 2048;
+  include mime.types;
+  server {
+    listen <%= ENV["PORT"] %>;
+    server_name  _;
+    <% if ENV["NGINX_ROOT"] %>
+      root /app/www/<%= ENV["NGINX_ROOT"] %>;
+    <% else %>
+      root /app/www/public;
+    <% end %>
+    index index.html;
+    error_page 404 404.html;
+  }
+}

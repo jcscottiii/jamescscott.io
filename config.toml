@@ -4,8 +4,8 @@ title = "James C. Scott"
 theme = "hugo-future-imperfect"
 preserveTaxonomyNames = true
 paginate = 3
-disqusShortname = "shortname"
-googleAnalytics = ""
+disqusShortname = "james-c-scott-personal-blog"
+googleAnalytics = "UA-69532682-1"
 disablePathToLower = true
 
 [params]
@@ -69,18 +69,18 @@ disablePathToLower = true
 # You can use identifier to prepend a font awesome icon to your text
 [[menu.main]]
     name = "Blog"
-    url = "/blog"
+    url = "/blog/"
     identifier = "fa fa-newspaper-o"
     weight = 1
 
 [[menu.main]]
     name = "Categories"
-    url = "/categories"
+    url = "/categories/"
     weight = 2
 
 [[menu.main]]
     name = "About"
-    url = "/about"
+    url = "/about/"
     weight = 3
 
 # Insert your username and the icon will apear on the page as long as
