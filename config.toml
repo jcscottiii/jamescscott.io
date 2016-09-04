@@ -69,18 +69,18 @@ disablePathToLower = true
 # You can use identifier to prepend a font awesome icon to your text
 [[menu.main]]
     name = "Blog"
-    url = "/blog"
+    url = "/blog/"
     identifier = "fa fa-newspaper-o"
     weight = 1
 
 [[menu.main]]
     name = "Categories"
-    url = "/categories"
+    url = "/categories/"
     weight = 2
 
 [[menu.main]]
     name = "About"
-    url = "/about"
+    url = "/about/"
     weight = 3
 
 # Insert your username and the icon will apear on the page as long as
