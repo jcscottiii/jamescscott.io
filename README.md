@@ -4,6 +4,12 @@ This site is setup to be able to be deployed to Dokku
 
 ## Building
 
+You need to install the theme
+```sh
+git submodule update --init --recursive
+```
+
+
 Download the [Hugo](https://gohugo.io/) executable and run:
 
 ```sh
