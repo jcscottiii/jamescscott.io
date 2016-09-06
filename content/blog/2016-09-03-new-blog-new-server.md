@@ -30,6 +30,9 @@ to move.
 
 ## Plan
 
+**Update** Here's the
+[repository](https://github.com/jcscottiii/do_infra-terraform) for this plan in action!
+
 ### For Infrastructure: [DigitalOcean](https://www.digitalocean.com/)
 
 ![](/blog-content/2016/09/DigitalOcean.png)
@@ -47,9 +50,13 @@ to move.
 
 - I really love the idea as infrastructure-as-code and Hashicorp's Terrafrom
 tool is something I have been wanting to dive into more.
-- I want to be able to provision everything and tear everything down at the drop of a dime with a single command.
-- When I say provision, I mean, create the droplet, secure it, configure my domains, deploy my apps and databases (include backups).
-- When I say tear down, I mean backup the databases, remove the apps, and destroy the droplet.
+- I want to be able to provision everything and tear everything down
+  at the drop of a dime with a single command.
+- When I say provision, I mean to create the droplet, to secure it,
+  to configure my domains, and to deploy my apps and databases
+  (include backups).
+- When I say tear down, I mean to backup the databases, to remove the apps,
+  to and destroy the droplet.
 
 
 ### For deploying apps: [Dokku](http://dokku.viewdocs.io/dokku/)
@@ -62,21 +69,25 @@ for every app. Theoretically, it allows you to easily scale as well (Dokku is a
   slightly different case).
 
 Pros of Dokku:
+
 - Simple to setup
 - Can run on one droplet (less money than running a real platform as a service)
 - Nice plugins (e.g. Let's Encrypt for SSL certs for all the apps.)
+- Can easily deploy any toy apps I have.
 
 Cons of Dokku:
 
-  - Not really scalable but I don't need something too scalable.
+- Not really scalable since it's only limited to one node.
+  - But, I don't need more than one node right now.
 
 I looked at alternative PaaSs and also Orchestrators.
 
-[Kubernetes](http://kubernetes.io/): _The_ Container Orchestrator
+[Kubernetes](http://kubernetes.io/): _The_ Container Orchestrator aka k8s
 
 - This is where all the buzz is at. I wanted to do this.
 - Too expensive to setup for my needs.
-  - Need multiple droplets
+  - Need multiple droplets to ensure high availability and
+    for the number of components.
 - DigitalOcean has no official instructions on how to do this.
   - People in the community have done this but found it dated or incomplete.
 
@@ -86,7 +97,7 @@ I looked at alternative PaaSs and also Orchestrators.
 
 [Deis](https://deis.com/)
 
-- v2 uses Kubernetes. Cost.
+- v2 uses Kubernetes. See notes on Kubernetes.
 
 
 ## Next Steps
