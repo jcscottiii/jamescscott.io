@@ -8,6 +8,7 @@ date: 2016-09-03T19:28:06-04:00
 title: New Blog, New Server
 url: /2016/09/03/new-blog-new-server/
 type: "post"
+featured: /blog-content/2016/09/Dokku.png
 ---
 
 ## New Blog, New Server
@@ -35,7 +36,7 @@ to move.
 
 ### For Infrastructure: [DigitalOcean](https://www.digitalocean.com/)
 
-![](/blog-content/2016/09/DigitalOcean.png)
+![](/img/blog-content/2016/09/DigitalOcean.png)
 
 - More control than what I had before.
 - At the time, there was a way to get $35 of credit.
@@ -46,7 +47,7 @@ to move.
 
 ### For infrastructure management: [Terraform](https://www.terraform.io/)
 
-![](/blog-content/2016/09/Terraform.png)
+![](/img/blog-content/2016/09/Terraform.png)
 
 - I really love the idea as infrastructure-as-code and Hashicorp's Terrafrom
 tool is something I have been wanting to dive into more.
@@ -61,7 +62,7 @@ tool is something I have been wanting to dive into more.
 
 ### For deploying apps: [Dokku](http://dokku.viewdocs.io/dokku/)
 
-![](/blog-content/2016/09/Dokku.png)
+![](/img/blog-content/2016/09/Dokku.png)
 
 Dokku is a Platform as a Service (PaaS) for a single node. A PaaS makes it easy
 to deploy apps by removing the burden of having to configure the infrastructure

@@ -8,6 +8,7 @@ date: 2016-12-10
 title: Reflecting On My Path to Becoming a Software Engineer
 url: /2016/12/10/reflecting-my-path-becoming-software-engineer/
 type: "post"
+featured: blog-content/2016/12/james-scott-on-dads-lap.jpg
 ---
 
 # Reflecting On My Path to Becoming a Software Engineer

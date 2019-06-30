@@ -7,6 +7,7 @@ date: 2016-09-04T20:56:20-04:00
 title: Deploying Hugo On Dokku
 url: /2016/09/04/deploying-hugo-on-dokku/
 type: "post"
+featured: blog-content/2016/09/Future-Imperfect-Screenshot.png
 ---
 
 ## The Move From Wordpress to Hugo
@@ -24,7 +25,7 @@ Here is my journey.
 Hugo is a static site generator. I quickly found a theme I liked. The [Future
 Imperfect theme by Julio Pescador](http://themes.gohugo.io/future-imperfect/).
 
-![](/blog-content/2016/09/Future-Imperfect-Screenshot.png)
+![](/img//blog-content/2016/09/Future-Imperfect-Screenshot.png)
 
 This theme had two major components built in.
 
