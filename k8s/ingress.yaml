@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: jamescscott-io-ingress
+  namespace: jamescscott-io
+  annotations:  
+    kubernetes.io/ingress.class: nginx
+    certmanager.k8s.io/cluster-issuer: letsencrypt-prod
+    kubernetes.io/tls-acme: "true"
+spec:
+  tls:
+  - hosts:
+    - jamescscott.io
+    secretName: jamescscott-io-prod-blog-cert
+  rules:
+  - host: jamescscott.io
+    http:
+      paths:
+      - backend:
+          serviceName: jamescscott-io
+          servicePort: 80

@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2016 James C Scott III
+Copyright (c) 2019 James C Scott III
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

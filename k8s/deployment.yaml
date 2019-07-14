@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jamescscott-io
+  namespace: jamescscott-io
+spec:
+  selector:
+    matchLabels:
+      app: jamescscott-io
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: jamescscott-io
+    spec:
+      containers:
+      - name: jamescscott-io
+        image: jcscottiii/jamescscott.io
+        ports:
+        - containerPort: 80

@@ -70,7 +70,7 @@ disablePathToLower = true
       alt                 = "James C. Scott's Blog"
 
   [params.sidebar]
-    about               = "test"
+    about               = "I'm a software engineer that likes to code, play video games and enjoy life. These are my thoughts. Enjoy"
     # Sets the number of recent posts to show in the sidebar. The default value is 5.
     postAmount          = 5
     # set to show or to hide categories in the sidebar
