@@ -1,4 +1,7 @@
 [submodule "themes/hugo-future-imperfect-slim"]
 	path = themes/hugo-future-imperfect-slim
-	url = https://github.com/pacollins/hugo-future-imperfect-slim.git
-	branch = bug-fix-img-path
+	url = https://github.com/themefisher/parsa-hugo.git
+	branch = master
+[submodule "themes/parsa-hugo"]
+	path = themes/parsa-hugo
+	url = https://github.com/themefisher/parsa-hugo.git
