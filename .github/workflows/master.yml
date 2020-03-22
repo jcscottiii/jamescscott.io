@@ -24,15 +24,9 @@ jobs:
       run: |
         echo "OK"
         helm version
-    - name: Run Kubernetes tools
-      uses: stefanprodan/kube-tools@v1
-      with:
-        kubectl: 1.16.2
-        kustomize: 3.4.0
-        helm: 2.16.1
-        helmv3: 3.1.0
-        command: |
-          echo "helmv3 lint charts/blog"
-          helmv3 lint charts/blog
+        helm lint charts/blog
+        APP_VERSION=$(helm show chart charts/blog | grep "appVersion:" | sed "s/appVersion:\s*//g")
+        echo "::set-env name=APP_VERSION::$APP_VERSION"
+        echo "Found app version $APP_VERSION"
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      run: docker build . --file Dockerfile --tag my-image-name:$APP_VERSION
