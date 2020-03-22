@@ -29,5 +29,6 @@ jobs:
         helmv3: 3.0.0
         command: |
           echo "helmv3 lint charts/blog"
+          helmv3 lint charts/blog
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
