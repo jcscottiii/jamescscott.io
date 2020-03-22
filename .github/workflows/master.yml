@@ -26,7 +26,7 @@ jobs:
         kubectl: 1.16.2
         kustomize: 3.4.0
         helm: 2.16.1
-        helmv3: 3.0.0
+        helmv3: 3.1.0
         command: |
           echo "helmv3 lint charts/blog"
           helmv3 lint charts/blog
