@@ -35,4 +35,4 @@ jobs:
     - name: Helm Deploy
       run: |
         echo "Deploying app version $APP_VERSION"
-        helm -n jamescscott-io upgrade --install jamescscott-io-prod charts/blog -f charts/blog/prod-values.yaml
+        helm -n jamescscott-io --kubeconfig $GITHUB_WORKSPACE/.kubeconfig upgrade --install jamescscott-io-prod charts/blog -f charts/blog/prod-values.yaml
