@@ -34,4 +34,5 @@ jobs:
         tags: ${{ env.APP_VERSION }}
     - name: Helm Deploy
       run: |
-        helm3 -n jamescscott-io upgrade --install jamescscott-io-prod charts/blog -f charts/blog/prod-values.yaml
+        echo "Deploying app version $APP_VERSION"
+        helm -n jamescscott-io upgrade --install jamescscott-io-prod charts/blog -f charts/blog/prod-values.yaml
