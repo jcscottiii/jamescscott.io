@@ -36,3 +36,4 @@ params:
   # Currently, you can just hide it from the footer.
   newsletter:
     enable: true
+  background: images/backgrounds/home.jpg
