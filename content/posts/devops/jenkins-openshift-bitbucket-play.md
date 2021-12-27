@@ -4,11 +4,8 @@ categories:
 - Continous Integration
 - Play Framework
 date: 2015-02-24T22:52:03Z
-guid: http://jamescscott.io/?p=239
-id: 239
 title: Jenkins + OpenShift + Bitbucket + Play Framework
-url: /2015/02/24/jenkins-openshift-bitbucket-play/
-type: "post"
+aliases: [/2015/02/24/jenkins-openshift-bitbucket-play]
 ---
 
 First post of the new year! I have been very busy. This post will be a non-Golang post actually too. This post is just to help anyone who wants to setup their own free (that&#8217;s right, Free) hosted Jenkins CI Server, hook it up to a private repo and go over some of the GOTCHAs along the way (always some struggles when going the free route).
@@ -31,7 +28,7 @@ Create an account on [OpenShift](openshift.redhat.com/app/login).
 
 Create an application and find the &#8220;Jenkins Server&#8221; application.
 
-![](https://jamescscott.io/wp-content/uploads/2015/02/591.png)
+![](/wp-content/uploads/2015/02/591.png)
 
 &nbsp;
 
@@ -41,25 +38,25 @@ After the application is created, it will show you the password for the admin ac
 
 Manage Jenkins -> Manage Nodes
 
-![](https://jamescscott.io/wp-content/uploads/2015/02/206.png)
+![](/wp-content/uploads/2015/02/206.png)
 
 Click on the &#8220;master&#8221; node.
 
-![](https://jamescscott.io/wp-content/uploads/2015/02/299.png)
+![](/wp-content/uploads/2015/02/299.png)
 
 ### Update the plugins
 
 Manage Jenkins -> Manage Plugins.
 
-![](https://jamescscott.io/wp-content/uploads/2015/02/911.png)
+![](/wp-content/uploads/2015/02/911.png)
 
 Go to the Advanced Tab
 
-<img class="" src="https://jamescscott.io/wp-content/uploads/2015/02/993.png" alt="" width="523" height="466" />
+<img class="" src="/wp-content/uploads/2015/02/993.png" alt="" width="523" height="466" />
 
 Click the &#8220;Check Now&#8221; at the bottom right and watch the plugins come flowing in.
 
-![](https://jamescscott.io/wp-content/uploads/2015/02/229.png)
+![](/wp-content/uploads/2015/02/229.png)
 
 Once you update the plugins list, you will see all the plugins that represent the power of Jenkins.
 
@@ -69,7 +66,7 @@ You need to get the SSH public key from your Jenkins Server so that Jenkins can 
 
 Go back into the OpenShift applications Dashboard and click on your application. On the left side you should see this prompt:
 
-![](https://jamescscott.io/wp-content/uploads/2015/02/486.png)
+![](/wp-content/uploads/2015/02/486.png)
 
 Once you click on it, it will create give you the SSH command. Make sure you setup connection to the instance, RHC and all that other stuff first [here](https://developers.openshift.com/en/getting-started-overview.html).
 
@@ -108,11 +105,11 @@ source .bash_profile</pre>
 
 Log into your Jenkins instance. Go to Jenkins->Manage Jenkins-> Configure System
 
-![](https://jamescscott.io/wp-content/uploads/2015/02/605.png)
+![](/wp-content/uploads/2015/02/605.png)
 
 Find the Environment Variables Checkbox
 
-![](https://jamescscott.io/wp-content/uploads/2015/02/420.png)
+![](/wp-content/uploads/2015/02/420.png)
 
 Check it and add:
 
@@ -120,13 +117,13 @@ Name: GIT_SSH
 
 Value: $OPENSHIFT\_DATA\_DIR/git-ssh-wrapper.sh
 
-![](https://jamescscott.io/wp-content/uploads/2015/02/904.png)
+![](/wp-content/uploads/2015/02/904.png)
 
 If you are using the Play Framework, you&#8217;ll need at least (Scala Build Tool) SBT installed to do testing and building.
 
 Download [it](http://www.scala-sbt.org/) to the $OPENSHIFT\_DATA\_DIR folder and it to your Path by adding another Environment variable for example.
 
-![](https://jamescscott.io/wp-content/uploads/2015/02/844.png)
+![](/wp-content/uploads/2015/02/844.png)
 
 Now, we made sure Jenkins will use the SSH Key that we have access to and can share with Bitbucket (which will we do next)
 
@@ -134,11 +131,11 @@ Next, run: cat &#8220;$OPENSHIFT\_DATA\_DIR/.ssh/jenkins\_id\_rsa.pub&#8221; an
 
 Log into Bitbucket -> Go to the Settings for the particular repo you would like Jenkins to have access to. Go to Deployment Keys (read-only access to the repository)
 
-![](https://jamescscott.io/wp-content/uploads/2015/02/490.png)
+![](/wp-content/uploads/2015/02/490.png)
 
 Paste in the public key that you just printed to screen a few steps before.
 
-![](https://jamescscott.io/wp-content/uploads/2015/02/287.png)
+![](/wp-content/uploads/2015/02/287.png)
 
 &nbsp;
 
@@ -146,19 +143,19 @@ Paste in the public key that you just printed to screen a few steps before.
 
 If you have not already, create a project for your build by clicking on Jenkins -> New Item
 
-![](https://jamescscott.io/wp-content/uploads/2015/02/391.png)
+![](/wp-content/uploads/2015/02/391.png)
 
 Note: Create a project name with no special characters or spaces (Useful for next section)
 
 Go down to Source Code Management and select Git. Paste in the URL for your repo.
 
-![](https://jamescscott.io/wp-content/uploads/2015/02/423.png)
+![](/wp-content/uploads/2015/02/423.png)
 
 &nbsp;
 
 Add a build step
 
-![](https://jamescscott.io/wp-content/uploads/2015/02/741.png)
+![](/wp-content/uploads/2015/02/741.png)
 
 **GOTCHA #2**
 
@@ -170,7 +167,7 @@ Instead, use this execute shell command
 
 &nbsp;
 
-![](https://jamescscott.io/wp-content/uploads/2015/02/928.png)
+![](/wp-content/uploads/2015/02/928.png)
 
 **GOTCHA #3**
 
@@ -205,7 +202,7 @@ If you have not modified the Testing settings in the build.sbt file, and run the
 
 This is due to the testing infrastructure in SBT in which the source can be seen [here](http://www.scala-sbt.org/0.13.2/sxr/sbt/ForkTests.scala.html). As tests are forked, they communicate back to the original process via a socket. However, if you look at the ServerSocket call below, it places 0 which means the OS will give me a socket on whatever port is available. It will give me a port after 1024 (first 1024 are privileged only), however, OpenShift accounts can only get access to ports 15000 &#8211; 35530. So there&#8217;s a mismatch between what the system will give me vs what I have actual access to bind to which causes the problem.
 
-![](https://jamescscott.io/wp-content/uploads/2015/02/672.png)
+![](/wp-content/uploads/2015/02/672.png)
 
 It makes no sense to compile our own SBT. However, after more reading, there are more options that can be added to the build.sbt which changes the testing infrastructure.
 
@@ -232,7 +229,7 @@ Within the project
 
 Click Build Now and you should see it added to the queue.
 
-![](https://jamescscott.io/wp-content/uploads/2015/02/714.png)
+![](/wp-content/uploads/2015/02/714.png)
 
 Ta-da!
 
@@ -248,9 +245,9 @@ In addition, one more thing has changed. Under his &#8220;Bitbucket + Jenkins =�
 
 Also, make sure your project in Jenkins has no spaces. It simplifies the url when you add the hook url into Bitbucket
 
-![](https://jamescscott.io/wp-content/uploads/2015/02/839.png)
+![](/wp-content/uploads/2015/02/839.png)
 
-![](https://jamescscott.io/wp-content/uploads/2015/02/473.png)
+![](/wp-content/uploads/2015/02/473.png)
 
 Now push to your repository, and it should all work!
 

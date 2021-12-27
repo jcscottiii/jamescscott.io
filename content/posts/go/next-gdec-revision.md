@@ -5,10 +5,8 @@ categories:
 - Go
 - Golang
 date: 2016-01-17T11:07:46Z
-guid: https://jamescscott.io/?p=319
-id: 319
 title: Plans for Next GDEC revision
-url: /2016/01/17/next-gdec-revision/
+aliases: [/2016/01/17/next-gdec-revision/]
 type: "post"
 ---
 

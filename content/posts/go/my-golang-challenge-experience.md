@@ -4,10 +4,8 @@ categories:
 - Go
 - Golang
 date: 2015-11-03T17:22:35Z
-guid: http://jamescscott.io/?p=277
-id: 277
 title: My Golang Challenge Experience
-url: /2015/11/03/my-golang-challenge-experience/
+aliases: [/2015/11/03/my-golang-challenge-experience/]
 type: "post"
 ---
 
@@ -20,7 +18,7 @@ When I finished my first version of the piano, it was very basic. But the code w
 The layer system idea stemmed from Photoshop. You have independent layers and a layer manger coordinates inter-layer events. Each layer just implements handling the events independently. For example, having a layer of only white piano keys and another layer of only black piano keys.
 
 <div style="width: 595px" class="wp-caption alignnone">
-  <img src="https://jamescscott.io/wp-content/uploads/2015/11/254.png" alt="" width="595" height="201" />
+  <img src="/wp-content/uploads/2015/11/254.png" alt="" width="595" height="201" />
 
   <p class="wp-caption-text">
     Golang Challenge Order of Layer Operation
@@ -71,7 +69,7 @@ At the time I started, I saw this [issue](https://github.com/golang/go/issues/10
 &nbsp;
 
 <div style="width: 476px" class="wp-caption alignnone">
-  <img src="https://jamescscott.io/wp-content/uploads/2015/11/588.png" alt="" width="476" height="256" />
+  <img src="/wp-content/uploads/2015/11/588.png" alt="" width="476" height="256" />
 
   <p class="wp-caption-text">
     Landscape Mode
@@ -79,7 +77,7 @@ At the time I started, I saw this [issue](https://github.com/golang/go/issues/10
 </div>
 
 <div style="width: 243px" class="wp-caption alignnone">
-  <img src="https://jamescscott.io/wp-content/uploads/2015/11/973.png" alt="" width="243" height="346" />
+  <img src="/wp-content/uploads/2015/11/973.png" alt="" width="243" height="346" />
 
   <p class="wp-caption-text">
     Distorted Portrait Mode
@@ -129,7 +127,7 @@ func makeCoordsForBothOrientation(keyOutline util.Boundary) []float32 {
 &nbsp;
 
 <div style="width: 276px" class="wp-caption alignnone">
-  <img src="https://jamescscott.io/wp-content/uploads/2015/11/384.png" alt="" width="276" height="375" />
+  <img src="/wp-content/uploads/2015/11/384.png" alt="" width="276" height="375" />
 
   <p class="wp-caption-text">
     Piano is rotated when in Portrait Mode after the fix

@@ -5,9 +5,8 @@ categories:
 - Dokku
 date: 2016-09-04T20:56:20-04:00
 title: Deploying Hugo On Dokku
-url: /2016/09/04/deploying-hugo-on-dokku/
-type: "post"
-featured: blog-content/2016/09/Future-Imperfect-Screenshot.png
+aliases: [/2016/09/04/deploying-hugo-on-dokku/]
+hero: /images/posts/heros/Future-Imperfect-Screenshot.png
 ---
 
 ## The Move From Wordpress to Hugo

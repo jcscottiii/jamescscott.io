@@ -3,10 +3,8 @@ author: James Scott
 categories:
 - Uncategorized
 date: 2014-07-30T21:12:40Z
-guid: http://jamescscott.io/?p=108
-id: 108
 title: My Go Setup
-url: /2014/07/30/go-setup/
+aliases: [/2014/07/30/go-setup/]
 type: "post"
 ---
 
@@ -18,7 +16,7 @@ I&#8217;ve been tinkering around with Go for a while. Occasionally, I would just
 
 <span style="font-style: italic;">The Go Gopher!</span>
 
-<span style="font-style: italic; color: #222222;"><img src="https://jamescscott.io/wp-content/uploads/2014/07/516.png" alt="" /></span>
+<span style="font-style: italic; color: #222222;"><img src="/wp-content/uploads/2014/07/516.png" alt="" /></span>
 
 <span style="font-style: italic; color: #222222;">(Photo by</span> [<span style="font-style: italic;">Noah Lorang</span>](https://twitter.com/noahhlo/status/437395572081688576)<span style="font-style: italic; color: #222222;">.)</span>
 
@@ -47,7 +45,6 @@ Table of Contents
 
 ##
 
-<!--more-->
 
 ## <span style="text-decoration: underline;">Go Version Manager</span>
 
@@ -57,11 +54,11 @@ This cool tool, as you can imply from the name, manages the versions of Go you u
 
 That takes a while. Do not panic.
 
-![](https://jamescscott.io/wp-content/uploads/2014/07/550.png)
+![](/wp-content/uploads/2014/07/550.png)
 
 You can see my existing go installation was labeled &#8216;system&#8217;. (it is version 1.2 fyi) But now, I can easily switch. Since 1.3 has come out since the last time I used it, lets go ahead and update which one I use by default.
 
-![](https://jamescscott.io/wp-content/uploads/2014/07/139.png)
+![](/wp-content/uploads/2014/07/139.png)
 
 Now, whenever I open a terminal, 1.3 will be used.
 
@@ -69,12 +66,12 @@ Now, whenever I open a terminal, 1.3 will be used.
 
 Another pain that any developer can relate to is having a decent development editor / IDE. Previously, I have tried Goclipse and LiteIde. LiteIde didn&#8217;t have enough bells and whistles. Goclipse uses eclipse, so it&#8217;s a memory hog. (I like to take breaks to watch videos and play games without closing windows)   Refer to <https://github.com/fatih/vim-go> for the how-to  install for your system. I use Pathogen when it comes to plugins for vim, worked fine for me this time as well.   Two edits that I added to my .vimrc are the following:
 
-![](https://jamescscott.io/wp-content/uploads/2014/07/629.png)
+![](/wp-content/uploads/2014/07/629.png)
 
   * Commented of the autocmd for Fmt. (I was getting some error every time I saved)
   * And then I set this go\_fmt\_autosave  to 0 to make sure Fmt didn’t run every time I saved.
 
-![](https://jamescscott.io/wp-content/uploads/2014/07/911.png)
+![](/wp-content/uploads/2014/07/911.png)
 
 **Update 10-14**
 
@@ -94,21 +91,21 @@ This folder will contain all the source and compiled libraries / executables for
 # (source gvp out restores your  old GOPATH, GOBIN, and GOROOT)
 </pre>
 
-If you ever look at the GOPATH  variable, you will see that there are actually two folders: GOPATH=<path to workspace>/.godeps:<path to workspace> This is how Go is able to separate the libraries you download from your own source as mentioned earlier. The first folder (.godeps in our case) will always be the destination for any external libraries. So now you can subject the second folder to version control like Git but still not have external code pollute your repository by excluding the .godeps folder from version control. In this simple example, we will do a hello world example as described here: [http://golang.org/doc/code.html#Command](http://golang.org/doc/code.html%23Command) ![](https://jamescscott.io/wp-content/uploads/2014/07/671.png)
+If you ever look at the GOPATH  variable, you will see that there are actually two folders: GOPATH=<path to workspace>/.godeps:<path to workspace> This is how Go is able to separate the libraries you download from your own source as mentioned earlier. The first folder (.godeps in our case) will always be the destination for any external libraries. So now you can subject the second folder to version control like Git but still not have external code pollute your repository by excluding the .godeps folder from version control. In this simple example, we will do a hello world example as described here: [http://golang.org/doc/code.html#Command](http://golang.org/doc/code.html%23Command) ![](/wp-content/uploads/2014/07/671.png)
 
-![](https://jamescscott.io/wp-content/uploads/2014/07/377.png)
+![](/wp-content/uploads/2014/07/377.png)
 
 Tada, it works!
 
-![](https://jamescscott.io/wp-content/uploads/2014/07/372.png)
+![](/wp-content/uploads/2014/07/372.png)
 
 Weird that bin folder is named &#8220;bin:&#8221; instead of &#8220;bin&#8221; Let&#8217;s see what&#8217;s going on.
 
-![](https://jamescscott.io/wp-content/uploads/2014/07/794.png)
+![](/wp-content/uploads/2014/07/794.png)
 
 On github, latest is 1.0.  I&#8217;m sure they had to have fixed this weird problem. Looking through the github commits, I found the culprit! There was a fix for this weird typo in the GOBIN environment variable.
 
-![](https://jamescscott.io/wp-content/uploads/2014/07/733.png)
+![](/wp-content/uploads/2014/07/733.png)
 
 Need to run:
 
@@ -127,19 +124,19 @@ Back through the steps..
 source gvp in
 </pre>
 
-![](https://jamescscott.io/wp-content/uploads/2014/07/850.png)
+![](/wp-content/uploads/2014/07/850.png)
 
 We are in good shape now. Now with my slightly modified program…
 
-![](https://jamescscott.io/wp-content/uploads/2014/07/339.png)
+![](/wp-content/uploads/2014/07/339.png)
 
 (GOTCHAS: It&#8217;s important that the package name is main and we have a main function so that it can produce the executable) .. We can go ahead and run &#8220;go install&#8221;. I&#8217;m choosing to run from the root of my workspace.  However, that doesn&#8217;t really matter. &#8220;Go install&#8221; can be ran from two locations 1) The current directory of the project &#8220;go install .&#8221; and 2) anywhere else &#8220;go install <project name>&#8221;. That&#8217;s just another GOTCHA. Which actually means you can&#8217;t do tab auto-complete to get to the path in case you happened to be in root of your workspace. Go is smart enough that it can pick projects out of your GOPATH/src folder. &#8220;go install src/github.com/jcscottiii/hello&#8221; won&#8217;t work and will complain about being unable to find packages because $GOPATH/src/src/<project name> does not even exist and should not. &#8220;go install github.com/jcscottiii/hello&#8221; will work though.
 
-![](https://jamescscott.io/wp-content/uploads/2014/07/984.png)
+![](/wp-content/uploads/2014/07/984.png)
 
 Now to run it:
 
-![](https://jamescscott.io/wp-content/uploads/2014/07/234.png)
+![](/wp-content/uploads/2014/07/234.png)
 
 ## <span style="text-decoration: underline;">Go Package Manager</span>
 
@@ -155,23 +152,23 @@ This meta data is stored in this file called Godeps. Now, instead of putting all
 
 Using vim-go to edit the file
 
-![](https://jamescscott.io/wp-content/uploads/2014/07/164.png)
+![](/wp-content/uploads/2014/07/164.png)
 
 You can easily import things. Modify the import afterwards to alias it to &#8220;log&#8221;
 
-![](https://jamescscott.io/wp-content/uploads/2014/07/698.png)
+![](/wp-content/uploads/2014/07/698.png)
 
 Auto-correction should work like so:
 
-![](https://jamescscott.io/wp-content/uploads/2014/07/706.png)
+![](/wp-content/uploads/2014/07/706.png)
 
 Run the executable
 
-![](https://jamescscott.io/wp-content/uploads/2014/07/423.png)
+![](/wp-content/uploads/2014/07/423.png)
 
 Now to create your Godeps file:
 
-![](https://jamescscott.io/wp-content/uploads/2014/07/221.png)
+![](/wp-content/uploads/2014/07/221.png)
 
 Now, just push this Godeps file to your source control repo so your fellow collaborators can successfully replicate a working environment.
 
@@ -205,4 +202,4 @@ The next Go post will be exploring Google App Engine for Go. Recently, they have
 
 Below is the sketch of how they have modularized Google App Engine.
 
-![](https://jamescscott.io/wp-content/uploads/2014/07/918.png)
+![](/wp-content/uploads/2014/07/918.png)

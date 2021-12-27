@@ -3,8 +3,6 @@ author: James Scott
 categories:
 - Initial Thoughts
 date: 2014-07-10T21:20:06Z
-guid: http://jamescscott.io/?p=50
-id: 50
 tags:
 - Initial Thoughts
 - Linksys
@@ -20,8 +18,6 @@ My landlord was gracious enough to provide Internet for all tenants. The service
 The speeds of DSL have never been as fast as what to I&#8217;m used to but can&#8217;t complain about free.
 
 However, as myself and many other tenants started to add more devices to the network, our wireless network started to act weird. Finally fed up with it, I decided to take matters in to my own hands and upgrade the hardware..
-
-<!--more-->
 
 ### Problem
 
@@ -45,23 +41,23 @@ However, by the time I read all the complaints and the possibility of receiving 
 
 I owned a WRT54G growing up.
 
-![](https://jamescscott.io/wp-content/uploads/2014/07/361.png)
+![](/wp-content/uploads/2014/07/361.png)
 
 Didn&#8217;t know much about networking aside from what I read online. I did however install [DD-WRT](http://www.dd-wrt.com/wiki/index.php/Linksys_WRT54G_v2.0). Gave me great flexibility compared to the stock firmware. I just remember ramping up the WIFI signal strength and logging in a lot to set up port forwarding for some video games. But I&#8217;m sure there&#8217;s much more that could&#8217;ve been done.
 
 I&#8217;ve read many blogs about the WRT1900AC. Many great speculations about this modern WRT54G. Linksys is clearly appealing to the network hobbyists with the similar blue hue as the predecessor.
 
-![](https://jamescscott.io/wp-content/uploads/2014/07/277.png)
+![](/wp-content/uploads/2014/07/277.png)
 
 Upon setting up the router, if it has internet access, you will setup the Linksys Smart Wifi system.
 
-![](https://jamescscott.io/wp-content/uploads/2014/07/947.png)
+![](/wp-content/uploads/2014/07/947.png)
 
 This will allow you to administer your router from within the network or via Linksys Smart Wifi Web App / Mobile App. Which is a huge bonus in my opinion.
 
-![](https://jamescscott.io/wp-content/uploads/2014/07/701.png)Web App
+![](/wp-content/uploads/2014/07/701.png)Web App
 
-<img src="https://jamescscott.io/wp-content/uploads/2014/07/321.png" alt="" width="294" height="441" />
+<img src="/wp-content/uploads/2014/07/321.png" alt="" width="294" height="441" />
 
 iOS App
 
@@ -79,11 +75,11 @@ Plug the other end into one of the ethernet ports in the 3600HGV.
 
 Log into the 3600HGV&#8217;s admin site and go to Settings &#8211;> Firewall &#8211;> Applications, Pinholes and DMZ.
 
-![](https://jamescscott.io/wp-content/uploads/2014/07/633.png)
+![](/wp-content/uploads/2014/07/633.png)
 
 Select the router under the list of computers.
 
-![](https://jamescscott.io/wp-content/uploads/2014/07/207.png)
+![](/wp-content/uploads/2014/07/207.png)
 
 Allow all inbound traffic.
 

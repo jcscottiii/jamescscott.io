@@ -5,10 +5,8 @@ categories:
 - Go
 - Golang
 date: 2014-09-30T16:28:24Z
-guid: http://jamescscott.io/?p=184
-id: 184
 title: App Engine Update Which Helps My Unit Tests!
-url: /2014/09/30/app-engine-update-helps-unit-tests/
+aliases: [/2014/09/30/app-engine-update-helps-unit-tests/]
 type: "post"
 ---
 
@@ -25,7 +23,6 @@ This is the error that I get:
 
 However, version 1.9.11 of the Go App Engine SDK brought some very convenient additions. I will show you that a fairly recent update allows you fix this problem easily. <img src="https://jamescscott.io/wp-includes/images/smilies/simple-smile.png" alt=":)" class="wp-smiley" style="height: 1em; max-height: 1em;" />
 
-<!--more-->
 
 ### **My Problem**
 
@@ -49,23 +46,23 @@ Now if I want to test from Step 2 onwards, I need to create my own incoming *htt
 
 My reasoning was to check in the App Engine source code for why it&#8217;s panicking. So I just Googled the error and found the source code in [api_dev.go](https://code.google.com/p/appengine-go/source/browse/appengine_internal/api_dev.go)
 
-![](https://jamescscott.io/wp-content/uploads/2014/09/154.png)
+![](/wp-content/uploads/2014/09/154.png)
 
 Ok so basically, I need to make sure that my request is in the ctxs map. Where do they normally do it?
 
-![](https://jamescscott.io/wp-content/uploads/2014/09/131.png)
+![](/wp-content/uploads/2014/09/131.png)
 
 As suspected, for every real request, they add it to the map.
 
 Now, where else do they do it?
 
-![](https://jamescscott.io/wp-content/uploads/2014/09/629.png)
+![](/wp-content/uploads/2014/09/629.png)
 
 There&#8217;s this new function that adds what we need but it&#8217;s in the appengine_internal package.
 
 If we search around the code in our &#8220;appengine&#8221; package we have&#8230;
 
-![](https://jamescscott.io/wp-content/uploads/2014/09/383.png)
+![](/wp-content/uploads/2014/09/383.png)
 
 Ah-ha. So if we can get an instance object and call NewRequest(), everything will be taken care of.
 
@@ -73,11 +70,11 @@ Ah-ha. So if we can get an instance object and call NewRequest(), everything wil
 
 My Go App Engine SDK is terribly out of date.
 
-![](https://jamescscott.io/wp-content/uploads/2014/09/747.png)
+![](/wp-content/uploads/2014/09/747.png)
 
 And that addition was just added to the version released 6 days ago as of this writing.
 
-![](https://jamescscott.io/wp-content/uploads/2014/09/980.png)
+![](/wp-content/uploads/2014/09/980.png)
 
 Time to upgrade!
 
@@ -87,7 +84,7 @@ Kudos to the Developers at Google who created the gcloud tool. It works so well.
 
 Now lets look at the version.
 
-![](https://jamescscott.io/wp-content/uploads/2014/09/845.png)
+![](/wp-content/uploads/2014/09/845.png)
 
 Uh oh, the appengine version didn&#8217;t upgrade to version 1.9.11, which is the version we need. I checked the hosted json file, components-2.json, that the glcoud tool looks at and it looks that while they have released version 1.9.11 individually, they have not updated this file.
 
@@ -104,7 +101,6 @@ This is the error that I get:
 
 However, version 1.9.11 of the Go App Engine SDK brought some very convenient additions. I will show you that a fairly recent update allows you fix this problem easily. <img src="https://jamescscott.io/wp-includes/images/smilies/simple-smile.png" alt=":)" class="wp-smiley" style="height: 1em; max-height: 1em;" />
 
-<!--more-->
 
 ### **My Problem**
 
@@ -128,23 +124,23 @@ Now if I want to test from Step 2 onwards, I need to create my own incoming *htt
 
 My reasoning was to check in the App Engine source code for why it&#8217;s panicking. So I just Googled the error and found the source code in [api_dev.go](https://code.google.com/p/appengine-go/source/browse/appengine_internal/api_dev.go)
 
-![](https://jamescscott.io/wp-content/uploads/2014/09/154.png)
+![](/wp-content/uploads/2014/09/154.png)
 
 Ok so basically, I need to make sure that my request is in the ctxs map. Where do they normally do it?
 
-![](https://jamescscott.io/wp-content/uploads/2014/09/131.png)
+![](/wp-content/uploads/2014/09/131.png)
 
 As suspected, for every real request, they add it to the map.
 
 Now, where else do they do it?
 
-![](https://jamescscott.io/wp-content/uploads/2014/09/629.png)
+![](/wp-content/uploads/2014/09/629.png)
 
 There&#8217;s this new function that adds what we need but it&#8217;s in the appengine_internal package.
 
 If we search around the code in our &#8220;appengine&#8221; package we have&#8230;
 
-![](https://jamescscott.io/wp-content/uploads/2014/09/383.png)
+![](/wp-content/uploads/2014/09/383.png)
 
 Ah-ha. So if we can get an instance object and call NewRequest(), everything will be taken care of.
 
@@ -152,11 +148,11 @@ Ah-ha. So if we can get an instance object and call NewRequest(), everything wil
 
 My Go App Engine SDK is terribly out of date.
 
-![](https://jamescscott.io/wp-content/uploads/2014/09/747.png)
+![](/wp-content/uploads/2014/09/747.png)
 
 And that addition was just added to the version released 6 days ago as of this writing.
 
-![](https://jamescscott.io/wp-content/uploads/2014/09/980.png)
+![](/wp-content/uploads/2014/09/980.png)
 
 Time to upgrade!
 
@@ -166,13 +162,13 @@ Kudos to the Developers at Google who created the gcloud tool. It works so well.
 
 Now lets look at the version.
 
-![](https://jamescscott.io/wp-content/uploads/2014/09/845.png)
+![](/wp-content/uploads/2014/09/845.png)
 
 Uh oh, the appengine version didn&#8217;t upgrade to version 1.9.11, which is the version we need. I checked the hosted json file, components-2.json, that the glcoud tool looks at and it looks that while they have released version 1.9.11 individually, they have not updated this file.
 
 **Update (Sept 30)** &#8211; Until Sept 30,](https://dl.google.com/dl/cloudsdk/release/components-2.json) stayed the same. I even filed an issue about it. The only way to update your SDK is by doing it manually. As of today, the json fille received an update and the Go SDK for App Engine is now version 1.9.12. (Which is perfect for our needs)!
 
-![](https://jamescscott.io/wp-content/uploads/2014/09/675.png)
+![](/wp-content/uploads/2014/09/675.png)
 
 Now we are using the right version!
 

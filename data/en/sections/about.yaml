@@ -1,0 +1,47 @@
+# section information
+section:
+  name: About
+  id: about
+  enable: true
+  weight: 1
+  showOnNavbar: true
+  template: sections/about.html
+
+# your designation
+designation: Senior Software Engineer
+# your company information
+# company:
+#   name: Example Co.
+#   url: "https://www.example.com"
+
+# your resume. this file path should be relative to you "static" directory
+# resume: "files/resume.pdf"
+
+# a summary about you
+summary: >
+  I am a passionate software engineer with 10 years of working experience.
+  I have been blessed with an interesting journey since I left <a href="http://www.virginia.edu/">Virginia</a> that took me to <a href="http://en.wikipedia.org/wiki/Portland,_Oregon">Portland, Oregon</a> and to <a href="http://en.wikipedia.org/wiki/Silicon_Valley">Silicon Valley</a>.
+  Now, I have returned to the east coast and currently reside in the <a href="http://en.wikipedia.org/wiki/Washington_metropolitan_area">Washington, D.C. metro</a> area.
+  I build tools and backends using Go primarily. I have experience in various cloud providers and work with various cloud native technologies like Kubernetes and Docker.
+  I love to improve the development and production experience for others.
+
+# your social links
+# give as many as you want. use font-awesome for the icons.
+socialLinks:
+- name: Github
+  icon: "fab fa-github"
+  url: "https://github.com/jcscottiii"
+- name: LinkedIn
+  icon: "fab fa-linkedin"
+  url: "https://www.linkedin.com/in/jamescscott"
+
+# your soft skills
+# give the percentage between 50 to 100 with 5 intervals.
+# currently supported colors: blue, yellow, pink, green, sky, orange
+softSkills:
+- name: Leadership
+  percentage: 85
+  color: blue
+- name: Team Work
+  percentage: 90
+  color: yellow

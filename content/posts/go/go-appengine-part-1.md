@@ -5,10 +5,8 @@ categories:
 - Go
 - Golang
 date: 2014-08-31T01:06:54Z
-guid: http://jamescscott.io/?p=140
-id: 140
 title: 'Go and App Engine: Part 1 &#8211; Setup'
-url: /2014/08/31/go-appengine-part-1/
+aliases: [/2014/08/31/go-appengine-part-1/]
 type: "post"
 ---
 
@@ -39,7 +37,7 @@ This will update your binaries for vim-go and install them in $HOME/.vim-go/ by 
   1. Either have gocode in your path or set the &#8220;gocode_bin&#8221; in the python script.
   2. Since we want to add the appengine library, add it to the list of additional_paths in the script.
 
-Note: Make sure the paths for both bullet points contain the absolute resolved path (no environment variables) Run the script and you should be set. So now whenever you gvp into a different workspace, just run this script afterwards for autocompletion. ![](https://jamescscott.io/wp-content/uploads/2014/09/223.png)
+Note: Make sure the paths for both bullet points contain the absolute resolved path (no environment variables) Run the script and you should be set. So now whenever you gvp into a different workspace, just run this script afterwards for autocompletion. ![](/wp-content/uploads/2014/09/223.png)
 
 You should be ready to start developing Go for App Engine!
 

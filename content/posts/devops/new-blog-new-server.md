@@ -6,9 +6,9 @@ categories:
 - DigitalOcean
 date: 2016-09-03T19:28:06-04:00
 title: New Blog, New Server
-url: /2016/09/03/new-blog-new-server/
+aliases: [/2016/09/03/new-blog-new-server/]
 type: "post"
-featured: /blog-content/2016/09/Dokku.png
+hero: /images/posts/heros/Dokku.png
 ---
 
 ## New Blog, New Server
@@ -90,7 +90,7 @@ I looked at alternative PaaSs and also Orchestrators.
   - Need multiple droplets to ensure high availability and
     for the number of components.
 - DigitalOcean has no official instructions on how to do this.
-  - People in the community have done this but found it dated or incomplete.
+  - People in the community have done this but found it dated or incomplete. **(as of 2019, this is no longer true. They have with their own official offering)**
 
 [Flynn](https://flynn.io/)
 

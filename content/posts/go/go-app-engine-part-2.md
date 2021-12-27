@@ -5,10 +5,8 @@ categories:
 - Go
 - Golang
 date: 2014-09-14T19:27:12Z
-guid: http://jamescscott.io/?p=152
-id: 152
 title: 'Go and App Engine: Part 2 &#8211; Development'
-url: /2014/09/14/go-app-engine-part-2/
+aliases: [/2014/09/14/go-app-engine-part-2/]
 type: "post"
 ---
 
@@ -18,7 +16,7 @@ This is part 2 of a series of posts that involve developing and publishing to Go
 
 Google has moved to from having a single frontend (with optional backends) to this notion of modules in 2013. This is important as it stresses the importance of modularizing your code. Each module should have a specific purpose. If you architect your code that way, Google will take care scaling your app appropriately.
 
-![](https://jamescscott.io/wp-content/uploads/2014/08/742.png)
+![](/wp-content/uploads/2014/08/742.png)
 
 _This post series won&#8217;t explore the &#8220;Version&#8221; aspect much. Possibly in a future post._
 
@@ -33,9 +31,7 @@ _This post series won&#8217;t explore the &#8220;Version&#8221; aspect much. Pos
 
 We should get something like this when we visit our frontend:
 
-![](https://jamescscott.io/wp-content/uploads/2014/09/417.png)
-
-<!--more-->
+![](/wp-content/uploads/2014/09/417.png)
 
 ### **Breaking Ground (Into The Code)**
 
@@ -226,7 +222,7 @@ You should see some logs be generated and no error / failure messages.
 
 In your browser, visit localhost:8080 and you should see the following:
 
-![](https://jamescscott.io/wp-content/uploads/2014/09/417.png)
+![](/wp-content/uploads/2014/09/417.png)
 
 #### **Bonus: Hybrid App!?**
 
