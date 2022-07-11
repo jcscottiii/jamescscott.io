@@ -21,13 +21,10 @@ markup:
 # Enable global emoji support
 enableEmoji: true
 
+# Enable Google Analytics
+googleAnalytics: G-E5HZS08DWM
 # Site parameters
 params:
-  features:
-    analytics:
-      enabled: true
-      google:
-        id: G-E5HZS08DWM
   # GitHub repo URL of your site
   gitRepo: https://github.com/jcscottiii/jamescscott.io
 
