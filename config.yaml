@@ -23,6 +23,11 @@ enableEmoji: true
 
 # Site parameters
 params:
+  features:
+    analytics:
+      enabled: true
+      google:
+        id: G-E5HZS08DWM
   # GitHub repo URL of your site
   gitRepo: https://github.com/jcscottiii/jamescscott.io
 
