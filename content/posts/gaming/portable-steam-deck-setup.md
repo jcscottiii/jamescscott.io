@@ -15,7 +15,7 @@ I wanted to share with you the accessories I use to give a fairly useful portabl
 
 *Full transparency: the links below are affiliate links and I may receive a commission if you make a purchase with them. Any support would be great for the blog and highly appreciated.*
 
-![](/img/blog-content/2022/07/steamdecksetup.jpg)
+![](/img/blog-content/2022/07/steamdecksetup.gif)
 
 - Keyboard: [iClever BK08 Foldable Keyboard](https://amzn.to/3Piw2V6)
   - If you want to play shooters and come from the mouse-and-keyboard camp, this keyboard is good and portable enough for W-A-S-D action.
