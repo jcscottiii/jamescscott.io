@@ -42,7 +42,6 @@ Table of Contents
 
 ##
 
-
 ## <span style="text-decoration: underline;">Go Version Manager</span>
 
 This cool tool, as you can imply from the name, manages the versions of Go you use. This is very helpful for when you want to make reproducible builds despite Go updating itself every ~6 months.   Installing GVM Follow the steps here to install GMV for your environment: <https://github.com/moovweb/gvm>   Using GVM Install latest go.
@@ -65,8 +64,8 @@ Another pain that any developer can relate to is having a decent development edi
 
 ![](/wp-content/uploads/2014/07/629.png)
 
-  * Commented of the autocmd for Fmt. (I was getting some error every time I saved)
-  * And then I set this go\_fmt\_autosave  to 0 to make sure Fmt didn’t run every time I saved.
+- Commented of the autocmd for Fmt. (I was getting some error every time I saved)
+- And then I set this go\_fmt\_autosave  to 0 to make sure Fmt didn’t run every time I saved.
 
 ![](/wp-content/uploads/2014/07/911.png)
 
@@ -139,8 +138,8 @@ Now to run it:
 
 I just mentioned GVP helps separate external code from your code. Now, let say developer 1 uses library A and builds an application. A week later, developer 2 is introduced to the project while developer 1 is on vacation. Practicing good version control, there should be just should just be their source code and not the external code. Go has a handy feature where developer 2 can just run &#8220;go get&#8221; and it will download all the latest versions of the external packages that their application uses (and if GVP is setup, it will download them to the untracked .godeps folder). Developer 2, runs &#8220;go build&#8221; and stuff starts to break. Errors like missing functions and variables. This is a classic example of  how external libraries can become outdated and break your code that rely upon them. As of now, out of the box, Go has no way of versioning the external libraries downloaded to ensure developer 1 and developer 2 used the same version of library A. This is where Go Package Manager comes into play. GPM adds meta data about versioning of external packages. You will need two tools:
 
-  1. GPM itself <a style="font-family: sans-serif; font-size: medium; font-style: normal;" href="https://github.com/pote/gpm">https://github.com/pote/gpm</a>
-  2. GPM-Bootstrap <https://github.com/pote/homebrew-gpm_plugins>
+1. GPM itself <a style="font-family: sans-serif; font-size: medium; font-style: normal;" href="https://github.com/pote/gpm">https://github.com/pote/gpm</a>
+2. GPM-Bootstrap <https://github.com/pote/homebrew-gpm_plugins>
 
 This meta data is stored in this file called Godeps. Now, instead of putting all the external libraries in your source control repo, you can just put that Godeps file in there. Run GPM and it will get the appropriate versions of the libraries you need. GPM-Bootstrap is just used for the initial Godeps file. First, let&#8217;s add a library to illustrate a sample workflow. We will pick a simple logging library:  <https://github.com/kdar/factorlog>
 

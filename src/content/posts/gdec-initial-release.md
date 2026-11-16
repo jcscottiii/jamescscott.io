@@ -1,6 +1,6 @@
 ---
 title: GDEC Initial Release
-description: 'This post is to announce the release of GDEC: the Golang Development Environment Container.'
+description: "This post is to announce the release of GDEC: the Golang Development Environment Container."
 pubDatetime: 2015-11-22T21:50:56Z
 tags:
   - docker

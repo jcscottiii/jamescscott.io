@@ -42,13 +42,12 @@ to move.
   1. Create a CodeAnywhere [account](https://codeanywhere.com). Upon creating an account there, you will see a Connection Wizard and there will be an option for `DigitalOcean`. After clicking there, you will see an option for getting a promo code.
   1. Both of the codes will not work, upon signing up. You will need to submit a ticket for the other. DigitalOcean's support is really helpful and quick to add the other code to your account.
 
-
 ### For infrastructure management: [Terraform](https://www.terraform.io/)
 
 ![](/img/blog-content/2016/09/Terraform.png)
 
 - I really love the idea as infrastructure-as-code and Hashicorp's Terrafrom
-tool is something I have been wanting to dive into more.
+  tool is something I have been wanting to dive into more.
 - I want to be able to provision everything and tear everything down
   at the drop of a dime with a single command.
 - When I say provision, I mean to create the droplet, to secure it,
@@ -57,7 +56,6 @@ tool is something I have been wanting to dive into more.
 - When I say tear down, I mean to backup the databases, to remove the apps,
   to and destroy the droplet.
 
-
 ### For deploying apps: [Dokku](http://dokku.viewdocs.io/dokku/)
 
 ![](/img/blog-content/2016/09/Dokku.png)
@@ -65,7 +63,7 @@ tool is something I have been wanting to dive into more.
 Dokku is a Platform as a Service (PaaS) for a single node. A PaaS makes it easy
 to deploy apps by removing the burden of having to configure the infrastructure
 for every app. Theoretically, it allows you to easily scale as well (Dokku is a
-  slightly different case).
+slightly different case).
 
 Pros of Dokku:
 
@@ -97,7 +95,6 @@ I looked at alternative PaaSs and also Orchestrators.
 [Deis](https://deis.com/)
 
 - v2 uses Kubernetes. See notes on Kubernetes.
-
 
 ## Next Steps
 

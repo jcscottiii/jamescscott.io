@@ -1,5 +1,5 @@
 ---
-title: 'Go and App Engine: Part 1 – Setup'
+title: "Go and App Engine: Part 1 – Setup"
 description: This is part 1 of a series of posts that involve developing and publishing to Google’s App Engine with Go as the backend. In addition, it will exemplify how…
 pubDatetime: 2014-08-31T01:06:54Z
 tags:
@@ -31,8 +31,8 @@ Autocompletion is every developer&#8217;s best friend. However, if you open a ne
 
 This will update your binaries for vim-go and install them in $HOME/.vim-go/ by default. Gocode maintains this variable called lib-path. This variable points to location of libraries you develop with. The libraries contain the necessary info for auto completion. As per Gocode&#8217;s [Readme](https://github.com/nsf/gocode/blob/master/README.md), lib-path defaults <strong style="color: #333333;">$GOPATH/pkg/$GOOS_$GOARCH</strong><span style="color: #333333;"> and </span><strong style="color: #333333;">$GOROOT/pkg/$GOOS_$GOARCH</strong>. This lib-path essentially only points to the created libraries from when you compile you Go code. Gocode uses the resolved value of the environment variable so if for example GOPATH changes, gocode will not use the new GOPATH variable. Luckily, the developers of gocode allow this variable to be overridden via command line. In my previous post, I mentioned using Go Versioning Packager (GVP) to manage your GO environment variables. Now, with the fact that I could possibly switch workspaces and inability to update the location of my libraries for gocde, I began to develop a script to solve just that by essentially looking at the possibly new value of GOPATH and overriding the old lib-path with the new value. <span style="text-decoration: underline;"><strong>More importantly, the <a href="https://github.com/jcscottiii/gocode_gvp_helper">script</a> can add additional libraries (like the location of our App Engine libraries)</strong></span>. To use the script, you need to:
 
-  1. Either have gocode in your path or set the &#8220;gocode_bin&#8221; in the python script.
-  2. Since we want to add the appengine library, add it to the list of additional_paths in the script.
+1. Either have gocode in your path or set the &#8220;gocode_bin&#8221; in the python script.
+2. Since we want to add the appengine library, add it to the list of additional_paths in the script.
 
 Note: Make sure the paths for both bullet points contain the absolute resolved path (no environment variables) Run the script and you should be set. So now whenever you gvp into a different workspace, just run this script afterwards for autocompletion. ![](/wp-content/uploads/2014/09/223.png)
 

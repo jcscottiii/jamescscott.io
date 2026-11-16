@@ -13,8 +13,16 @@ type Props = {
 };
 
 const { post, index = 0 } = Astro.props;
-const { title, ogImage, tags, series, seriesPart, pubDatetime, modDatetime, timezone } =
-  post.data;
+const {
+  title,
+  ogImage,
+  tags,
+  series,
+  seriesPart,
+  pubDatetime,
+  modDatetime,
+  timezone,
+} = post.data;
 const href = getPostUrl(post.id, post.filePath, Astro.currentLocale);
 const eyebrow =
   series && seriesPart ? `Series · Part ${seriesPart}` : (tags[0] ?? "post");
@@ -37,7 +45,7 @@ const fallbackArt = `var(--art-${(index % 3) + 1})`;
             alt=""
             widths={[360, 720]}
             sizes="(min-width: 768px) 240px, 100vw"
-            class="h-full w-full object-cover transition-transform duration-300 [filter:var(--image-dim)] group-hover:scale-[1.03]"
+            class="h-full w-full object-cover [filter:var(--image-dim)] transition-transform duration-300 group-hover:scale-[1.03]"
           />
         )
       }

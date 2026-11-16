@@ -21,6 +21,7 @@ I decided it will use Hugo to generate my website from markdown.
 Here is my journey.
 
 ## Theme and Requirements Met
+
 Hugo is a static site generator. I quickly found a theme I liked. The [Future
 Imperfect theme by Julio Pescador](http://themes.gohugo.io/future-imperfect/).
 
@@ -41,7 +42,6 @@ and so early in the process.)
 One thing I had to do manually was export my Wordpress `pages` I wanted such as
 my About Me page. In addition, all of my non-published / draft blogs were not
 exported. I didn't bother to copy those over though.
-
 
 ## ! [remote rejected] master -> master (pre-receive hook declined)
 
@@ -85,6 +85,7 @@ can determine what was going on.
 ## Unable to detect buildpack
 
 ### Problem
+
 For Hugo sites, you aren't supposed to commit your built files to version
 control. But with Dokku, it only takes what you have in your Git repository and
 works from there. There is no official buildpack for building and serving Hugo
@@ -92,6 +93,7 @@ sites to Dokku. I actually had an idea of this problem due to my experience with
 Heroku and Cloud Foundry.
 
 ### Solution
+
 I quickly found a buildpack for [Hugo](https://github.com/roperzh/heroku-buildpack-hugo).
 Plugged it in and it didn't work. It was a permission issue for the scripts.
 I found a [fork](https://github.com/AlexSnet/heroku-buildpack-hugo) that had
@@ -114,6 +116,7 @@ In order to get this to work, I had to create a custom NGINX config. To point
 the root to `/app/www/public`.
 
 ## Let's Encrypt
+
 The Let's Encrypt [plugin](https://github.com/dokku/dokku-letsencrypt) is really
 easy to setup HTTPS for the site. Once setup, it will auto-renew the certs.
 In addition, it will cause your app to automatically redirect to the HTTPS
@@ -121,6 +124,7 @@ scheme. I'll talk more about this when I talk about automating my whole
 infrastructure.
 
 ## Next Steps:
+
 I'm still working through some hiccups. For example if you don't add the trailing
 slash to some URLs, NGINX will do it but also add the port number of the
 container and it just ends badly.

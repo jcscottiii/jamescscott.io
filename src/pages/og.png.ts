@@ -7,6 +7,7 @@ export const GET: APIRoute = async context =>
   renderOgCard({
     eyebrow: "Software engineer",
     title: config.site.title,
-    subtitle: "I build AI tooling for the open web, and I measure it before I trust it.",
+    subtitle:
+      "I build AI tooling for the open web, and I measure it before I trust it.",
     url: context.url,
   });

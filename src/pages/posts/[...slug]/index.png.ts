@@ -32,7 +32,10 @@ export const GET: APIRoute = async ({ props, url }) => {
   const eyebrow =
     seriesKey && series[seriesKey] && seriesPart
       ? `${series[seriesKey].title} · Part ${seriesPart}`
-      : tags.map(t => `#${t}`).slice(0, 3).join("  ");
+      : tags
+          .map(t => `#${t}`)
+          .slice(0, 3)
+          .join("  ");
 
   return renderOgCard({ eyebrow, title, url });
 };

@@ -1,5 +1,5 @@
 ---
-title: 'Android Wear: Day 1'
+title: "Android Wear: Day 1"
 description: This post is the beginning of a mini-series of developing for Android Wear. This post will focus on setting up your environment for initial development with…
 pubDatetime: 2014-07-04T02:03:51Z
 tags:
@@ -9,7 +9,7 @@ tags:
   - android-wear
 ---
 
-This post is the beginning of a mini-series of developing for Android Wear. This post will focus on setting up your environment for initial development with Android Studio. As someone who loves tinkering with new things, I was very anxious to try out the new Android Wear SDK especially after I received my e-mail notification from Motorola about the Moto 360.  ![](/wp-content/uploads/2014/07/590.png)
+This post is the beginning of a mini-series of developing for Android Wear. This post will focus on setting up your environment for initial development with Android Studio. As someone who loves tinkering with new things, I was very anxious to try out the new Android Wear SDK especially after I received my e-mail notification from Motorola about the Moto 360. ![](/wp-content/uploads/2014/07/590.png)
 
 ### In This Part of The Series&#8230;
 
@@ -19,16 +19,16 @@ I will describe just the the steps of setting up your environment to develop And
 
 To start developing Android Wearable Apps, you need 1) Android Studio and 2) Gradle.
 
-  1. Android Studio is Google&#8217;s new highly favored child of an IDE that builds on top of IntelliJ.
-  2. Gradle is the new build system. Previously, Ant was used.
+1. Android Studio is Google&#8217;s new highly favored child of an IDE that builds on top of IntelliJ.
+2. Gradle is the new build system. Previously, Ant was used.
 
-Android Studio As of this writing, Android Studio was only at v0.8.0. I&#8217;m installing it on Mac OS X Mavericks. Go to <http://developer.android.com/sdk/installing/studio.html> Pleasantly enough, you download a DMG file. Just drag it into your Applications folder and you&#8217;re good to go!  ![](/wp-content/uploads/2014/07/648.png)Quick side note: From the beginning, Google is trying to make the whole experience of development easier. Of course, seasoned developers would overlook this difference. However, I really see this very small change beneficial to first time programmers  and / or youth. (Compared to using Eclipse which just comes in a zip file and you have fish for the Eclipse executable)  ![](/wp-content/uploads/2014/07/430.png)Upon opening, there&#8217;s a notification saying to update.  ![](/wp-content/uploads/2014/07/954.png)After going to the change log, <http://tools.android.com/recent>, it seems like a very important update. This update  (0.8.1) brings the Android L Preview, Support for Wear and TV, and many other things. Even though it prompts you that an update is available, you need to still go check for updates yourself.  ![](/wp-content/uploads/2014/07/203.png) ![](/wp-content/uploads/2014/07/497.png)Update and restart&#8230;
+Android Studio As of this writing, Android Studio was only at v0.8.0. I&#8217;m installing it on Mac OS X Mavericks. Go to <http://developer.android.com/sdk/installing/studio.html> Pleasantly enough, you download a DMG file. Just drag it into your Applications folder and you&#8217;re good to go! ![](/wp-content/uploads/2014/07/648.png)Quick side note: From the beginning, Google is trying to make the whole experience of development easier. Of course, seasoned developers would overlook this difference. However, I really see this very small change beneficial to first time programmers  and / or youth. (Compared to using Eclipse which just comes in a zip file and you have fish for the Eclipse executable) ![](/wp-content/uploads/2014/07/430.png)Upon opening, there&#8217;s a notification saying to update. ![](/wp-content/uploads/2014/07/954.png)After going to the change log, <http://tools.android.com/recent>, it seems like a very important update. This update  (0.8.1) brings the Android L Preview, Support for Wear and TV, and many other things. Even though it prompts you that an update is available, you need to still go check for updates yourself. ![](/wp-content/uploads/2014/07/203.png) ![](/wp-content/uploads/2014/07/497.png)Update and restart&#8230;
 
 <h3 style="color: #1e4e79;">
   Getting Started
 </h3>
 
-Google has a nice little tutorial here: <http://developer.android.com/training/wearables/apps/creating.html> Found their lesson to be a little out of order.  ![](/wp-content/uploads/2014/07/346.png)From here, start following the tutorial on the website. I&#8217;m just going to note some changes I experienced..
+Google has a nice little tutorial here: <http://developer.android.com/training/wearables/apps/creating.html> Found their lesson to be a little out of order. ![](/wp-content/uploads/2014/07/346.png)From here, start following the tutorial on the website. I&#8217;m just going to note some changes I experienced..
 
 <ul style="font-size: 16px; line-height: 1.5;">
   <li>

@@ -22,7 +22,9 @@ async function loadFont(
     format: "woff",
   });
   if (!path) throw new Error(`Cannot find ${cssVariable} at weight ${weight}.`);
-  return fetch(experimental_getFontFileURL(path, url)).then(r => r.arrayBuffer());
+  return fetch(experimental_getFontFileURL(path, url)).then(r =>
+    r.arrayBuffer()
+  );
 }
 
 export async function renderOgCard({ eyebrow, title, subtitle, url }: Options) {
@@ -67,7 +69,11 @@ export async function renderOgCard({ eyebrow, title, subtitle, url }: Options) {
               {
                 type: "div",
                 props: {
-                  style: { display: "flex", flexDirection: "column", gap: "20px" },
+                  style: {
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "20px",
+                  },
                   children: [
                     {
                       type: "div",
@@ -96,7 +102,11 @@ export async function renderOgCard({ eyebrow, title, subtitle, url }: Options) {
                       ? {
                           type: "div",
                           props: {
-                            style: { fontSize: 28, color: "#545a64", lineHeight: 1.4 },
+                            style: {
+                              fontSize: 28,
+                              color: "#545a64",
+                              lineHeight: 1.4,
+                            },
                             children: subtitle,
                           },
                         }
@@ -118,7 +128,10 @@ export async function renderOgCard({ eyebrow, title, subtitle, url }: Options) {
                     {
                       type: "span",
                       props: {
-                        style: { fontFamily: "JetBrains Mono", color: "#16181d" },
+                        style: {
+                          fontFamily: "JetBrains Mono",
+                          color: "#16181d",
+                        },
                         children: host,
                       },
                     },

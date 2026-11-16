@@ -46,7 +46,11 @@ const parts = key ? await getSeriesParts(key) : [];
                 </span>
               ) : p.post ? (
                 <a
-                  href={getPostUrl(p.post.id, p.post.filePath, Astro.currentLocale)}
+                  href={getPostUrl(
+                    p.post.id,
+                    p.post.filePath,
+                    Astro.currentLocale
+                  )}
                   class="text-accent underline-offset-4 hover:underline"
                 >
                   {p.title}

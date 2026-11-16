@@ -1,5 +1,5 @@
 ---
-title: 'Go and App Engine: Part 2 – Development'
+title: "Go and App Engine: Part 2 – Development"
 description: This is part 2 of a series of posts that involve developing and publishing to Google’s App Engine with Go as the backend. In addition, it will exemplify how…
 pubDatetime: 2014-09-14T19:27:12Z
 tags:
@@ -19,12 +19,12 @@ _This post series won&#8217;t explore the &#8220;Version&#8221; aspect much. Pos
 
 ### **Overview**
 
-  1. This post will walk you through how to create two modules.
-      * We will call Module A (Our frontend).
-      * Module A will call Module B (The backend). Module B will produce an output and return it in the response body.
-      * Module A will display some other text with the output of Module B appended to it.
-  2. This post will walk through modifying custom routing for the modules.
-      * As per [App Engine Module Routing Rules (July 2014)](https://developers.google.com/appengine/docs/go/modules/routing), modules will have a URL like <span style="color: #333333;">http://module.app-id.appspot.com </span>by default. We will change that all the modules operate under the same app-id and depending on your path, it will internally trigger the correct module.
+1. This post will walk you through how to create two modules.
+   - We will call Module A (Our frontend).
+   - Module A will call Module B (The backend). Module B will produce an output and return it in the response body.
+   - Module A will display some other text with the output of Module B appended to it.
+2. This post will walk through modifying custom routing for the modules.
+   - As per [App Engine Module Routing Rules (July 2014)](https://developers.google.com/appengine/docs/go/modules/routing), modules will have a URL like <span style="color: #333333;">http://module.app-id.appspot.com </span>by default. We will change that all the modules operate under the same app-id and depending on your path, it will internally trigger the correct module.
 
 We should get something like this when we visit our frontend:
 
@@ -34,8 +34,8 @@ We should get something like this when we visit our frontend:
 
 #### **Directory structure**
 
-  * Inside the src folder of your GOPATH, create a new folder for your project. (You will see that mine will be called testgaeapp through this exercise). If you need help setting up your GOPATH or any other questions, refer to the <a style="font-family: sans-serif; font-size: medium; font-style: normal;" title="My Go Setup" href="/2014/07/30/go-setup/">my Go Setup post</a>.
-  * Within this newly created project folder, create three sub-directories: frontend, backend, and config. Frontend and backend will be two separate modules and config will be a common library between the two.
+- Inside the src folder of your GOPATH, create a new folder for your project. (You will see that mine will be called testgaeapp through this exercise). If you need help setting up your GOPATH or any other questions, refer to the <a style="font-family: sans-serif; font-size: medium; font-style: normal;" title="My Go Setup" href="/2014/07/30/go-setup/">my Go Setup post</a>.
+- Within this newly created project folder, create three sub-directories: frontend, backend, and config. Frontend and backend will be two separate modules and config will be a common library between the two.
 
 #### <span style="text-decoration: underline;"><strong>Frontend</strong></span>
 
@@ -75,9 +75,9 @@ func init() {
 	http.HandleFunc("/", handler)
 }</pre>
 
-  * Line 15-17: In appengine, you can&#8217;t use a Default Client from the net/http package. Instead, you use the appengine/urlfetch package to make HTTP requests from your module.
-  * Line 28: Just going to write to our writer what we retrieved from the request.
-  * Line 32: The appengine runtime does not allow for a main function as the entry point for the program. Which is acceptable. Your program is a web server that responds to requests. Instead of a main entry point, you just register the functions for each request entrypoint. One thing the appengine runtime does not change is the func init. Per the golang spec, the [init function](https://golang.org/doc/effective_go.html#init) allows us to do just that.
+- Line 15-17: In appengine, you can&#8217;t use a Default Client from the net/http package. Instead, you use the appengine/urlfetch package to make HTTP requests from your module.
+- Line 28: Just going to write to our writer what we retrieved from the request.
+- Line 32: The appengine runtime does not allow for a main function as the entry point for the program. Which is acceptable. Your program is a web server that responds to requests. Instead of a main entry point, you just register the functions for each request entrypoint. One thing the appengine runtime does not change is the func init. Per the golang spec, the [init function](https://golang.org/doc/effective_go.html#init) allows us to do just that.
 
 Note: When we make the request to our api in the backend, you might want to make it a goroutine if it takes too long.
 
@@ -87,9 +87,9 @@ You may have noticed the config package. Let&#8217;s go ahead and address that.
 
 This library came about because I needed a way to configure deployment dependent variables (local development env vs an app engine environment; which I will show in the next post). You may think there are plenty of better ways to configure these types of settings instead of putting them purely in code, and you&#8217;re right. But it&#8217;s all you can do at this moment. I&#8217;ll walk through the better ways quickly.
 
-  * **Environment variables**: When it comes to deploying a service, configuration values are typically read once from environment variables. However, you can&#8217;t do that with appengine (or I couldn&#8217;t find a way).
-  * **Values From Database:** An alternative is to have the configuration values loaded from a database. However you can&#8217;t populate the Datastore DB in a command line environment. The only way to populate is via a request &#8220;localhost:8080/initmydata). At that point, your data structures are already in code.
-  * **Read values from files**: This would be the optimal, I tried briefly to upload a file which wasn&#8217;t addressable by a URL but it didn&#8217;t work out. So I went to my last resort which I implemented. I have a feeling this would work out under more investigation.
+- **Environment variables**: When it comes to deploying a service, configuration values are typically read once from environment variables. However, you can&#8217;t do that with appengine (or I couldn&#8217;t find a way).
+- **Values From Database:** An alternative is to have the configuration values loaded from a database. However you can&#8217;t populate the Datastore DB in a command line environment. The only way to populate is via a request &#8220;localhost:8080/initmydata). At that point, your data structures are already in code.
+- **Read values from files**: This would be the optimal, I tried briefly to upload a file which wasn&#8217;t addressable by a URL but it didn&#8217;t work out. So I went to my last resort which I implemented. I have a feeling this would work out under more investigation.
 
 <pre class="lang:go decode:true">package config
 
@@ -131,7 +131,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, "Hello World from James Scott!")
 }</pre>
 
-  *  Line 13 simply writes a message of our choice to the response. (You can see how you could instead add formatted json, etc with something high useful for the frontend to consume).
+-  Line 13 simply writes a message of our choice to the response. (You can see how you could instead add formatted json, etc with something high useful for the frontend to consume).
 
 #### <span style="text-decoration: underline;"><strong>YAML Files</strong></span>
 
@@ -153,10 +153,10 @@ handlers:
 
 Some of these fields are standard and don&#8217;t change but the ones that do matter are:
 
-  * module: There ALWAYS has to be a module named default among all modules. I just chose to call my frontend module the default module.
-  * application: This is the name of the over arching application. Since we are testing locally, it doesn&#8217;t matter. However, in the next post of this series when we deploy to a real server, the value of this field WILL matter.
-  * version: Just typical versioning of an app. Can be numbers as well.
-  * handlers-> url: This means any request that com at the root of our app (ex: mytestapp.com), should be handled by any handlers setup in our frontend Go code.
+- module: There ALWAYS has to be a module named default among all modules. I just chose to call my frontend module the default module.
+- application: This is the name of the over arching application. Since we are testing locally, it doesn&#8217;t matter. However, in the next post of this series when we deploy to a real server, the value of this field WILL matter.
+- version: Just typical versioning of an app. Can be numbers as well.
+- handlers-> url: This means any request that com at the root of our app (ex: mytestapp.com), should be handled by any handlers setup in our frontend Go code.
 
 ##### <span style="text-decoration: underline;"><strong>Backend YAML File</strong></span>
 
@@ -176,8 +176,8 @@ handlers:
 
 Key points:
 
-  * module: It&#8217;s named backend
-  * handlers-> url: All requests coming from api/ of our app (ex: mytestapp.com/api), should be handled by the handlers setup in our backend code.
+- module: It&#8217;s named backend
+- handlers-> url: All requests coming from api/ of our app (ex: mytestapp.com/api), should be handled by the handlers setup in our backend code.
 
 ##### <span style="text-decoration: underline;"><strong>Dispatch YAML File</strong></span>
 
@@ -204,8 +204,8 @@ dispatch:
 
 It&#8217;s that simple. Now with the app-id.com format:
 
-  * any app-id.com/api will be handled by the rules under our backend module.
-  * anything else will be handled by our default (frontend) module.
+- any app-id.com/api will be handled by the rules under our backend module.
+- anything else will be handled by our default (frontend) module.
 
 ### **Now will it all work?**
 
@@ -249,9 +249,9 @@ func main() {
 	http.ListenAndServe("localhost:8080", nil)
 }</pre>
 
-  *  Line 1: The build constraint.. I&#8217;m telling that you should never build this file if using appengine (because you can&#8217;t use your own main function).
-  * Line 7-8: Importing our two -ends.
-  * Line 12-13: Calling our two empty dummy functions just so we can import the packages.
+-  Line 1: The build constraint.. I&#8217;m telling that you should never build this file if using appengine (because you can&#8217;t use your own main function).
+- Line 7-8: Importing our two -ends.
+- Line 12-13: Calling our two empty dummy functions just so we can import the packages.
 
 Lets look at our modified backend:
 
@@ -362,8 +362,8 @@ func init() {
 	http.HandleFunc("/", handler)
 }</pre>
 
-  *  Lines 11-16: You can see our dummy function so standalone can use it.
-  * Line 19: Our call to our new outside call function.
+-  Lines 11-16: You can see our dummy function so standalone can use it.
+- Line 19: Our call to our new outside call function.
 
 Time to run the new standalone version!
 

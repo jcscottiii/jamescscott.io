@@ -24,7 +24,6 @@ When I lost my father as a teenager, my mother made sure I kept up my interests 
 
 ## Try Software Development Now
 
-
 My first introduction to software engineering as a teen left me feeling lost. But after some practice and more exposure, it all started to make sense. For students looking to get into software development, I offer one piece of advice: Start now. Nowadays, there are trainings to get students involved in programming at a very early age. There are also coding bootcamps that introduce you to software development in a condensed curriculum. People are switching careers to become software developers. The world is realizing how much need there is for more software developers. It’s key to start early. Even if it doesn’t make sense the first time, eventually it will.
 
 ## Use Failure to Your Advantage

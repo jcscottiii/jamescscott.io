@@ -17,4 +17,4 @@ Download [Windows Subsystem for Android](https://www.microsoft.com/en-us/p/windo
 
 Inspired by this [article](https://atekihcan.com/blog/codeorrandom/how-to-setup-android-sdk-on-wsl/)
 
-Download the package from the `command line [tools](https://developer.android.com/studio#downloads) only`  section for Linux. It can be seen at the bottom.
+Download the package from the `command line [tools](https://developer.android.com/studio#downloads) only` section for Linux. It can be seen at the bottom.

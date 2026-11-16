@@ -9,14 +9,14 @@ tags:
 
 It has been while with GDEC and I found many different problems with it. That has led me to think about how to do the next GDEC revision. Right now, my current pains are:
 
-  * Getting the GUI setup for Windows seems impossible using the current technologies.
-  * Code is isolated between container and host (biggest pain).
-  * Lack of documentation on how to incorporate it in one&#8217;s workflow.
+- Getting the GUI setup for Windows seems impossible using the current technologies.
+- Code is isolated between container and host (biggest pain).
+- Lack of documentation on how to incorporate it in one&#8217;s workflow.
 
 However, there are some new things I will try in the next iteration.
 
-  * VNC. Setting up all that X11 stuff was hard and slow and didn&#8217;t work on Windows. There are VNC viewers for Windows so that should work out. I&#8217;m just hoping the performance is better too.
-  * Use mounted volumes to solve the issue of isolation between host and container (newbie mistake)
+- VNC. Setting up all that X11 stuff was hard and slow and didn&#8217;t work on Windows. There are VNC viewers for Windows so that should work out. I&#8217;m just hoping the performance is better too.
+- Use mounted volumes to solve the issue of isolation between host and container (newbie mistake)
 
 Why do all of this? Context switching between projects is expensive (it costs you and your company time that can add up over time). Also, I&#8217;m lazy.
 

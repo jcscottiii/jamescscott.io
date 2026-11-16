@@ -9,9 +9,9 @@ ogImage: ../../assets/images/posts/steamdecksetup.jpg
 
 I recently purchased my Steam Deck and I am loving it.
 
-I wanted to share with you the accessories I use to give a fairly useful portable setup. The best part of it? **All but one optional thing fits in the case.** (That optional thing being a PS5 or Xbox controller). With this setup, you can have a nice mouse and keyboard setup. Also, you will have a usb hub to plug in additional peripherals. 
+I wanted to share with you the accessories I use to give a fairly useful portable setup. The best part of it? **All but one optional thing fits in the case.** (That optional thing being a PS5 or Xbox controller). With this setup, you can have a nice mouse and keyboard setup. Also, you will have a usb hub to plug in additional peripherals.
 
-*Full transparency: the links below are affiliate links and I may receive a commission if you make a purchase with them. Any support would be great for the blog and highly appreciated.*
+_Full transparency: the links below are affiliate links and I may receive a commission if you make a purchase with them. Any support would be great for the blog and highly appreciated._
 
 ![](/img/blog-content/2022/07/steamdecksetup.gif)
 

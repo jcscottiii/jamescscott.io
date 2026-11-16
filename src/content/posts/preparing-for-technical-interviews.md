@@ -19,7 +19,7 @@ This [class](https://www.educative.io/courses/grokking-the-coding-interview) was
 
 They give you the concept, then a series of problems. You can solve problem directly on their website. No need to setup your coding environment for each problem.
 
-There is one downside: You have to pay for it. I opted for the single month subscription plan which was $60. 
+There is one downside: You have to pay for it. I opted for the single month subscription plan which was $60.
 
 ###### Why is this course worth it?
 
@@ -28,7 +28,6 @@ Interviewing is never natural. So coming back into the world of doing them can b
 #### Leetcode Premium
 
 I have always used the free version Leetcode and was too cheap to buy premium. But I figured, if I pay Netflix, Disney+, Hulu, Crunchyroll, etc, I can pay for [Leetcode Premium](https://leetcode.com/subscribe/) for a month. Which is worth $35.
-
 
 ###### Why is this course worth it?
 
@@ -46,15 +45,13 @@ TODO - add
 
 #### Designing Data-Intensive Applications by Martin Kleppmann
 
-
 [Link](https://amzn.to/3zfAzT0)
 
-TODO - add 
+TODO - add
 
 ### Retrospect
 
 If I could do it again, I would check out:
-
 
 ## Grind 75
 

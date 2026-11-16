@@ -1,5 +1,5 @@
 ---
-title: 'Initial Thoughts: WRT1900AC'
+title: "Initial Thoughts: WRT1900AC"
 description: My landlord was gracious enough to provide Internet for all tenants. The service comes through AT&T’s DSL. Before moving to California, I personally have…
 pubDatetime: 2014-07-10T21:20:06Z
 tags:
@@ -22,9 +22,9 @@ Did some research on the modem / router combo. The Modem / Router is by 2Wire. M
 
 There were many complaints that the wireless was very flaky. All experiencing the same problem.
 
-  * <http://forums.att.com/t5/Setup-and-Self-Install/No-Wireless-on-3600HGV/td-p/3257303>
-  * <http://forums.att.com/t5/Residential-Gateway/Gateway-3600HGV-Wireless-green-light-not-on-and-can-t-connect/td-p/3394781>
-  * <http://forums.cnet.com/7723-7585_102-532139/2wire-modem-keeps-disconnecting-my-wifi-from-all-devices/>
+- <http://forums.att.com/t5/Setup-and-Self-Install/No-Wireless-on-3600HGV/td-p/3257303>
+- <http://forums.att.com/t5/Residential-Gateway/Gateway-3600HGV-Wireless-green-light-not-on-and-can-t-connect/td-p/3394781>
+- <http://forums.cnet.com/7723-7585_102-532139/2wire-modem-keeps-disconnecting-my-wifi-from-all-devices/>
 
 &nbsp;
 

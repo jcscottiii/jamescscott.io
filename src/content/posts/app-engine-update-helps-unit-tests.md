@@ -20,17 +20,16 @@ This is the error that I get:
 
 However, version 1.9.11 of the Go App Engine SDK brought some very convenient additions. I will show you that a fairly recent update allows you fix this problem easily. :)
 
-
 ### **My Problem**
 
 I architected my code to be PaaS-independent because while I am using App Engine, in the future that may not be the case. For the majority (if not all App Engine transactions), you need a App Engine Context.
 
 I architected the stack as following:
 
-  1. The server receives a request and routes it to an appropriate function (e.g Login(*http.Request, http.ResponseWriter))
-  2. Within the function, the incoming \*http.Request is passed to some worker function that has a specific function and uses a specific technology (e.g. db.GetItem(&#8220;user_table&#8221;, username, \*http.Request) &#8211; Getting a user from a database. The database technology can be different between PaaS and in the App Engine case we use Datastore.)
-  3. This function resides in another file (sometimes even another package). I always have at least two files for these worker functions. Each file has its own implementation of the function and using [build constraints](http://blog.golang.org/the-app-engine-sdk-and-workspaces-gopath) I build only one of the files. Which one I build depends on the PaaS. (I have better abstract interface stuff going on but won&#8217;t go into detail for this post to keep it simple.)
-  4. Within my App Engine specific file, I can take the *http.Request and create the context I need to use Datastore.
+1. The server receives a request and routes it to an appropriate function (e.g Login(*http.Request, http.ResponseWriter))
+2. Within the function, the incoming \*http.Request is passed to some worker function that has a specific function and uses a specific technology (e.g. db.GetItem(&#8220;user_table&#8221;, username, \*http.Request) &#8211; Getting a user from a database. The database technology can be different between PaaS and in the App Engine case we use Datastore.)
+3. This function resides in another file (sometimes even another package). I always have at least two files for these worker functions. Each file has its own implementation of the function and using [build constraints](http://blog.golang.org/the-app-engine-sdk-and-workspaces-gopath) I build only one of the files. Which one I build depends on the PaaS. (I have better abstract interface stuff going on but won&#8217;t go into detail for this post to keep it simple.)
+4. Within my App Engine specific file, I can take the *http.Request and create the context I need to use Datastore.
 
 Now if I want to test from Step 2 onwards, I need to create my own incoming *http.Request. If I create my request and call the function within my unit test. I will ultimately get the error.
 
@@ -98,17 +97,16 @@ This is the error that I get:
 
 However, version 1.9.11 of the Go App Engine SDK brought some very convenient additions. I will show you that a fairly recent update allows you fix this problem easily. :)
 
-
 ### **My Problem**
 
 I architected my code to be PaaS-independent because while I am using App Engine, in the future that may not be the case. For the majority (if not all App Engine transactions), you need a App Engine Context.
 
 I architected the stack as following:
 
-  1. The server receives a request and routes it to an appropriate function (e.g Login(*http.Request, http.ResponseWriter))
-  2. Within the function, the incoming \*http.Request is passed to some worker function that has a specific function and uses a specific technology (e.g. db.GetItem(&#8220;user_table&#8221;, username, \*http.Request) &#8211; Getting a user from a database. The database technology can be different between PaaS and in the App Engine case we use Datastore.)
-  3. This function resides in another file (sometimes even another package). I always have at least two files for these worker functions. Each file has its own implementation of the function and using [build constraints](http://blog.golang.org/the-app-engine-sdk-and-workspaces-gopath) I build only one of the files. Which one I build depends on the PaaS. (I have better abstract interface stuff going on but won&#8217;t go into detail for this post to keep it simple.)
-  4. Within my App Engine specific file, I can take the *http.Request and create the context I need to use Datastore.
+1. The server receives a request and routes it to an appropriate function (e.g Login(*http.Request, http.ResponseWriter))
+2. Within the function, the incoming \*http.Request is passed to some worker function that has a specific function and uses a specific technology (e.g. db.GetItem(&#8220;user_table&#8221;, username, \*http.Request) &#8211; Getting a user from a database. The database technology can be different between PaaS and in the App Engine case we use Datastore.)
+3. This function resides in another file (sometimes even another package). I always have at least two files for these worker functions. Each file has its own implementation of the function and using [build constraints](http://blog.golang.org/the-app-engine-sdk-and-workspaces-gopath) I build only one of the files. Which one I build depends on the PaaS. (I have better abstract interface stuff going on but won&#8217;t go into detail for this post to keep it simple.)
+4. Within my App Engine specific file, I can take the *http.Request and create the context I need to use Datastore.
 
 Now if I want to test from Step 2 onwards, I need to create my own incoming *http.Request. If I create my request and call the function within my unit test. I will ultimately get the error.
 
@@ -173,8 +171,8 @@ You will be creating an instance manually and needs to be handled carefully on t
 
 You have to:
 
-  1. Manually call NewInstance()
-  2. Manually call .Close() on that object. Preferably, by using the &#8220;defer&#8221; keyword.
+1. Manually call NewInstance()
+2. Manually call .Close() on that object. Preferably, by using the &#8220;defer&#8221; keyword.
 
 <pre class="lang:go mark:11,15-16 decode:true ">import (
 	"appengine/aetest"

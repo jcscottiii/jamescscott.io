@@ -28,7 +28,8 @@ const firstPublished = featureParts.find(p => p.post)?.post;
 
 // Show the résumé button only once public/resume.pdf exists.
 const hasResume =
-  "/public/resume.pdf" in import.meta.glob("/public/resume.pdf", { query: "?url" });
+  "/public/resume.pdf" in
+  import.meta.glob("/public/resume.pdf", { query: "?url" });
 
 const github = config.socials.find(s => s.name === "github")?.url;
 const linkedin = config.socials.find(s => s.name === "linkedin")?.url;
@@ -179,7 +180,9 @@ const buttonBase =
                 class="font-mono text-xs"
                 style={{ color: "var(--feature-accent)" }}
               >
-                {firstPublished ? "Now writing · a series" : "Coming soon · a series"}
+                {firstPublished
+                  ? "Now writing · a series"
+                  : "Coming soon · a series"}
               </p>
               <h2
                 id="series-title"
@@ -187,12 +190,19 @@ const buttonBase =
               >
                 {feature.title}
               </h2>
-              <p class="leading-relaxed" style={{ color: "var(--feature-muted)" }}>
+              <p
+                class="leading-relaxed"
+                style={{ color: "var(--feature-muted)" }}
+              >
                 {feature.description}
               </p>
               {firstPublished && (
                 <a
-                  href={getPostUrl(firstPublished.id, firstPublished.filePath, locale)}
+                  href={getPostUrl(
+                    firstPublished.id,
+                    firstPublished.filePath,
+                    locale
+                  )}
                   class="mt-2 inline-flex min-h-12 items-center self-start rounded-lg px-5 font-semibold no-underline"
                   style={{
                     background: "var(--feature-fg)",
@@ -217,7 +227,9 @@ const buttonBase =
                   <span
                     class="font-mono"
                     style={{
-                      color: p.post ? "var(--feature-accent)" : "var(--feature-muted)",
+                      color: p.post
+                        ? "var(--feature-accent)"
+                        : "var(--feature-muted)",
                     }}
                   >
                     {String(p.part).padStart(2, "0")}
@@ -231,7 +243,9 @@ const buttonBase =
                       {p.title}
                     </a>
                   ) : (
-                    <span style={{ color: "var(--feature-muted)" }}>{p.title}</span>
+                    <span style={{ color: "var(--feature-muted)" }}>
+                      {p.title}
+                    </span>
                   )}
                 </li>
               ))}
@@ -247,7 +261,10 @@ const buttonBase =
       class="border-border border-t py-14"
     >
       <div class="mb-8 flex flex-wrap items-baseline justify-between gap-3">
-        <h2 id="recent" class="flex items-center gap-3 text-2xl font-bold tracking-tight">
+        <h2
+          id="recent"
+          class="flex items-center gap-3 text-2xl font-bold tracking-tight"
+        >
           Writing
           <a
             href={getAssetPath("rss.xml")}
