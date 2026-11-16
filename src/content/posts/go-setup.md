@@ -8,14 +8,14 @@ tags:
 
 I&#8217;ve been tinkering around with Go for a while. Occasionally, I would just get distracted with something else. However, every time I come back to Go, I&#8217;m always excited to see the new tools and how much has improved since the last time. One of the biggest gripes I had with Go was the necessity to modify your GOPATH if you ever wanted to jump from one major project to another. This post will walkthrough my (re)setup of Go, useful tools, and talk about any great workflow.
 
-<p style="margin: 0in;">
+<p>
   </p>
 
-<span style="font-style: italic;">The Go Gopher!</span>
+<span>The Go Gopher!</span>
 
-<span style="font-style: italic; color: #222222;"><img src="/wp-content/uploads/2014/07/516.png" alt="" /></span>
+<span><img alt="Go gopher plush toy posed next to a painting of a gopher" src="/wp-content/uploads/2014/07/516.png" /></span>
 
-<span style="font-style: italic; color: #222222;">(Photo by</span> [<span style="font-style: italic;">Noah Lorang</span>](https://twitter.com/noahhlo/status/437395572081688576)<span style="font-style: italic; color: #222222;">.)</span>
+<span>(Photo by</span> [<span>Noah Lorang</span>](https://twitter.com/noahhlo/status/437395572081688576)<span>.)</span>
 
 Table of Contents
 
@@ -40,131 +40,140 @@ Table of Contents
   </li>
 </ul>
 
-##
-
-## <span style="text-decoration: underline;">Go Version Manager</span>
+## Go Version Manager
 
 This cool tool, as you can imply from the name, manages the versions of Go you use. This is very helpful for when you want to make reproducible builds despite Go updating itself every ~6 months.   Installing GVM Follow the steps here to install GMV for your environment: <https://github.com/moovweb/gvm>   Using GVM Install latest go.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="shell">gvm install go1.3</pre>
+```sh
+gvm install go1.3
+```
 
 That takes a while. Do not panic.
 
-![](/wp-content/uploads/2014/07/550.png)
+![Terminal: gvm install go1.3, then gvm list showing go1.3 and system](/wp-content/uploads/2014/07/550.png)
 
 You can see my existing go installation was labeled &#8216;system&#8217;. (it is version 1.2 fyi) But now, I can easily switch. Since 1.3 has come out since the last time I used it, lets go ahead and update which one I use by default.
 
-![](/wp-content/uploads/2014/07/139.png)
+![Terminal: gvm use go1.3 --default](/wp-content/uploads/2014/07/139.png)
 
 Now, whenever I open a terminal, 1.3 will be used.
 
-## <span style="text-decoration: underline;">Vim-go</span>
+## Vim-go
 
 Another pain that any developer can relate to is having a decent development editor / IDE. Previously, I have tried Goclipse and LiteIde. LiteIde didn&#8217;t have enough bells and whistles. Goclipse uses eclipse, so it&#8217;s a memory hog. (I like to take breaks to watch videos and play games without closing windows)   Refer to <https://github.com/fatih/vim-go> for the how-to  install for your system. I use Pathogen when it comes to plugins for vim, worked fine for me this time as well.   Two edits that I added to my .vimrc are the following:
 
-![](/wp-content/uploads/2014/07/629.png)
+![Vim config lines for go fmt on save and fmt_autosave set to 0](/wp-content/uploads/2014/07/629.png)
 
 - Commented of the autocmd for Fmt. (I was getting some error every time I saved)
 - And then I set this go\_fmt\_autosave  to 0 to make sure Fmt didn’t run every time I saved.
 
-![](/wp-content/uploads/2014/07/911.png)
+![Vim showing autocompletion for fmt functions](/wp-content/uploads/2014/07/911.png)
 
 **Update 10-14**
 
 **After installing vim-go, it&#8217;s important to use :GoInstallBinaries from within vim-go to make sure you get all the tools AND do it after installing Go Versioning Packager (GVP; the next step below) to ensure the binaries are stored in the right $GOBIN**
 
-## <span style="text-decoration: underline;">Go Versioning Packager</span>
+## Go Versioning Packager
 
 Earlier I mentioned my gripe about having to manually set your GOPATH accordingly if you wanted to switch between projects in Go. Go Versioning Packager (GVP) solves that problem marvelously.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="shell">gvp init
-# creates go ".godeps" folder within your workspace.</pre>
+```sh
+gvp init
+# creates go ".godeps" folder within your workspace.
+```
 
 This folder will contain all the source and compiled libraries / executables for your dependencies that you can download into your project.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="shell">source gvp in
+```sh
+source gvp in
 # will set your GOPATH, GOBIN, and GOROOT variables appropriately.
 # (source gvp out restores your  old GOPATH, GOBIN, and GOROOT)
-</pre>
+```
 
-If you ever look at the GOPATH  variable, you will see that there are actually two folders: GOPATH=<path to workspace>/.godeps:<path to workspace> This is how Go is able to separate the libraries you download from your own source as mentioned earlier. The first folder (.godeps in our case) will always be the destination for any external libraries. So now you can subject the second folder to version control like Git but still not have external code pollute your repository by excluding the .godeps folder from version control. In this simple example, we will do a hello world example as described here: [http://golang.org/doc/code.html#Command](http://golang.org/doc/code.html%23Command) ![](/wp-content/uploads/2014/07/671.png)
+If you ever look at the GOPATH  variable, you will see that there are actually two folders: GOPATH=<path to workspace>/.godeps:<path to workspace> This is how Go is able to separate the libraries you download from your own source as mentioned earlier. The first folder (.godeps in our case) will always be the destination for any external libraries. So now you can subject the second folder to version control like Git but still not have external code pollute your repository by excluding the .godeps folder from version control. In this simple example, we will do a hello world example as described here: [http://golang.org/doc/code.html#Command](http://golang.org/doc/code.html%23Command) ![Terminal: creating the hello project folders and running go install](/wp-content/uploads/2014/07/671.png)
 
-![](/wp-content/uploads/2014/07/377.png)
+![Terminal: running the hello binary from the .godeps bin folder](/wp-content/uploads/2014/07/377.png)
 
 Tada, it works!
 
-![](/wp-content/uploads/2014/07/372.png)
+![Terminal: tree of .godeps showing a folder named bin: containing hello](/wp-content/uploads/2014/07/372.png)
 
 Weird that bin folder is named &#8220;bin:&#8221; instead of &#8220;bin&#8221; Let&#8217;s see what&#8217;s going on.
 
-![](/wp-content/uploads/2014/07/794.png)
+![Terminal: gvp version](/wp-content/uploads/2014/07/794.png)
 
 On github, latest is 1.0.  I&#8217;m sure they had to have fixed this weird problem. Looking through the github commits, I found the culprit! There was a fix for this weird typo in the GOBIN environment variable.
 
-![](/wp-content/uploads/2014/07/733.png)
+![gvp commit on GitHub fixing the GOBIN path](/wp-content/uploads/2014/07/733.png)
 
 Need to run:
 
-<pre class="EnlighterJSRAW" data-enlighter-language="shell">brew update
+```sh
+brew update
 brew unlink gvp
 brew install gvp
-</pre>
+```
 
 This should install the right version of gvp. Delete your .godeps
 
-<pre class="EnlighterJSRAW" data-enlighter-language="shell">rm -rf .godeps</pre>
+```sh
+rm -rf .godeps
+```
 
 Back through the steps..
 
-<pre class="EnlighterJSRAW" data-enlighter-language="shell">gvp init
+```sh
+gvp init
 source gvp in
-</pre>
+```
 
-![](/wp-content/uploads/2014/07/850.png)
+![Terminal: listing .godeps after reinstalling gvp](/wp-content/uploads/2014/07/850.png)
 
 We are in good shape now. Now with my slightly modified program…
 
-![](/wp-content/uploads/2014/07/339.png)
+![Hello world Go program in Vim](/wp-content/uploads/2014/07/339.png)
 
 (GOTCHAS: It&#8217;s important that the package name is main and we have a main function so that it can produce the executable) .. We can go ahead and run &#8220;go install&#8221;. I&#8217;m choosing to run from the root of my workspace.  However, that doesn&#8217;t really matter. &#8220;Go install&#8221; can be ran from two locations 1) The current directory of the project &#8220;go install .&#8221; and 2) anywhere else &#8220;go install <project name>&#8221;. That&#8217;s just another GOTCHA. Which actually means you can&#8217;t do tab auto-complete to get to the path in case you happened to be in root of your workspace. Go is smart enough that it can pick projects out of your GOPATH/src folder. &#8220;go install src/github.com/jcscottiii/hello&#8221; won&#8217;t work and will complain about being unable to find packages because $GOPATH/src/src/<project name> does not even exist and should not. &#8220;go install github.com/jcscottiii/hello&#8221; will work though.
 
-![](/wp-content/uploads/2014/07/984.png)
+![Terminal: go install github.com/jcscottiii/hello](/wp-content/uploads/2014/07/984.png)
 
 Now to run it:
 
-![](/wp-content/uploads/2014/07/234.png)
+![Terminal: running the hello binary from $GOBIN](/wp-content/uploads/2014/07/234.png)
 
-## <span style="text-decoration: underline;">Go Package Manager</span>
+## Go Package Manager
 
 I just mentioned GVP helps separate external code from your code. Now, let say developer 1 uses library A and builds an application. A week later, developer 2 is introduced to the project while developer 1 is on vacation. Practicing good version control, there should be just should just be their source code and not the external code. Go has a handy feature where developer 2 can just run &#8220;go get&#8221; and it will download all the latest versions of the external packages that their application uses (and if GVP is setup, it will download them to the untracked .godeps folder). Developer 2, runs &#8220;go build&#8221; and stuff starts to break. Errors like missing functions and variables. This is a classic example of  how external libraries can become outdated and break your code that rely upon them. As of now, out of the box, Go has no way of versioning the external libraries downloaded to ensure developer 1 and developer 2 used the same version of library A. This is where Go Package Manager comes into play. GPM adds meta data about versioning of external packages. You will need two tools:
 
-1. GPM itself <a style="font-family: sans-serif; font-size: medium; font-style: normal;" href="https://github.com/pote/gpm">https://github.com/pote/gpm</a>
+1. GPM itself [https://github.com/pote/gpm](https://github.com/pote/gpm)
 2. GPM-Bootstrap <https://github.com/pote/homebrew-gpm_plugins>
 
 This meta data is stored in this file called Godeps. Now, instead of putting all the external libraries in your source control repo, you can just put that Godeps file in there. Run GPM and it will get the appropriate versions of the libraries you need. GPM-Bootstrap is just used for the initial Godeps file. First, let&#8217;s add a library to illustrate a sample workflow. We will pick a simple logging library:  <https://github.com/kdar/factorlog>
 
-<pre class="EnlighterJSRAW" data-enlighter-language="shell">go get github.com/kdar/factorlog
-# Retrieve the source for the library.</pre>
+```sh
+go get github.com/kdar/factorlog
+# Retrieve the source for the library.
+```
 
 Using vim-go to edit the file
 
-![](/wp-content/uploads/2014/07/164.png)
+![Import path github.com/kdar/factorlog](/wp-content/uploads/2014/07/164.png)
 
 You can easily import things. Modify the import afterwards to alias it to &#8220;log&#8221;
 
-![](/wp-content/uploads/2014/07/698.png)
+![Go program importing factorlog as log and calling log.Info](/wp-content/uploads/2014/07/698.png)
 
 Auto-correction should work like so:
 
-![](/wp-content/uploads/2014/07/706.png)
+![Vim autocompletion listing factorlog functions](/wp-content/uploads/2014/07/706.png)
 
 Run the executable
 
-![](/wp-content/uploads/2014/07/423.png)
+![Terminal: go install and run, printing Hello James and a log line](/wp-content/uploads/2014/07/423.png)
 
 Now to create your Godeps file:
 
-![](/wp-content/uploads/2014/07/221.png)
+![Terminal: gpm bootstrap adding dependencies, then the resulting Godeps file](/wp-content/uploads/2014/07/221.png)
 
 Now, just push this Godeps file to your source control repo so your fellow collaborators can successfully replicate a working environment.
 
@@ -198,4 +207,4 @@ The next Go post will be exploring Google App Engine for Go. Recently, they have
 
 Below is the sketch of how they have modularized Google App Engine.
 
-![](/wp-content/uploads/2014/07/918.png)
+![Diagram: an App Engine application contains modules, each module has versions, and each version runs instances](/wp-content/uploads/2014/07/918.png)

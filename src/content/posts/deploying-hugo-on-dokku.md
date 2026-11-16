@@ -4,15 +4,13 @@ description: This was a long time coming. As mentioned in my previous post, I us
 pubDatetime: 2016-09-05T00:56:20Z
 tags:
   - devops
-  - hugo
-  - dokku
 ogImage: ../../assets/images/posts/Future-Imperfect-Screenshot.png
 ---
 
 ## The Move From Wordpress to Hugo
 
 This was a long time coming. As mentioned in my previous
-[post](/2016/09/03/new-blog-new-server/), I used Wordpress as my blogging
+[post](/posts/new-blog-new-server/), I used Wordpress as my blogging
 platform. My hosting service was up for renewal, I decided against that and
 moved to DigitalOcean. I decided to deploy Dokku (more on that in another post)
 so that I could manage multiple apps easily. One of those apps is my blog which
@@ -25,7 +23,7 @@ Here is my journey.
 Hugo is a static site generator. I quickly found a theme I liked. The [Future
 Imperfect theme by Julio Pescador](http://themes.gohugo.io/future-imperfect/).
 
-![](/img/blog-content/2016/09/Future-Imperfect-Screenshot.png)
+![Hugo Future Imperfect theme demo page](/img/blog-content/2016/09/Future-Imperfect-Screenshot.png)
 
 This theme had two major components built in.
 

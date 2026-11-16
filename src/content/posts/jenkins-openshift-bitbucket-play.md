@@ -4,8 +4,6 @@ description: First post of the new year! I have been very busy. This post will b
 pubDatetime: 2015-02-24T22:52:03Z
 tags:
   - devops
-  - ci
-  - play-framework
 ---
 
 First post of the new year! I have been very busy. This post will be a non-Golang post actually too. This post is just to help anyone who wants to setup their own free (that&#8217;s right, Free) hosted Jenkins CI Server, hook it up to a private repo and go over some of the GOTCHAs along the way (always some struggles when going the free route).
@@ -16,11 +14,11 @@ I have been experimenting with OpenShift gears because they offer free &#8220;Ge
 
 ## Getting Your Jenkins Instance Up
 
-Create an account on [OpenShift](openshift.redhat.com/app/login).
+Create an account on [OpenShift](https://openshift.redhat.com/app/login).
 
 Create an application and find the &#8220;Jenkins Server&#8221; application.
 
-![](/wp-content/uploads/2015/02/591.png)
+![OpenShift application catalog with the Jenkins Server cartridge](/wp-content/uploads/2015/02/591.png)
 
 &nbsp;
 
@@ -30,25 +28,25 @@ After the application is created, it will show you the password for the admin ac
 
 Manage Jenkins -> Manage Nodes
 
-![](/wp-content/uploads/2015/02/206.png)
+![Jenkins menu: Manage Jenkins, then Manage Nodes](/wp-content/uploads/2015/02/206.png)
 
 Click on the &#8220;master&#8221; node.
 
-![](/wp-content/uploads/2015/02/299.png)
+![Jenkins node list showing the master node](/wp-content/uploads/2015/02/299.png)
 
 ### Update the plugins
 
 Manage Jenkins -> Manage Plugins.
 
-![](/wp-content/uploads/2015/02/911.png)
+![Jenkins menu: Manage Jenkins, then Manage Plugins](/wp-content/uploads/2015/02/911.png)
 
 Go to the Advanced Tab
 
-<img class="" src="/wp-content/uploads/2015/02/993.png" alt="" width="523" height="466" />
+<img alt="Jenkins plugin manager Advanced tab" class="" src="/wp-content/uploads/2015/02/993.png" width="523" height="466" />
 
 Click the &#8220;Check Now&#8221; at the bottom right and watch the plugins come flowing in.
 
-![](/wp-content/uploads/2015/02/229.png)
+![Jenkins plugin manager Check now button](/wp-content/uploads/2015/02/229.png)
 
 Once you update the plugins list, you will see all the plugins that represent the power of Jenkins.
 
@@ -58,20 +56,21 @@ You need to get the SSH public key from your Jenkins Server so that Jenkins can 
 
 Go back into the OpenShift applications Dashboard and click on your application. On the left side you should see this prompt:
 
-![](/wp-content/uploads/2015/02/486.png)
+![OpenShift prompt to log in to your application](/wp-content/uploads/2015/02/486.png)
 
 Once you click on it, it will create give you the SSH command. Make sure you setup connection to the instance, RHC and all that other stuff first [here](https://developers.openshift.com/en/getting-started-overview.html).
 
 Now, log into your application. If you try to access .ssh (which contains the public key for ssh), you will get a permission denied (**GOTCHA #1**). Luckily, with some digging around and reading, you can find out that your $OPENSHIFT\_DATA\_DIR is a place where you can read and write and it actually contains a public key for you already&#8230;. Now we just need to make sure Git uses it.
 
-<pre class="lang:sh decode:true">cd $OPENSHIFT_DATA_DIR
+```sh
+cd $OPENSHIFT_DATA_DIR
 
 mkdir $OPENSHIFT_DATA_DIR/.ivy2
 mkdir -p $OPENSHIFT_DATA_DIR/.sbt/boot
 
 chmod 0400 .ssh/jenkins_id_rsa
 chmod 0400 .ssh/jenkins_id_rsa.pub
-"" &gt; git-ssh-wrapper.sh
+"" > git-ssh-wrapper.sh
 chmod 755 git-ssh-wrapper.sh
 vim git-ssh-wrapper.sh
 
@@ -81,27 +80,28 @@ vim git-ssh-wrapper.sh
 ID_RSA="$OPENSHIFT_DATA_DIR/.ssh/jenkins_id_rsa"
 
 ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i $ID_RSA $1 $2
-</pre>
+```
 
 This tip of this wrapper came from the discussion here: <https://forums.openshift.com/jenkins-stuff> as it seems to be a popular workaround when dealing with OpenShift.
 
-<pre class="lang:default decode:true">cd $OPENSHIFT_DATA_DIR
+```text
+cd $OPENSHIFT_DATA_DIR
 vim .bash_profile
 ### Add the following line to the .bash_profile ###
 export GIT_SSH="$OPENSHIFT_DATA_DIR/git-ssh-wrapper.sh"
 
-
-source .bash_profile</pre>
+source .bash_profile
+```
 
 &nbsp;
 
 Log into your Jenkins instance. Go to Jenkins->Manage Jenkins-> Configure System
 
-![](/wp-content/uploads/2015/02/605.png)
+![Jenkins menu: Manage Jenkins, then Configure System](/wp-content/uploads/2015/02/605.png)
 
 Find the Environment Variables Checkbox
 
-![](/wp-content/uploads/2015/02/420.png)
+![Jenkins global properties with the Environment variables checkbox](/wp-content/uploads/2015/02/420.png)
 
 Check it and add:
 
@@ -109,13 +109,13 @@ Name: GIT_SSH
 
 Value: $OPENSHIFT\_DATA\_DIR/git-ssh-wrapper.sh
 
-![](/wp-content/uploads/2015/02/904.png)
+![Jenkins environment variable GIT_SSH set to the git-ssh-wrapper.sh script](/wp-content/uploads/2015/02/904.png)
 
 If you are using the Play Framework, you&#8217;ll need at least (Scala Build Tool) SBT installed to do testing and building.
 
 Download [it](http://www.scala-sbt.org/) to the $OPENSHIFT\_DATA\_DIR folder and it to your Path by adding another Environment variable for example.
 
-![](/wp-content/uploads/2015/02/844.png)
+![Jenkins environment variable adding the sbt folder to PATH](/wp-content/uploads/2015/02/844.png)
 
 Now, we made sure Jenkins will use the SSH Key that we have access to and can share with Bitbucket (which will we do next)
 
@@ -123,11 +123,11 @@ Next, run: cat &#8220;$OPENSHIFT\_DATA\_DIR/.ssh/jenkins\_id\_rsa.pub&#8221; an
 
 Log into Bitbucket -> Go to the Settings for the particular repo you would like Jenkins to have access to. Go to Deployment Keys (read-only access to the repository)
 
-![](/wp-content/uploads/2015/02/490.png)
+![Bitbucket repository settings with Deployment keys selected](/wp-content/uploads/2015/02/490.png)
 
 Paste in the public key that you just printed to screen a few steps before.
 
-![](/wp-content/uploads/2015/02/287.png)
+![Bitbucket deployment keys page with an Add key button](/wp-content/uploads/2015/02/287.png)
 
 &nbsp;
 
@@ -135,19 +135,19 @@ Paste in the public key that you just printed to screen a few steps before.
 
 If you have not already, create a project for your build by clicking on Jenkins -> New Item
 
-![](/wp-content/uploads/2015/02/391.png)
+![Jenkins new item page with Build a free-style software project selected](/wp-content/uploads/2015/02/391.png)
 
 Note: Create a project name with no special characters or spaces (Useful for next section)
 
 Go down to Source Code Management and select Git. Paste in the URL for your repo.
 
-![](/wp-content/uploads/2015/02/423.png)
+![Jenkins source code management set to Git with a Bitbucket repository URL](/wp-content/uploads/2015/02/423.png)
 
 &nbsp;
 
 Add a build step
 
-![](/wp-content/uploads/2015/02/741.png)
+![Jenkins Add build step: Execute shell](/wp-content/uploads/2015/02/741.png)
 
 **GOTCHA #2**
 
@@ -155,22 +155,25 @@ You can not simply put &#8220;sbt test&#8221; for the Play Framework tests with 
 
 Instead, use this execute shell command
 
-<pre class="lang:default decode:true ">sbt test -Dsbt.ivy.home=$OPENSHIFT_DATA_DIR/.ivy2 -Divy.home=$OPENSHIFT_DATA_DIR/.ivy2 -Dsbt.boot.directory=$OPENSHIFT_DATA_DIR/.sbt/boot</pre>
+```text
+sbt test -Dsbt.ivy.home=$OPENSHIFT_DATA_DIR/.ivy2 -Divy.home=$OPENSHIFT_DATA_DIR/.ivy2 -Dsbt.boot.directory=$OPENSHIFT_DATA_DIR/.sbt/boot
+```
 
 &nbsp;
 
-![](/wp-content/uploads/2015/02/928.png)
+![Jenkins Execute shell command running sbt test with Ivy and sbt folders in OPENSHIFT_DATA_DIR](/wp-content/uploads/2015/02/928.png)
 
 **GOTCHA #3**
 
 If you have not modified the Testing settings in the build.sbt file, and run the job, it is likely that you will see this message.
 
-<pre class="lang:default decode:true">java.net.BindException: Permission denied
+```text
+java.net.BindException: Permission denied
 	at java.net.PlainSocketImpl.socketBind(Native Method)
 	at java.net.AbstractPlainSocketImpl.bind(AbstractPlainSocketImpl.java:376)
 	at java.net.ServerSocket.bind(ServerSocket.java:376)
-	at java.net.ServerSocket.&lt;init&gt;(ServerSocket.java:237)
-	at java.net.ServerSocket.&lt;init&gt;(ServerSocket.java:128)
+	at java.net.ServerSocket.<init>(ServerSocket.java:237)
+	at java.net.ServerSocket.<init>(ServerSocket.java:128)
 	at sbt.ForkTests$$anonfun$mainTestTask$1.apply(ForkTests.scala:35)
 	at sbt.ForkTests$$anonfun$mainTestTask$1.apply(ForkTests.scala:34)
 	at sbt.std.Transform$$anon$3$$anonfun$apply$2.apply(System.scala:45)
@@ -190,15 +193,17 @@ If you have not modified the Testing settings in the build.sbt file, and run the
 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
 	at java.lang.Thread.run(Thread.java:745)
-[error] (test:executeTests) java.net.BindException: Permission denied</pre>
+[error] (test:executeTests) java.net.BindException: Permission denied
+```
 
 This is due to the testing infrastructure in SBT in which the source can be seen [here](http://www.scala-sbt.org/0.13.2/sxr/sbt/ForkTests.scala.html). As tests are forked, they communicate back to the original process via a socket. However, if you look at the ServerSocket call below, it places 0 which means the OS will give me a socket on whatever port is available. It will give me a port after 1024 (first 1024 are privileged only), however, OpenShift accounts can only get access to ports 15000 &#8211; 35530. So there&#8217;s a mismatch between what the system will give me vs what I have actual access to bind to which causes the problem.
 
-![](/wp-content/uploads/2015/02/672.png)
+![sbt source code that opens a ServerSocket on port 0](/wp-content/uploads/2015/02/672.png)
 
 It makes no sense to compile our own SBT. However, after more reading, there are more options that can be added to the build.sbt which changes the testing infrastructure.
 
-<pre class="lang:scala decode:true ">### Inside the build.sbt ###
+```scala
+### Inside the build.sbt ###
 import sbt._
 import sbt.Keys._
 
@@ -211,7 +216,7 @@ import sbt.Keys._
 parallelExecution in Test := false
 
 Keys.fork in Test := false
-</pre>
+```
 
 Instead of forking a new process to run the tests, the original process will run the tests.
 
@@ -221,7 +226,7 @@ Within the project
 
 Click Build Now and you should see it added to the queue.
 
-![](/wp-content/uploads/2015/02/714.png)
+![Jenkins project page with a build running in Build History](/wp-content/uploads/2015/02/714.png)
 
 Ta-da!
 
@@ -237,9 +242,9 @@ In addition, one more thing has changed. Under his &#8220;Bitbucket + Jenkins =�
 
 Also, make sure your project in Jenkins has no spaces. It simplifies the url when you add the hook url into Bitbucket
 
-![](/wp-content/uploads/2015/02/839.png)
+![Bitbucket repository settings with Hooks selected](/wp-content/uploads/2015/02/839.png)
 
-![](/wp-content/uploads/2015/02/473.png)
+![Bitbucket Add hook menu with Jenkins selected](/wp-content/uploads/2015/02/473.png)
 
 Now push to your repository, and it should all work!
 

@@ -99,6 +99,8 @@ const t = useTranslations(locale);
 
       // Reset search param if search input is cleared
       const searchInput = document.querySelector(".pagefind-ui__search-input");
+      // jamescscott.net: Pagefind's input only has a placeholder; give it a label.
+      searchInput?.setAttribute("aria-label", "Search posts");
       const clearButton = document.querySelector(".pagefind-ui__search-clear");
       searchInput?.addEventListener("input", resetSearchParam);
       clearButton?.addEventListener("click", resetSearchParam);

@@ -4,9 +4,6 @@ description: My Wordpress blog is long gone! Hello, Hugo! This post is the begin
 pubDatetime: 2016-09-03T23:28:06Z
 tags:
   - devops
-  - dokku
-  - terraform
-  - digitalocean
 ---
 
 ## New Blog, New Server
@@ -34,7 +31,7 @@ to move.
 
 ### For Infrastructure: [DigitalOcean](https://www.digitalocean.com/)
 
-![](/img/blog-content/2016/09/DigitalOcean.png)
+![DigitalOcean logo](/img/blog-content/2016/09/DigitalOcean.png)
 
 - More control than what I had before.
 - At the time, there was a way to get $35 of credit.
@@ -44,7 +41,7 @@ to move.
 
 ### For infrastructure management: [Terraform](https://www.terraform.io/)
 
-![](/img/blog-content/2016/09/Terraform.png)
+![Terraform logo](/img/blog-content/2016/09/Terraform.png)
 
 - I really love the idea as infrastructure-as-code and Hashicorp's Terrafrom
   tool is something I have been wanting to dive into more.
@@ -58,7 +55,7 @@ to move.
 
 ### For deploying apps: [Dokku](http://dokku.viewdocs.io/dokku/)
 
-![](/img/blog-content/2016/09/Dokku.png)
+![Dokku logo](/img/blog-content/2016/09/Dokku.png)
 
 Dokku is a Platform as a Service (PaaS) for a single node. A PaaS makes it easy
 to deploy apps by removing the burden of having to configure the infrastructure

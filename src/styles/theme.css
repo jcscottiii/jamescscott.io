@@ -65,3 +65,9 @@
   /* Soften bright images on the dark background */
   --image-dim: brightness(0.9);
 }
+
+/* jamescscott.net: let long paths and inline code wrap on narrow screens
+   instead of pushing the page wider than the viewport. */
+.app-prose {
+  overflow-wrap: anywhere;
+}

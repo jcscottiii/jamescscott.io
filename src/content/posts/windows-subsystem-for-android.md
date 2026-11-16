@@ -4,16 +4,16 @@ description: Download the package from the command line tools only section for L
 pubDatetime: 2021-12-26T22:53:09Z
 draft: true
 tags:
-  - mobile
+  - android
 ---
 
-# Download Windows Subsystem for Android
+## Download Windows Subsystem for Android
 
 Before
 
 Download [Windows Subsystem for Android](https://www.microsoft.com/en-us/p/windows-subsystem-for-android/9p3395vx91nr?activetab=pivot%3Aregionofsystemrequirementstab)
 
-# Setup Windows Subsystem for Linux
+## Setup Windows Subsystem for Linux
 
 Inspired by this [article](https://atekihcan.com/blog/codeorrandom/how-to-setup-android-sdk-on-wsl/)
 

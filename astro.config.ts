@@ -64,7 +64,8 @@ export default defineConfig({
       ],
     }),
     shikiConfig: {
-      themes: { light: "min-light", dark: "night-owl" },
+      // jamescscott.net: GitHub themes, whose comments meet AA contrast.
+      themes: { light: "github-light-default", dark: "github-dark-default" },
       defaultColor: false,
       wrap: false,
       transformers: [
