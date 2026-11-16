@@ -12,6 +12,7 @@ The common thread in my career is making other engineers more productive: cloud 
 - **Google:** I set the technical direction for [webstatus.dev](https://webstatus.dev), an open-source cloud platform with a public API, and build multi-agent AI tooling along with the benchmarks that show whether it can be trusted.
 - **Microsoft:** I worked as a software engineer and SRE on microsoft.com.
 - **Capital One:** I led the engineers who brought distributed computing to the machine learning platform most teams there used, and helped Go become a language teams across the company used.
+- **Solebrity:** At a startup, I led the move to Kubernetes, set up CI/CD for the engineering team, and built backend features for the Chelfie app.
 - **18F:** I built cloud and compliance tooling for federal agencies, including work on cloud.gov.
 - **Intel:** I started as an intern, went through the rotation engineer program, and then joined the Android compiler team, where my work on app startup helped ASUS ship its Lollipop upgrade on schedule.
 
