@@ -15,6 +15,7 @@ import { getSortedPosts } from "@/utils/getSortedPosts";
 import { getPostUrl } from "@/utils/getPostPaths";
 import { getSeriesParts } from "@/utils/getSeriesParts";
 import { series, featuredSeries } from "@/data/series";
+import { selectedWork, roles } from "@/data/career";
 import { getAssetPath } from "@/utils/withBase";
 import config from "@/config";
 
@@ -33,24 +34,6 @@ const hasResume =
 
 const github = config.socials.find(s => s.name === "github")?.url;
 const linkedin = config.socials.find(s => s.name === "linkedin")?.url;
-
-const highlights = [
-  {
-    where: "Google · Chrome",
-    title: "Getting browsers to agree",
-    body: "I represent Chrome in regular reviews with Mozilla, Apple, and others on the shared tests every major browser runs, so a website works the same everywhere.",
-  },
-  {
-    where: "Google · AI tooling",
-    title: "AI that's measured, not assumed",
-    body: "I build AI tools that help engineers write and review tests, and benchmarks that check whether those tools are accurate and consistent before a team depends on them.",
-  },
-  {
-    where: "Capital One · ML platform",
-    title: "Bigger compute for data scientists",
-    body: "I led the engineers who brought distributed computing to the machine learning platform most teams there used. Dozens of teams adopted it.",
-  },
-];
 
 const buttonBase =
   "inline-flex min-h-12 items-center rounded-lg px-5 font-semibold no-underline";
@@ -74,14 +57,13 @@ const buttonBase =
           James C. Scott
         </h1>
         <p class="text-xl leading-snug font-medium sm:text-2xl">
-          I build AI tooling for the open web, and I measure it before I trust
-          it.
+          I build the platforms and tools other engineers rely on.
         </p>
         <p class="text-muted-foreground text-base leading-relaxed sm:text-lg">
-          I work on the web platform at Google, helping browsers agree on how
-          the web should behave through shared tests, standards reviews, and AI
-          tools that speed that work up. Before that, I brought distributed
-          computing to Capital One's machine learning platform.
+          Across Google, Microsoft, Capital One, 18F, and Intel, I have built
+          cloud platforms, developer tools, and reliable services. Lately that
+          means AI tooling, and the evaluation teams need before they can trust
+          an agent's work.
         </p>
         <div class="flex flex-wrap items-center gap-3 pt-2">
           <a
@@ -136,29 +118,66 @@ const buttonBase =
     </section>
 
     <section
-      id="about"
-      aria-labelledby="glance"
+      id="work"
+      aria-labelledby="work-title"
       class="border-border border-t py-14"
     >
-      <h2 id="glance" class="text-2xl font-bold tracking-tight">
-        What I do, in plain terms
+      <h2 id="work-title" class="text-2xl font-bold tracking-tight">
+        Selected work
       </h2>
-      <p class="text-muted-foreground mt-2 mb-8">
-        Three things I've done that are worth knowing about.
-      </p>
-      <ul class="grid gap-5 sm:grid-cols-3">
+      <ul class="mt-8 grid gap-5 sm:grid-cols-2">
         {
-          highlights.map(h => (
+          selectedWork.map(w => (
             <li class="border-border bg-surface flex flex-col gap-3 rounded-2xl border p-6">
-              <p class="text-accent font-mono text-xs">{h.where}</p>
-              <h3 class="text-lg leading-snug font-semibold">{h.title}</h3>
+              <p class="text-accent font-mono text-xs">{w.where}</p>
+              <h3 class="text-lg leading-snug font-semibold">{w.title}</h3>
               <p class="text-muted-foreground text-[15px] leading-relaxed">
-                {h.body}
+                {w.body}
               </p>
+              {w.link && (
+                <a
+                  href={w.link.url}
+                  class="text-accent mt-auto inline-flex min-h-11 items-center self-start font-medium underline-offset-4 hover:underline"
+                >
+                  {w.link.label} ↗
+                </a>
+              )}
             </li>
           ))
         }
       </ul>
+    </section>
+
+    <section
+      id="experience"
+      aria-labelledby="experience-title"
+      class="border-border border-t py-14"
+    >
+      <h2 id="experience-title" class="text-2xl font-bold tracking-tight">
+        Where I've worked
+      </h2>
+      <ol class="mt-6">
+        {
+          roles.map(r => (
+            <li class="border-border flex flex-col gap-1 border-b py-5 last:border-b-0 sm:flex-row sm:items-baseline sm:gap-6">
+              <div class="sm:w-44 sm:shrink-0">
+                <p class="text-lg font-semibold">{r.company}</p>
+                {r.years && (
+                  <p class="text-muted-foreground font-mono text-xs">
+                    {r.years}
+                  </p>
+                )}
+              </div>
+              <div class="flex min-w-0 flex-col gap-1">
+                <p class="font-medium">{r.role}</p>
+                <p class="text-muted-foreground text-[15px] leading-relaxed">
+                  {r.summary}
+                </p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
     </section>
 
     {

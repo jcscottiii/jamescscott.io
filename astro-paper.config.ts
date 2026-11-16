@@ -5,7 +5,7 @@ export default defineAstroPaperConfig({
     url: "https://jamescscott.net/",
     title: "James C. Scott",
     description:
-      "James C. Scott builds AI tooling for the open web. Writing on web platform, local AI, Go, and developer tooling.",
+      "James C. Scott builds the platforms and tools other engineers rely on. Writing on local AI, infrastructure, Go, and developer tooling.",
     author: "James C. Scott",
     profile: "https://www.linkedin.com/in/jamescscott/",
     // No file with this name exists in public/, so the generated /og.png is used.
