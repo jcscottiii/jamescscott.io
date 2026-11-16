@@ -1,10 +1,35 @@
 ---
-// Rendered in <head> on every page, after the theme's own tags. Add
-// your own tags here: analytics, site verification, extra <meta> or
-// <link>, stylesheets. This file is yours: AstroPaper never changes it
-// after release.
+// Rendered in <head> on every page, after the theme's own tags. Add your
+// own tags here: analytics, site verification, extra <meta> or <link>,
+// stylesheets. This file is yours: AstroPaper never changes it after
+// release.
 type Props = {
   title: string;
   description: string;
 };
+
+// Google Analytics 4, carried over from the Hugo site. Only loads in
+// production builds so local previews don't count as visits.
+const GA_ID = "G-E5HZS08DWM";
+const loadAnalytics = import.meta.env.PROD;
 ---
+
+{
+  loadAnalytics && (
+    <>
+      <script
+        is:inline
+        async
+        src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+      />
+      <script is:inline define:vars={{ GA_ID }}>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+          dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+        gtag("config", GA_ID);
+      </script>
+    </>
+  )
+}

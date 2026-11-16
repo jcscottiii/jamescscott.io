@@ -1,37 +1,32 @@
 ---
 title: "About"
-description: "A bit about me and this blog."
+description: "James C. Scott is a software engineer who builds AI tooling for the open web."
 ---
 
-AstroPaper is a minimal, accessible and SEO-friendly blog theme built with [Astro](https://astro.build/) and [Tailwind CSS](https://tailwindcss.com/).
+I'm James, a software engineer in the Washington, D.C. area. I grew up in Virginia, and my career has taken me to Portland, Oregon and Silicon Valley before bringing me back to the East Coast.
 
-![Astro Paper](@/assets/images/astropaper-og.jpg)
+## What I work on
 
-AstroPaper provides a solid foundation for blogs, or even portfolios\_ with full markdown support, built-in dark mode, and a clean layout that works out-of-the-box.
+I work on the web platform at Google. Most of my time goes into helping browsers agree on how the web should behave: the shared tests that every major browser runs, regular standards reviews with other browser makers, and AI tools that make that work faster. I care a lot about measuring those tools before trusting them, because a wrong answer from an AI can look just as convincing as a right one.
 
-The blog posts in this theme also serve as guides, docs or example articles\_ making AstroPaper a flexible starting point for your next content-driven site.
+Before Google, I was at Capital One, where I led the engineers who brought distributed computing to the machine learning platform most teams there used.
 
-## Features
+Across all of it, the common thread is making other engineers more productive: better tools, better platforms, and fewer surprises in production.
 
-AstroPaper comes with a set of useful features that make content publishing easy and effective:
+## What I write about
 
-- SEO-friendly
-- Fast performance
-- Light & dark mode
-- Highly customizable
-- Organizable blog posts
-- Responsive & accessible
-- Static search with [PageFind](https://pagefind.app/)
-- Automatic social image generation
+This blog goes back to 2014. You'll find:
 
-and so much more.
+- **Local AI and home lab**, starting with a series on running an NVIDIA DGX Spark in my server room
+- **The web platform** and how browsers work together
+- **Go**, which has been my main language for most of my career
+- **DevOps and developer tooling**, including a few posts from the early container days
 
-## Show your support
+## Elsewhere
 
-If you like [AstroPaper](https://github.com/satnaing/astro-paper), consider giving it a star ⭐️.
+- [GitHub](https://github.com/jcscottiii)
+- [LinkedIn](https://www.linkedin.com/in/jamescscott/)
 
-Found a bug 🐛 or have an improvement ✨ in mind? Feel free to open an [issue](https://github.com/satnaing/astro-paper/issues), submit a [pull request](https://github.com/satnaing/astro-paper/pulls) or start a [discussion](https://github.com/satnaing/astro-paper/discussions).
+---
 
-If you find this theme helpful, you can also [sponsor me on GitHub](https://github.com/sponsors/satnaing) or [buy me a coffee](https://buymeacoffee.com/satnaing) to show your support — every penny counts.
-
-Kyay zuu! 🙏🏼
+_Views are my own and don't represent my employer._

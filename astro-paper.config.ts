@@ -2,44 +2,38 @@ import { defineAstroPaperConfig } from "./src/types/config";
 
 export default defineAstroPaperConfig({
   site: {
-    url: "https://astro-paper.pages.dev/",
-    title: "AstroPaper",
-    description: "A minimal, responsive and SEO-friendly Astro blog theme.",
-    author: "Sat Naing",
-    profile: "https://satna.ing",
+    url: "https://jamescscott.net/",
+    title: "James C. Scott",
+    description:
+      "James C. Scott builds AI tooling for the open web. Writing on web platform, local AI, Go, and developer tooling.",
+    author: "James C. Scott",
+    profile: "https://www.linkedin.com/in/jamescscott/",
+    // No file with this name exists in public/, so the generated /og.png is used.
     ogImage: "default-og.jpg",
     lang: "en",
-    timezone: "Asia/Bangkok",
+    timezone: "America/New_York",
     dir: "ltr",
   },
   posts: {
-    perPage: 4,
-    perIndex: 4,
+    perPage: 8,
+    perIndex: 3,
   },
   features: {
     lightAndDarkMode: true,
     dynamicOgImage: true,
     showArchives: true,
     showBackButton: true,
-    editPost: {
-      enabled: true,
-      url: "https://github.com/satnaing/astro-paper/edit/main/",
-    },
+    editPost: { enabled: false },
     search: "pagefind",
     toc: true,
   },
   socials: [
-    { name: "github",   url: "https://github.com/satnaing/astro-paper" },
-    { name: "x",        url: "https://x.com/username" },
-    { name: "linkedin", url: "https://www.linkedin.com/in/username/" },
-    { name: "mail",     url: "mailto:yourmail@gmail.com" },
+    { name: "github", url: "https://github.com/jcscottiii" },
+    { name: "linkedin", url: "https://www.linkedin.com/in/jamescscott/" },
   ],
   shareLinks: [
-    { name: "whatsapp", url: "https://wa.me/?text=" },
-    { name: "facebook", url: "https://www.facebook.com/sharer.php?u=" },
-    { name: "x",        url: "https://x.com/intent/post?url=" },
-    { name: "telegram", url: "https://t.me/share/url?url=" },
-    { name: "pinterest", url: "https://pinterest.com/pin/create/button/?url=" },
-    { name: "mail",     url: "mailto:?subject=See%20this%20post&body=" },
+    { name: "linkedin", url: "https://www.linkedin.com/sharing/share-offsite/?url=" },
+    { name: "x", url: "https://x.com/intent/post?url=" },
+    { name: "mail", url: "mailto:?subject=See%20this%20post&body=" },
   ],
 });

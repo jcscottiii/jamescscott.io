@@ -1,127 +1,274 @@
 ---
+// jamescscott.net homepage. Replaces AstroPaper's default index with a page
+// that works for recruiters first and engineers second.
 import { getCollection } from "astro:content";
 import { getRelativeLocaleUrl } from "astro:i18n";
-import IconRss from "@/assets/icons/IconRss.svg";
+import { Image } from "astro:assets";
 import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
+import IconRss from "@/assets/icons/IconRss.svg";
+import headshot from "@/assets/images/headshot.jpg";
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
-import Socials from "@/components/Socials.astro";
-import Card from "@/components/Card.astro";
-import LinkButton from "@/components/LinkButton.astro";
+import ArtCard from "@/components/ArtCard.astro";
 import { getSortedPosts } from "@/utils/getSortedPosts";
-import { useTranslations } from "@/i18n";
+import { getPostUrl } from "@/utils/getPostPaths";
+import { getSeriesParts } from "@/utils/getSeriesParts";
+import { series, featuredSeries } from "@/data/series";
+import { getAssetPath } from "@/utils/withBase";
 import config from "@/config";
 
-const { socials, posts: postsConfig } = config;
-
 const locale = Astro.currentLocale ?? config.site.lang;
-const t = useTranslations(locale);
+const posts = getSortedPosts(await getCollection("posts"));
+const recentPosts = posts.slice(0, config.posts.perIndex);
 
-const posts = await getCollection("posts");
-const sortedPosts = getSortedPosts(posts);
-const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
-const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
-const homePath = getRelativeLocaleUrl(locale, "");
+const feature = series[featuredSeries];
+const featureParts = await getSeriesParts(featuredSeries);
+const firstPublished = featureParts.find(p => p.post)?.post;
+
+// Show the résumé button only once public/resume.pdf exists.
+const hasResume =
+  "/public/resume.pdf" in import.meta.glob("/public/resume.pdf", { query: "?url" });
+
+const github = config.socials.find(s => s.name === "github")?.url;
+const linkedin = config.socials.find(s => s.name === "linkedin")?.url;
+
+const highlights = [
+  {
+    where: "Google · Chrome",
+    title: "Getting browsers to agree",
+    body: "I represent Chrome in regular reviews with Mozilla, Apple, and others on the shared tests every major browser runs, so a website works the same everywhere.",
+  },
+  {
+    where: "Google · AI tooling",
+    title: "AI that's measured, not assumed",
+    body: "I build AI tools that help engineers write and review tests, and benchmarks that check whether those tools are accurate and consistent before a team depends on them.",
+  },
+  {
+    where: "Capital One · ML platform",
+    title: "Bigger compute for data scientists",
+    body: "I led the engineers who brought distributed computing to the machine learning platform most teams there used. Dozens of teams adopted it.",
+  },
+];
+
+const buttonBase =
+  "inline-flex min-h-12 items-center rounded-lg px-5 font-semibold no-underline";
 ---
 
 <Layout>
   <Header />
-  <main
-    id="main-content"
-    data-layout="index"
-    data-home-path={homePath}
-    class="app-layout my-1"
-  >
-    <section id="hero" class="border-border border-b pt-8 pb-6">
-      <h1 class="my-4 inline-block text-4xl font-bold sm:my-8 sm:text-5xl">
-        Mingalaba
-      </h1>{" "}
-      <a
-        target="_blank"
-        href={`${import.meta.env.BASE_URL.replace(/\/?$/, "/")}rss.xml`}
-        class="inline-block"
-        aria-label="RSS Feed"
-        title="RSS Feed"
-      >
-        <IconRss
-          width={20}
-          height={20}
-          class="stroke-accent scale-125 stroke-3 rtl:-rotate-90"
-        />
-        <span class="sr-only">RSS Feed</span>
-      </a>
-
-      <p>
-        AstroPaper is a minimal, responsive, accessible and SEO-friendly Astro
-        blog theme. This theme follows best practices and provides accessibility
-        out of the box. Light and dark mode are supported by default. Moreover,
-        additional color schemes can also be configured.
-      </p>
-      <p class="mt-2">
-        Read the blog posts or check{" "}
-        <LinkButton
-          class="hover:text-accent underline decoration-dashed underline-offset-4"
-          href="https://github.com/satnaing/astro-paper#readme"
+  <main id="main-content" class="app-layout" data-layout="index">
+    <section
+      aria-labelledby="hero-name"
+      class="flex flex-col-reverse gap-10 pt-12 pb-16 sm:flex-row sm:items-center sm:pt-16"
+    >
+      <div class="flex min-w-0 flex-1 flex-col gap-5">
+        <p class="text-accent font-mono text-sm">
+          Software engineer · Washington, D.C. area
+        </p>
+        <h1
+          id="hero-name"
+          class="text-4xl leading-tight font-bold tracking-tight sm:text-5xl"
         >
-          README
-        </LinkButton>{" "}
-        for more info.
+          James C. Scott
+        </h1>
+        <p class="text-xl leading-snug font-medium sm:text-2xl">
+          I build AI tooling for the open web, and I measure it before I trust
+          it.
+        </p>
+        <p class="text-muted-foreground text-base leading-relaxed sm:text-lg">
+          I work on the web platform at Google, helping browsers agree on how
+          the web should behave through shared tests, standards reviews, and AI
+          tools that speed that work up. Before that, I brought distributed
+          computing to Capital One's machine learning platform.
+        </p>
+        <div class="flex flex-wrap items-center gap-3 pt-2">
+          <a
+            href={getRelativeLocaleUrl(locale, "posts")}
+            class:list={[buttonBase, "bg-accent text-accent-foreground"]}
+          >
+            Read the blog
+          </a>
+          {
+            hasResume && (
+              <a
+                href={getAssetPath("resume.pdf")}
+                class:list={[
+                  buttonBase,
+                  "border-border bg-surface text-foreground hover:text-accent border",
+                ]}
+              >
+                Résumé (PDF)
+              </a>
+            )
+          }
+          {
+            linkedin && (
+              <a
+                href={linkedin}
+                class="hover:text-accent inline-flex min-h-12 items-center px-3 font-medium"
+              >
+                LinkedIn ↗
+              </a>
+            )
+          }
+          {
+            github && (
+              <a
+                href={github}
+                class="hover:text-accent inline-flex min-h-12 items-center px-3 font-medium"
+              >
+                GitHub ↗
+              </a>
+            )
+          }
+        </div>
+      </div>
+      <Image
+        src={headshot}
+        alt="James C. Scott"
+        widths={[240, 480]}
+        sizes="240px"
+        loading="eager"
+        class="aspect-[7/8] w-48 shrink-0 rounded-3xl object-cover object-top [filter:var(--image-dim)] sm:w-56"
+      />
+    </section>
+
+    <section
+      id="about"
+      aria-labelledby="glance"
+      class="border-border border-t py-14"
+    >
+      <h2 id="glance" class="text-2xl font-bold tracking-tight">
+        What I do, in plain terms
+      </h2>
+      <p class="text-muted-foreground mt-2 mb-8">
+        Three things I've done that are worth knowing about.
       </p>
-      {
-        socials.length > 0 && (
-          <div class="mt-4 flex max-sm:flex-col sm:items-center">
-            <div class="me-2 mb-1 whitespace-nowrap sm:mb-0">
-              {t.home.socialLinks}:
-            </div>
-            <Socials />
-          </div>
-        )
-      }
+      <ul class="grid gap-5 sm:grid-cols-3">
+        {
+          highlights.map(h => (
+            <li class="border-border bg-surface flex flex-col gap-3 rounded-2xl border p-6">
+              <p class="text-accent font-mono text-xs">{h.where}</p>
+              <h3 class="text-lg leading-snug font-semibold">{h.title}</h3>
+              <p class="text-muted-foreground text-[15px] leading-relaxed">
+                {h.body}
+              </p>
+            </li>
+          ))
+        }
+      </ul>
     </section>
 
     {
-      featuredPosts.length > 0 && (
+      feature && (
         <section
-          id="featured"
-          class:list={[
-            "pt-12 pb-6",
-            { "border-border border-b": recentPosts.length > 0 },
-          ]}
+          id="series"
+          aria-labelledby="series-title"
+          class="border-border border-t py-14"
         >
-          <h2 class="text-2xl font-semibold tracking-wide">
-            {t.home.featured}
-          </h2>
-          <ul>
-            {featuredPosts.map(data => (
-              <Card variant="h3" {...data} />
-            ))}
-          </ul>
+          <div
+            class="flex flex-col gap-8 rounded-3xl p-8 sm:flex-row sm:p-10"
+            style={{
+              background: "var(--feature-bg)",
+              color: "var(--feature-fg)",
+            }}
+          >
+            <div class="flex min-w-0 flex-[1.3] flex-col gap-4">
+              <p
+                class="font-mono text-xs"
+                style={{ color: "var(--feature-accent)" }}
+              >
+                {firstPublished ? "Now writing · a series" : "Coming soon · a series"}
+              </p>
+              <h2
+                id="series-title"
+                class="text-2xl leading-tight font-bold tracking-tight sm:text-3xl"
+              >
+                {feature.title}
+              </h2>
+              <p class="leading-relaxed" style={{ color: "var(--feature-muted)" }}>
+                {feature.description}
+              </p>
+              {firstPublished && (
+                <a
+                  href={getPostUrl(firstPublished.id, firstPublished.filePath, locale)}
+                  class="mt-2 inline-flex min-h-12 items-center self-start rounded-lg px-5 font-semibold no-underline"
+                  style={{
+                    background: "var(--feature-fg)",
+                    color: "var(--feature-bg)",
+                  }}
+                >
+                  Start with Part 1 →
+                </a>
+              )}
+            </div>
+            <ol class="flex flex-1 flex-col text-[15px]">
+              {featureParts.map((p, i) => (
+                <li
+                  class="flex gap-3 py-3"
+                  style={{
+                    borderBottom:
+                      i < featureParts.length - 1
+                        ? "1px solid rgba(255,255,255,0.12)"
+                        : "none",
+                  }}
+                >
+                  <span
+                    class="font-mono"
+                    style={{
+                      color: p.post ? "var(--feature-accent)" : "var(--feature-muted)",
+                    }}
+                  >
+                    {String(p.part).padStart(2, "0")}
+                  </span>
+                  {p.post ? (
+                    <a
+                      href={getPostUrl(p.post.id, p.post.filePath, locale)}
+                      class="underline-offset-4 hover:underline"
+                      style={{ color: "var(--feature-fg)" }}
+                    >
+                      {p.title}
+                    </a>
+                  ) : (
+                    <span style={{ color: "var(--feature-muted)" }}>{p.title}</span>
+                  )}
+                </li>
+              ))}
+            </ol>
+          </div>
         </section>
       )
     }
 
-    {
-      recentPosts.length > 0 && (
-        <section id="recent-posts" class="pt-12 pb-6">
-          <h2 class="text-2xl font-semibold tracking-wide">
-            {t.home.recentPosts}
-          </h2>
-          <ul>
-            {recentPosts.slice(0, postsConfig.perIndex).map(data => (
-              <Card variant="h3" {...data} />
-            ))}
-          </ul>
-        </section>
-      )
-    }
-
-    <div class="my-8 text-center">
-      <LinkButton href={getRelativeLocaleUrl(locale, "posts")}>
-        {t.home.allPosts}
-        <IconArrowRight class="inline-block rtl:-rotate-180" />
-      </LinkButton>
-    </div>
+    <section
+      id="writing"
+      aria-labelledby="recent"
+      class="border-border border-t py-14"
+    >
+      <div class="mb-8 flex flex-wrap items-baseline justify-between gap-3">
+        <h2 id="recent" class="flex items-center gap-3 text-2xl font-bold tracking-tight">
+          Writing
+          <a
+            href={getAssetPath("rss.xml")}
+            aria-label="RSS feed"
+            title="RSS feed"
+            class="inline-flex"
+          >
+            <IconRss width={18} height={18} class="stroke-accent stroke-2" />
+          </a>
+        </h2>
+        <a
+          href={getRelativeLocaleUrl(locale, "posts")}
+          class="text-accent inline-flex min-h-11 items-center gap-1 font-medium"
+        >
+          All posts <IconArrowRight class="inline-block size-5" />
+        </a>
+      </div>
+      <ul class="grid gap-8 sm:grid-cols-3">
+        {recentPosts.map((post, i) => <ArtCard post={post} index={i} />)}
+      </ul>
+    </section>
   </main>
   <Footer />
 </Layout>
@@ -130,9 +277,11 @@ const homePath = getRelativeLocaleUrl(locale, "");
   document.addEventListener("astro:page-load", () => {
     const indexLayout = (document.querySelector("#main-content") as HTMLElement)
       ?.dataset;
-    const baseRoot = import.meta.env.BASE_URL.replace(/\/?$/, "/");
     if (indexLayout?.layout) {
-      sessionStorage.setItem("backUrl", indexLayout.homePath ?? baseRoot);
+      sessionStorage.setItem(
+        "backUrl",
+        import.meta.env.BASE_URL.replace(/\/?$/, "/")
+      );
     }
   });
 </script>

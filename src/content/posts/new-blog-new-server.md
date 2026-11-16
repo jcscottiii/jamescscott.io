@@ -7,7 +7,6 @@ tags:
   - dokku
   - terraform
   - digitalocean
-ogImage: ../../assets/images/posts/Dokku.png
 ---
 
 ## New Blog, New Server

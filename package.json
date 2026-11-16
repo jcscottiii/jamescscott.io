@@ -34,6 +34,8 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.12",
+    "@fontsource/inter": "^5.3.0",
+    "@fontsource/jetbrains-mono": "^5.3.0",
     "@pagefind/default-ui": "^1.6.0",
     "@shikijs/transformers": "^4.6.0",
     "@tailwindcss/typography": "^0.5.20",

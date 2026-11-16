@@ -21,6 +21,10 @@ const posts = defineCollection({
       canonicalURL: z.string().optional(),
       hideEditPost: z.boolean().optional(),
       hideToc: z.boolean().optional(),
+      // Series support (jamescscott.net): posts sharing `series` are linked
+      // together at the end of each post, ordered by `seriesPart`.
+      series: z.string().optional(),
+      seriesPart: z.number().int().positive().optional(),
       // An empty value means "not set", so the site timezone applies.
       timezone: z
         .string()

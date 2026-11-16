@@ -22,6 +22,18 @@ import {
 } from "./src/utils/rehypeInlineToc";
 import config from "./astro-paper.config";
 
+function localLatin(family: string, weights: number[]) {
+  const variants = weights.map(weight => ({
+    weight,
+    style: "normal" as const,
+    src: [
+      `./node_modules/@fontsource/${family}/files/${family}-latin-${weight}-normal.woff2`,
+      `./node_modules/@fontsource/${family}/files/${family}-latin-${weight}-normal.woff`,
+    ] as [string, string],
+  }));
+  return variants as [(typeof variants)[number], ...typeof variants];
+}
+
 export default defineConfig({
   site: config.site.url,
   integrations: [
@@ -67,14 +79,26 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
   fonts: [
+    // Self-hosted from the @fontsource npm packages, so builds never fetch
+    // fonts from the network. woff sits beside woff2 because the OG image
+    // renderer (satori) can't read woff2.
     {
-      name: "Google Sans Code",
-      cssVariable: "--font-google-sans-code",
-      provider: fontProviders.google(),
+      name: "Inter",
+      cssVariable: "--font-inter",
+      provider: fontProviders.local(),
+      fallbacks: ["system-ui", "sans-serif"],
+      options: {
+        variants: localLatin("inter", [400, 500, 600, 700]),
+      },
+    },
+    {
+      name: "JetBrains Mono",
+      cssVariable: "--font-jetbrains-mono",
+      provider: fontProviders.local(),
       fallbacks: ["monospace"],
-      weights: [300, 400, 500, 600, 700],
-      styles: ["normal", "italic"],
-      formats: ["woff", "ttf"],
+      options: {
+        variants: localLatin("jetbrains-mono", [400, 500]),
+      },
     },
   ],
   env: {

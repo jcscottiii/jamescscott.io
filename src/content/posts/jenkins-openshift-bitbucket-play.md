@@ -10,14 +10,6 @@ tags:
 
 First post of the new year! I have been very busy. This post will be a non-Golang post actually too. This post is just to help anyone who wants to setup their own free (that&#8217;s right, Free) hosted Jenkins CI Server, hook it up to a private repo and go over some of the GOTCHAs along the way (always some struggles when going the free route).
 
-## Table Of Contents
-
-  * Background
-  * Getting Your Jenkins Instance Up
-  * Give Jenkins Access To Your Private Bitbucket Repo
-  * Your First Manually Triggered Build
-  * Setting Up Automatic Builds Upon Push
-
 ## Background
 
 I have been experimenting with OpenShift gears because they offer free &#8220;Gears&#8221;. (For those that do not know, RedHat developed OpenShift which is another cloud PaaS. It&#8217;s actually built on top of AWS. With OpenShift, they use the word &#8220;cartridges&#8221;. You select cartridges which setup the environment and runtime for your applications. Then you just deploy your application to it and it runs.) In addition, I&#8217;ve been experimenting with a new side project (which is maintained in a private team repo in Bitbucket) that uses the Play Framework. At some point, I decided to use Continuous Integration for testing and deployment. I started using Codeship (which is a great tool) and I&#8217;ve used wrecker (also awesome) and TeamCity (awesome but have to self host). But there was just one thing that I always missed, I wanted to be in complete control in the long term which means I need to host it myself. As it is a side project, I don&#8217;t want to pay for something that I work on every now and then. OpenShift happened to have a cartridge that deploys a Jenkins instance. I&#8217;ve setup CI before, but being limited to the rules and permissions of OpenShift (e.g. you can&#8217;t read the .ssh folder in own home directory with the Jenkins cartridge) came with a lot of GOTCHAs. This post explains the journey.
