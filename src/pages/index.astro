@@ -15,7 +15,7 @@ import { getSortedPosts } from "@/utils/getSortedPosts";
 import { getPostUrl } from "@/utils/getPostPaths";
 import { getSeriesParts } from "@/utils/getSeriesParts";
 import { series, featuredSeries } from "@/data/series";
-import { selectedWork, roles } from "@/data/career";
+import { selectedWork } from "@/data/career";
 import { getAssetPath } from "@/utils/withBase";
 import config from "@/config";
 
@@ -26,11 +26,6 @@ const recentPosts = posts.slice(0, config.posts.perIndex);
 const feature = series[featuredSeries];
 const featureParts = await getSeriesParts(featuredSeries);
 const firstPublished = featureParts.find(p => p.post)?.post;
-
-// Show the résumé button only once public/resume.pdf exists.
-const hasResume =
-  "/public/resume.pdf" in
-  import.meta.glob("/public/resume.pdf", { query: "?url" });
 
 const github = config.socials.find(s => s.name === "github")?.url;
 const linkedin = config.socials.find(s => s.name === "linkedin")?.url;
@@ -73,23 +68,13 @@ const buttonBase =
             Read the blog
           </a>
           {
-            hasResume && (
+            linkedin && (
               <a
-                href={getAssetPath("resume.pdf")}
+                href={linkedin}
                 class:list={[
                   buttonBase,
                   "border-border bg-surface text-foreground hover:text-accent border",
                 ]}
-              >
-                Résumé (PDF)
-              </a>
-            )
-          }
-          {
-            linkedin && (
-              <a
-                href={linkedin}
-                class="hover:text-accent inline-flex min-h-12 items-center px-3 font-medium"
               >
                 LinkedIn ↗
               </a>
@@ -125,7 +110,7 @@ const buttonBase =
       <h2 id="work-title" class="text-2xl font-bold tracking-tight">
         Selected work
       </h2>
-      <ul class="mt-8 grid gap-5 sm:grid-cols-2">
+      <ul class="mt-8 grid gap-5 sm:grid-cols-3">
         {
           selectedWork.map(w => (
             <li class="border-border bg-surface flex flex-col gap-3 rounded-2xl border p-6">
@@ -146,38 +131,6 @@ const buttonBase =
           ))
         }
       </ul>
-    </section>
-
-    <section
-      id="experience"
-      aria-labelledby="experience-title"
-      class="border-border border-t py-14"
-    >
-      <h2 id="experience-title" class="text-2xl font-bold tracking-tight">
-        Where I've worked
-      </h2>
-      <ol class="mt-6">
-        {
-          roles.map(r => (
-            <li class="border-border flex flex-col gap-1 border-b py-5 last:border-b-0 sm:flex-row sm:items-baseline sm:gap-6">
-              <div class="sm:w-44 sm:shrink-0">
-                <p class="text-lg font-semibold">{r.company}</p>
-                {r.years && (
-                  <p class="text-muted-foreground font-mono text-xs">
-                    {r.years}
-                  </p>
-                )}
-              </div>
-              <div class="flex min-w-0 flex-col gap-1">
-                <p class="font-medium">{r.role}</p>
-                <p class="text-muted-foreground text-[15px] leading-relaxed">
-                  {r.summary}
-                </p>
-              </div>
-            </li>
-          ))
-        }
-      </ol>
     </section>
 
     {
