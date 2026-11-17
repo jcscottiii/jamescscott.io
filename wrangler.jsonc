@@ -18,7 +18,7 @@
   "workers_dev": false,
   "env": {
     // Pull request previews: a separate Worker at
-    // jamescscott-net-preview.<your-subdomain>.workers.dev. Each PR replaces it.
+    // https://jamescscott-net-preview.jcscott-iii.workers.dev. Each PR replaces it.
     "preview": {
       "routes": [],
       "workers_dev": true,

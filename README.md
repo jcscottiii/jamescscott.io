@@ -70,7 +70,7 @@ AI agents working on the site follow `AGENTS.md` (Claude Code and Gemini CLI loa
 The site is a Cloudflare Worker that serves the static files in `dist/` (config in `wrangler.jsonc`, response headers in `public/_headers`). The free plan has no bandwidth limit.
 
 - **Push to `main`:** builds and deploys to https://jamescscott.net.
-- **Pull request:** deploys a preview to `jamescscott-net-preview.<your-subdomain>.workers.dev` and comments the link on the PR. Each PR replaces the last preview. Previews tell search engines not to index them.
+- **Pull request:** deploys a preview to https://jamescscott-net-preview.jcscott-iii.workers.dev and comments the link on the PR. Each PR replaces the last preview. Previews tell search engines not to index them.
 
 Both are in `.github/workflows/deploy.yml`, and pull requests also run the checks above.
 
@@ -80,7 +80,7 @@ Both are in `.github/workflows/deploy.yml`, and pull requests also run the check
 2. **GitHub secrets.** In the repo, go to Settings → Secrets and variables → Actions, and add:
    - `CLOUDFLARE_API_TOKEN`: the token from step 1
    - `CLOUDFLARE_ACCOUNT_ID`: shown on the right of your Cloudflare account's home page
-3. **workers.dev subdomain.** If you've never used Workers, open Workers & Pages in the dashboard once so Cloudflare assigns your `<your-subdomain>.workers.dev` name. Previews need it.
+3. **workers.dev subdomain.** If you've never used Workers, open Workers & Pages in the dashboard once so Cloudflare assigns your workers.dev name (this account's is `jcscott-iii.workers.dev`). Previews need it.
 4. **Redirects.** The first production deploy creates the `jamescscott.net` DNS record and certificate. Add these in the dashboard:
    - **www:** on the `jamescscott.net` zone, Rules → Redirect Rules → the "Redirect from WWW to root" template. It needs a proxied DNS record for `www` (an `AAAA` record to `100::` works).
    - **jamesscott.dev:** if it's on Cloudflare, a Redirect Rule on its zone sending every request to `https://jamescscott.net` with the path kept, status 301. Otherwise, use your registrar's URL forwarding.
