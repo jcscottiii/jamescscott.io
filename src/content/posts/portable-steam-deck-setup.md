@@ -2,6 +2,7 @@
 title: Portable Steam Deck Setup
 description: I wanted to share with you the accessories I use to give a fairly useful portable setup
 pubDatetime: 2022-07-10T15:44:41Z
+tutorial: true
 tags:
   - gaming
 ogImage: ../../assets/images/posts/steamdecksetup.jpg

@@ -2,6 +2,7 @@
 title: App Engine Update Which Helps My Unit Tests!
 description: I began to write unit tests for my private project and ran into a weird problem that I have seen others comment on because of the inability to use fake HTTP…
 pubDatetime: 2014-09-30T16:28:24Z
+tutorial: true
 tags:
   - app-engine
   - go

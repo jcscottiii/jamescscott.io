@@ -2,6 +2,7 @@
 title: Deploying Hugo On Dokku
 description: This was a long time coming. As mentioned in my previous post, I used Wordpress as my blogging platform. My hosting service was up for renewal, I decided…
 pubDatetime: 2016-09-05T00:56:20Z
+tutorial: true
 tags:
   - devops
 ogImage: ../../assets/images/posts/Future-Imperfect-Screenshot.png

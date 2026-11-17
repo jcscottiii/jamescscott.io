@@ -3,6 +3,7 @@ title: Setting Up Windows Subsystem for Android
 description: Download the package from the command line tools only section for Linux. It can be seen at the bottom.
 pubDatetime: 2021-12-26T22:53:09Z
 draft: true
+tutorial: true
 tags:
   - android
 ---

@@ -5,6 +5,7 @@ pubDatetime: 2026-12-01T12:00:00Z
 draft: true
 series: dgx-spark
 seriesPart: 1
+tutorial: true
 tags:
   - dgx-spark
   - homelab

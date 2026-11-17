@@ -25,6 +25,8 @@ const posts = defineCollection({
       // together at the end of each post, ordered by `seriesPart`.
       series: z.string().optional(),
       seriesPart: z.number().int().positive().optional(),
+      // Marks a how-to post; older ones show a "may be out of date" notice.
+      tutorial: z.boolean().optional(),
       // An empty value means "not set", so the site timezone applies.
       timezone: z
         .string()

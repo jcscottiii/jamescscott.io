@@ -2,6 +2,7 @@
 title: "Android Wear: Day 1"
 description: This post is the beginning of a mini-series of developing for Android Wear. This post will focus on setting up your environment for initial development with…
 pubDatetime: 2014-07-04T02:03:51Z
+tutorial: true
 tags:
   - android
 ---

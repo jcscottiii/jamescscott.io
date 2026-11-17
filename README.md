@@ -20,6 +20,7 @@ draft: true # remove to publish
 
 - **`ogImage`** is used for both the homepage card and the LinkedIn preview. Without one, the card shows a soft gradient and a preview image is generated from the title.
 - **Series:** add `series: dgx-spark` and `seriesPart: 2`. Series titles and planned parts live in `src/data/series.ts`.
+- **Tutorials:** add `tutorial: true` to how-to posts. Three years after the post (or its last `modDatetime` update), a notice appears at the top saying it may be out of date. Set `modDatetime` when you refresh one, and the clock resets.
 - **Drafts** (`draft: true`) never appear on the live site.
 
 ## Running locally

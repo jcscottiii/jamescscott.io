@@ -1,0 +1,57 @@
+---
+// jamescscott.net: a notice at the top of older how-to posts.
+// Shows on posts with `tutorial: true` once they're older than
+// OUTDATED_AFTER_YEARS, counted from the last update (modDatetime) if
+// there is one. Ages are checked at build time, so a post picks up the
+// notice on the next deploy after it crosses the line.
+import type { CollectionEntry } from "astro:content";
+
+const OUTDATED_AFTER_YEARS = 3;
+
+type Props = {
+  post: CollectionEntry<"posts">;
+};
+
+const { post } = Astro.props;
+const { tutorial, pubDatetime, modDatetime, timezone } = post.data;
+const written = modDatetime ?? pubDatetime;
+
+const cutoff = new Date();
+cutoff.setFullYear(cutoff.getFullYear() - OUTDATED_AFTER_YEARS);
+const show = tutorial === true && written < cutoff;
+
+const when = written.toLocaleDateString("en-US", {
+  month: "long",
+  year: "numeric",
+  timeZone: timezone ?? "America/New_York",
+});
+const verb = modDatetime ? "last updated" : "written";
+---
+
+{
+  show && (
+    <aside
+      role="note"
+      aria-label="This post may be out of date"
+      data-pagefind-ignore
+      class="border-border bg-muted mt-6 flex gap-3 rounded-xl border px-4 py-3 text-[15px] leading-relaxed"
+    >
+      <svg
+        aria-hidden="true"
+        class="text-muted-foreground mt-0.5 size-5 shrink-0"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+        stroke-linecap="round"
+      >
+        <circle cx="12" cy="12" r="9" />
+        <path d="M12 7v5l3 2" />
+      </svg>
+      <p class="m-0">
+        This tutorial was {verb} in {when}. Tools and steps have likely changed
+        since, so check current documentation before following it.
+      </p>
+    </aside>
+  )
+}

@@ -2,6 +2,7 @@
 title: My Go Setup
 description: I’ve been tinkering around with Go for a while. Occasionally, I would just get distracted with something else. However, every time I come back to Go, I’m…
 pubDatetime: 2014-07-30T21:12:40Z
+tutorial: true
 tags:
   - go
 ---

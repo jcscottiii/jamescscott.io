@@ -2,6 +2,7 @@
 title: Jenkins + OpenShift + Bitbucket + Play Framework
 description: First post of the new year! I have been very busy. This post will be a non-Golang post actually too. This post is just to help anyone who wants to setup…
 pubDatetime: 2015-02-24T22:52:03Z
+tutorial: true
 tags:
   - devops
 ---

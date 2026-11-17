@@ -2,6 +2,7 @@
 title: "Android Wear: Day 2"
 description: In the previous post, I suggested that you make the AVDs after making your project for a few reasons. Upon setting up the project, you selected which…
 pubDatetime: 2014-07-18T07:12:25Z
+tutorial: true
 tags:
   - android
 ---

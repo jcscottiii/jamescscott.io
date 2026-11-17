@@ -16,6 +16,7 @@ import BackToTopButton from "./_components/BackToTopButton.astro";
 import AdjacentPostNav from "./_components/AdjacentPostNav.astro";
 import PostToc from "./_components/PostToc.astro";
 import PostEnd from "@/custom/PostEnd.astro";
+import OutdatedNotice from "@/components/OutdatedNotice.astro";
 import config from "@/config";
 
 export async function getStaticPaths() {
@@ -137,6 +138,8 @@ const ogImage = ogImageUrl
       </span>
       <EditPost {hideEditPost} {post} class="max-sm:hidden" />
     </div>
+
+    <OutdatedNotice {post} />
 
     <div class="post-body mt-8">
       <PostToc headings={tocHeadings} />

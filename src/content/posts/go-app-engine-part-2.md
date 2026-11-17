@@ -2,6 +2,7 @@
 title: "Go and App Engine: Part 2 – Development"
 description: This is part 2 of a series of posts that involve developing and publishing to Google’s App Engine with Go as the backend. In addition, it will exemplify how…
 pubDatetime: 2014-09-14T19:27:12Z
+tutorial: true
 tags:
   - app-engine
   - go
