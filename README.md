@@ -1,6 +1,6 @@
 # jamescscott.net
 
-Personal site and blog of James C. Scott, built with [Astro](https://astro.build/) on the [AstroPaper](https://github.com/satnaing/astro-paper) theme and hosted on Firebase Hosting.
+Personal site and blog of James C. Scott, built with [Astro](https://astro.build/) on the [AstroPaper](https://github.com/satnaing/astro-paper) theme and hosted on Cloudflare.
 
 ## Writing a post
 
@@ -65,9 +65,28 @@ pnpm check          # images, internal links, and accessibility on every page
 
 AI agents working on the site follow `AGENTS.md` (Claude Code and Gemini CLI load it through `CLAUDE.md` and `GEMINI.md`). It also has the full rules for posts, which apply to people too.
 
-## Deploying
+## Hosting and deploying
 
-Pushing to `main` builds and deploys to Firebase Hosting, using the Node version in `.nvmrc`. Every pull request gets a Firebase preview link and runs the checks above. The workflows are in `.github/workflows/`.
+The site is a Cloudflare Worker that serves the static files in `dist/` (config in `wrangler.jsonc`, response headers in `public/_headers`). The free plan has no bandwidth limit.
+
+- **Push to `main`:** builds and deploys to https://jamescscott.net.
+- **Pull request:** deploys a preview to `jamescscott-net-preview.<your-subdomain>.workers.dev` and comments the link on the PR. Each PR replaces the last preview. Previews tell search engines not to index them.
+
+Both are in `.github/workflows/deploy.yml`, and pull requests also run the checks above.
+
+### One-time setup
+
+1. **API token.** In the Cloudflare dashboard, go to My Profile → API Tokens → Create Token, and use the **Edit Cloudflare Workers** template. Limit it to your account and the `jamescscott.net` zone.
+2. **GitHub secrets.** In the repo, go to Settings → Secrets and variables → Actions, and add:
+   - `CLOUDFLARE_API_TOKEN`: the token from step 1
+   - `CLOUDFLARE_ACCOUNT_ID`: shown on the right of your Cloudflare account's home page
+3. **workers.dev subdomain.** If you've never used Workers, open Workers & Pages in the dashboard once so Cloudflare assigns your `<your-subdomain>.workers.dev` name. Previews need it.
+4. **Redirects.** The first production deploy creates the `jamescscott.net` DNS record and certificate. Add these in the dashboard:
+   - **www:** on the `jamescscott.net` zone, Rules → Redirect Rules → the "Redirect from WWW to root" template. It needs a proxied DNS record for `www` (an `AAAA` record to `100::` works).
+   - **jamesscott.dev:** if it's on Cloudflare, a Redirect Rule on its zone sending every request to `https://jamescscott.net` with the path kept, status 301. Otherwise, use your registrar's URL forwarding.
+5. **Remove the old Firebase secret** (`FIREBASE_SERVICE_ACCOUNT_JAMESCSCOTTIO`), and delete the Firebase project if nothing else uses it.
+
+To deploy by hand: `pnpm build`, then `pnpm exec wrangler login` once and `pnpm exec wrangler deploy --env=""`.
 
 ## What's customized
 
@@ -95,7 +114,7 @@ Our changes to AstroPaper's own files are kept small so merges stay easy:
 | `src/scripts/theme.ts`, `src/components/Header.astro`           | Theme toggle says what it will do         |
 | `src/content.config.ts`                                         | `series`, `seriesPart`, `tutorial` fields |
 
-Files that are ours alone (no merge conflicts): `src/components/ArtCard.astro`, `src/components/OutdatedNotice.astro`, `scripts/`, `.github/workflows/site-checks.yml`, `src/data/`, `src/utils/getSeriesParts.ts`, `src/utils/ogCard.ts`, and everything in `src/custom/`.
+Files that are ours alone (no merge conflicts): `src/components/ArtCard.astro`, `src/components/OutdatedNotice.astro`, `scripts/`, `wrangler.jsonc`, `public/_headers`, `.github/workflows/site-checks.yml` and `deploy.yml`, `src/data/`, `src/utils/getSeriesParts.ts`, `src/utils/ogCard.ts`, and everything in `src/custom/`.
 
 ## License
 

@@ -4,7 +4,7 @@ Instructions for AI coding agents (and people) working on jamescscott.net. Read 
 
 ## What this is
 
-The personal site and blog of James C. Scott. Astro + the AstroPaper v7 theme, Tailwind v4, Markdown posts, hosted on Firebase Hosting. Pushes to `main` deploy; pull requests get a Firebase preview.
+The personal site and blog of James C. Scott. Astro + the AstroPaper v7 theme, Tailwind v4, Markdown posts, served as static files by a Cloudflare Worker (`wrangler.jsonc`, `public/_headers`). Pushes to `main` deploy to jamescscott.net; pull requests get a preview on workers.dev. Hosting setup is in `README.md`.
 
 The audience is two groups at once: recruiters (who skim the homepage) and engineers (who read posts). Keep the homepage plain-language and the posts technical.
 
@@ -39,7 +39,7 @@ Before calling any change finished, run all of these and make sure they pass:
 5. `pnpm check:links`
 6. `pnpm check:a11y`, or at least the pages you touched, in both themes
 
-CI runs the same checks on every pull request (`.github/workflows/ci.yml` and `site-checks.yml`).
+CI runs the same checks on every pull request (`.github/workflows/ci.yml` and `site-checks.yml`); `deploy.yml` deploys. Never deploy production by hand unless James asks.
 
 ## Writing or editing a post
 
