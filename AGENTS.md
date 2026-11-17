@@ -87,13 +87,19 @@ HEIC (iPhone's default) isn't supported. Export as JPEG first: on a Mac, select 
 
 ## Content rules
 
-James works at Google. Nothing on this site may:
+This is a personal site, and everything on it is James's own view.
 
-- Include confidential or internal information, internal tool names, or anything learned only through work
-- Imply it speaks for Google, or compare products with Google's (TPUs, Google Cloud) using inside knowledge
-- Add affiliate links, ads, or sponsorships without James confirming it's allowed
+- Write only from public information and James's own projects. Don't add details about any employer's work beyond what's already on the About page.
+- Don't add affiliate links, ads, or sponsorships. James adds those himself if he wants them.
+- Keep the footer disclaimer.
 
-Keep the footer disclaimer. When in doubt, flag it to James rather than writing it.
+When unsure whether something belongs, ask James instead of writing it.
+
+## Commits and pull requests
+
+- No AI attribution: no `Co-Authored-By` trailers, session links, or "Generated with" lines in commit messages or PR descriptions. James is the author.
+- Plain, specific commit subjects ("Add DGX Spark Part 2 draft"), with a short body when the why isn't obvious.
+- Never push or deploy without James asking.
 
 ## Changing the theme (keep upgrades easy)
 
