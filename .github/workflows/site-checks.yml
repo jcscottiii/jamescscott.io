@@ -1,0 +1,42 @@
+name: Site checks
+
+# jamescscott.net: links and accessibility on every page of the built site.
+# Kept separate from AstroPaper's ci.yml so theme upgrades merge cleanly.
+
+permissions:
+  contents: read
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  site-checks:
+    name: Links & accessibility
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: pnpm/action-setup@v6
+        with:
+          version: "11.3.0"
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+          cache: "pnpm"
+
+      - run: pnpm install --frozen-lockfile
+
+      - run: pnpm run build
+
+      - name: Check internal links
+        run: pnpm check:links
+
+      - name: Install Chromium
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Check accessibility (axe, light and dark, desktop and phone)
+        run: pnpm check:a11y
