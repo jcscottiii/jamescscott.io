@@ -17,7 +17,7 @@ export const selectedWork: Work[] = [
   {
     where: "web-platform-tests",
     title: "Test infrastructure the browser makers share",
-    body: "I'm on the infrastructure team for web-platform-tests, the shared test suite Apple, Google, Microsoft, and Mozilla all run. I help run its CI and results dashboard, have reviewed over 500 changes, and wrote the proposals that brought JavaScript's conformance tests into it and linked its tests to web features.",
+    body: "I'm on the infrastructure team for web-platform-tests, the shared test suite Apple, Google, Microsoft, and Mozilla all run. I help run its CI and results dashboard, review changes from engineers at several companies, and wrote the proposals that brought JavaScript's conformance tests into it and linked its tests to web features.",
     link: { label: "wpt.fyi", url: "https://wpt.fyi" },
   },
   {

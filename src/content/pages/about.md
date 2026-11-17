@@ -13,7 +13,7 @@ The common thread in my career is making other engineers more productive: cloud 
 - **Microsoft:** I was a software engineer on the microsoft.com store team.
 - **Capital One:** I led the engineers who added distributed computing (Amazon EMR) to the machine learning platform most teams there used, prototyped Amazon SageMaker with AWS as a next step, and helped Go become a language teams across the company used.
 - **Solebrity:** At the startup behind the Chelfie app, I was the most senior engineer and the CTO's right hand. I oversaw the backend and the Android and iOS apps, moved us to Kubernetes, and set up CI/CD.
-- **18F:** I was one of the first three engineers on [cloud.gov](https://cloud.gov), the platform federal agencies use to run their apps, and built cloud and compliance tooling for agencies.
+- **18F:** I was one of the first engineers on [cloud.gov](https://cloud.gov), the platform federal agencies use to run their apps, and built cloud and compliance tooling for agencies.
 - **Intel:** I started as an intern, went through the rotation engineer program, and then joined the Android compiler team, where my work on app startup helped ASUS ship its Lollipop upgrade on schedule.
 
 These days I'm most interested in AI infrastructure: running models, evaluating them honestly, and building the platforms around them.
