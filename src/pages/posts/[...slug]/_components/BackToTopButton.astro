@@ -24,34 +24,30 @@ const items = withToc ? buildTocTree(headings) : [];
     data-has-toc={withToc ? "" : undefined}
   >
     <span class="post-fab-progress" aria-hidden="true"></span>
-    {
-      withToc && (
-        <>
-          <IconListTree class="post-fab-icon-toc size-6" aria-hidden="true" />
-          <IconX class="post-fab-icon-close size-6" aria-hidden="true" />
-        </>
-      )
-    }
+    {withToc && (
+      <>
+        <IconListTree class="post-fab-icon-toc size-6" aria-hidden="true" />
+        <IconX class="post-fab-icon-close size-6" aria-hidden="true" />
+      </>
+    )}
     <IconArrowNarrowUp class="post-fab-icon-top size-6" aria-hidden="true" />
   </button>
 </div>
 
-{
-  withToc && (
-    <div id="toc-popover" class="toc-popover" popover data-pagefind-ignore>
-      <nav aria-labelledby="toc-popover-label" data-toc-nav>
-        <h2 id="toc-popover-label" class="toc-label">
-          {t.post.tableOfContents}
-        </h2>
-        <TocList {items} />
-        <button type="button" class="toc-back-to-top" data-back-to-top>
-          <IconArrowNarrowUp class="size-4" aria-hidden="true" />
-          {t.post.backToTop}
-        </button>
-      </nav>
-    </div>
-  )
-}
+{withToc && (
+  <div id="toc-popover" class="toc-popover" popover data-pagefind-ignore>
+    <nav aria-labelledby="toc-popover-label" data-toc-nav>
+      <h2 id="toc-popover-label" class="toc-label">
+        {t.post.tableOfContents}
+      </h2>
+      <TocList {items} />
+      <button type="button" class="toc-back-to-top" data-back-to-top>
+        <IconArrowNarrowUp class="size-4" aria-hidden="true" />
+        {t.post.backToTop}
+      </button>
+    </nav>
+  </div>
+)}
 
 <script>
   let cleanup: (() => void) | undefined;

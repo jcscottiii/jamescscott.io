@@ -9,7 +9,14 @@
 // <<<<<<< markers to resolve by hand. Nothing is committed.
 /* eslint-disable no-console */
 import { execFileSync, spawnSync } from "node:child_process";
-import { readFileSync, writeFileSync } from "node:fs";
+import {
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  rmSync,
+  writeFileSync,
+} from "node:fs";
+import { join, resolve } from "node:path";
 
 const REMOTE = "astropaper";
 const URL = "https://github.com/satnaing/astro-paper";
@@ -66,11 +73,54 @@ console.log(`Fetching AstroPaper ${from} and ${to}...`);
 git(["fetch", "--quiet", "--no-tags", REMOTE,
   `refs/tags/${from}:refs/tags/${from}`, `refs/tags/${to}:refs/tags/${to}`]);
 
-const diff = execFileSync(
-  "git",
-  ["diff", "--binary", from, to, "--", ".", ...SKIP.map(p => `:!${p}`)],
-  { encoding: "buffer", maxBuffer: 256 * 1024 * 1024 }
-);
+// Format both releases with this repo's Prettier setup before comparing
+// them. This site may run a newer formatter than AstroPaper, and without
+// this every formatting difference would show up as a conflict.
+// The copies live under node_modules so Prettier finds this repo's plugins.
+const cache = resolve("node_modules/.cache");
+mkdirSync(cache, { recursive: true });
+const tmp = mkdtempSync(join(cache, "astropaper-"));
+const prettier = resolve("node_modules/prettier/bin/prettier.cjs");
+const formatted = tag => {
+  const dir = join(tmp, tag);
+  git(["worktree", "add", "--detach", "--quiet", dir, tag]);
+  const run = spawnSync(
+    process.execPath,
+    [prettier, "--write", ".", "--log-level", "silent", "--with-node-modules",
+      "--config", resolve(".prettierrc"),
+      "--ignore-path", ".prettierignore"],
+    { cwd: dir, encoding: "utf8" }
+  );
+  if (run.status !== 0) {
+    console.log(`Note: Prettier couldn't format every file in ${tag}; those are compared as-is.`);
+  }
+  git(["add", "-A"], { cwd: dir });
+  git(["-c", "user.name=upgrade-theme", "-c", "user.email=upgrade-theme@localhost",
+    "commit", "--quiet", "--allow-empty", "--no-verify", "-m", `${tag}, formatted`],
+    { cwd: dir });
+  return git(["rev-parse", "HEAD"], { cwd: dir });
+};
+
+console.log("Formatting both releases the way this site does...");
+let diff;
+try {
+  const fromRef = formatted(from);
+  const toRef = formatted(to);
+  diff = execFileSync(
+    "git",
+    ["diff", "--binary", fromRef, toRef, "--", ".", ...SKIP.map(p => `:!${p}`)],
+    { encoding: "buffer", maxBuffer: 256 * 1024 * 1024 }
+  );
+} finally {
+  for (const tag of [from, to]) {
+    try {
+      git(["worktree", "remove", "--force", join(tmp, tag)], { stdio: "pipe" });
+    } catch {
+      // Not created; nothing to remove.
+    }
+  }
+  rmSync(tmp, { recursive: true, force: true });
+}
 
 if (diff.length) {
   const result = spawnSync("git", ["apply", "-3", "--index"], {

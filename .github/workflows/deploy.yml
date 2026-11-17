@@ -23,8 +23,12 @@ concurrency:
 jobs:
   deploy:
     name: ${{ github.event_name == 'pull_request' && 'Preview' || 'Production' }}
-    # Pull requests from forks don't get secrets, so they skip deploying.
-    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+    # Pull requests from forks and from Dependabot don't get the Cloudflare
+    # secrets, so they skip the preview. CI still checks them.
+    if: >-
+      github.event_name != 'pull_request' ||
+      (github.event.pull_request.head.repo.full_name == github.repository &&
+       github.event.pull_request.user.login != 'dependabot[bot]')
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:

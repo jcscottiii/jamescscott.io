@@ -7,12 +7,10 @@ const { items } = Astro.props;
 ---
 
 <ol>
-  {
-    items.map(item => (
-      <li>
-        <a href={`#${item.slug}`}>{item.text}</a>
-        {item.children.length > 0 && <Astro.self items={item.children} />}
-      </li>
-    ))
-  }
+  {items.map(item => (
+    <li>
+      <a href={`#${item.slug}`}>{item.text}</a>
+      {item.children.length > 0 && <Astro.self items={item.children} />}
+    </li>
+  ))}
 </ol>
