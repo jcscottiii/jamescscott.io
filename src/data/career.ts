@@ -11,7 +11,7 @@ export const selectedWork: Work[] = [
   {
     where: "Google",
     title: "An open-source developer platform",
-    body: "I set the technical direction for webstatus.dev, which shows which web features work in which browsers. It runs on Google Cloud with a public API, and I led the work to release it as open source.",
+    body: "I set the technical direction for webstatus.dev, which shows which web features work in which browsers. It runs on Google Cloud with a public API. I led it through the security, privacy, and open-source reviews needed to launch it.",
     link: { label: "webstatus.dev", url: "https://webstatus.dev" },
   },
   {
