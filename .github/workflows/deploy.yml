@@ -35,6 +35,9 @@ jobs:
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
       CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
       WRANGLER_SEND_METRICS: false
+      # The commit being deployed. On pull requests, github.sha is a
+      # temporary merge commit, so use the PR's own head commit.
+      BUILD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
 
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -53,16 +56,25 @@ jobs:
 
       - name: Deploy to jamescscott.net
         if: github.event_name != 'pull_request'
-        run: pnpm exec wrangler deploy --env=""
+        # Label the version in the Cloudflare dashboard with the commit.
+        run: |
+          message=$(git log -1 --format=%s)
+          pnpm exec wrangler deploy --env="" \
+            --tag "${BUILD_SHA:0:7}" --message "${message:0:100}"
 
       - name: Deploy preview
         if: github.event_name == 'pull_request'
         id: preview
+        env:
+          TITLE: ${{ github.event.pull_request.title }}
+          PR: ${{ github.event.pull_request.number }}
         run: |
           set -o pipefail
           # Keep previews out of search results.
           printf '\n/*\n  X-Robots-Tag: noindex\n' >> dist/_headers
-          pnpm exec wrangler deploy --env preview | tee deploy.log
+          message="PR #$PR: $TITLE"
+          pnpm exec wrangler deploy --env preview \
+            --tag "${BUILD_SHA:0:7}" --message "${message:0:100}" | tee deploy.log
           url=$(grep -oE 'https://[a-z0-9.-]+\.workers\.dev' deploy.log | head -n1)
           echo "url=$url" >> "$GITHUB_OUTPUT"
 

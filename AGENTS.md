@@ -105,7 +105,7 @@ When unsure whether something belongs, ask James instead of writing it.
 
 The site is a copy of AstroPaper (no shared Git history); `.astropaper-version` records the release, and `pnpm upgrade:theme <tag>` applies a newer one as a 3-way patch (see `README.md`). Don't merge AstroPaper's history into this repo. To keep upgrades easy:
 
-- **Put new code in files that are ours**: `src/custom/` (Head, BodyEnd, PostEnd hooks), `src/components/ArtCard.astro`, `src/components/OutdatedNotice.astro`, `src/data/`, `src/utils/ogCard.ts`, `src/utils/getSeriesParts.ts`, `scripts/`.
+- **Put new code in files that are ours**: `src/custom/` (Head, BodyEnd, PostEnd hooks), `src/components/ArtCard.astro`, `src/components/OutdatedNotice.astro`, `src/data/`, `src/utils/ogCard.ts`, `src/utils/getSeriesParts.ts`, `src/utils/buildInfo.ts`, `scripts/`.
 - **Edit AstroPaper's own files only when there's no hook**, keep the change small, and mark it with a `// jamescscott.net:` comment. The current list of edited theme files is in `README.md`; update it when you add one.
 - **Colors and fonts** live in `src/styles/theme.css`. Use the tokens (`bg-surface`, `text-muted-foreground`, `text-accent`, …), never hard-coded colors. Every text color pair must meet 4.5:1 contrast in both light and dark.
 - **Fonts** are self-hosted from `@fontsource`. Don't add Google Fonts or other network fonts; builds must work offline.

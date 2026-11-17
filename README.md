@@ -93,6 +93,8 @@ Dependabot (`.github/dependabot.yml`) opens weekly PRs for npm packages and mont
    - **jamesscott.dev:** if it's on Cloudflare, a Redirect Rule on its zone sending every request to `https://jamescscott.net` with the path kept, status 301. Otherwise, use your registrar's URL forwarding.
 5. **Remove the old Firebase secret** (`FIREBASE_SERVICE_ACCOUNT_JAMESCSCOTTIO`), and delete the Firebase project if nothing else uses it.
 
+Every page has a `<meta name="build">` tag with the commit it was built from (View Source to check what's live), and each deploy is labeled with its commit in the Cloudflare dashboard under Deployments.
+
 To deploy by hand: `pnpm build`, then `pnpm exec wrangler login` once and `pnpm exec wrangler deploy --env=""`.
 
 ## What's customized
@@ -123,7 +125,7 @@ Our changes to AstroPaper's own files are kept small so upgrades stay easy:
 | `src/scripts/theme.ts`, `src/components/Header.astro`           | Theme toggle says what it will do         |
 | `src/content.config.ts`                                         | `series`, `seriesPart`, `tutorial` fields |
 
-Files that are ours alone (theme upgrades never touch them): `src/components/ArtCard.astro`, `src/components/OutdatedNotice.astro`, `scripts/`, `.astropaper-version`, `wrangler.jsonc`, `public/_headers`, `.github/workflows/`, `.github/dependabot.yml`, `src/data/`, `src/utils/getSeriesParts.ts`, `src/utils/ogCard.ts`, and everything in `src/custom/`.
+Files that are ours alone (theme upgrades never touch them): `src/components/ArtCard.astro`, `src/components/OutdatedNotice.astro`, `scripts/`, `.astropaper-version`, `wrangler.jsonc`, `public/_headers`, `.github/workflows/`, `.github/dependabot.yml`, `src/data/`, `src/utils/buildInfo.ts`, `src/utils/getSeriesParts.ts`, `src/utils/ogCard.ts`, and everything in `src/custom/`.
 
 ## License
 
