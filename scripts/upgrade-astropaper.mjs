@@ -16,7 +16,8 @@ const URL = "https://github.com/satnaing/astro-paper";
 const VERSION_FILE = ".astropaper-version";
 
 // AstroPaper files this site deleted or replaced on purpose. Upstream
-// changes to them are skipped.
+// changes to them are skipped. The site owns its own CI, deploy, and
+// Dependabot config, so those are skipped too.
 const SKIP = [
   "src/content/posts",
   "src/assets/images",
@@ -27,6 +28,8 @@ const SKIP = [
   "compose.yaml",
   ".dockerignore",
   "cz.yaml",
+  ".github/workflows",
+  ".github/dependabot.yml",
   ".github/FUNDING.yml",
   ".github/ISSUE_TEMPLATE",
   ".github/CODE_OF_CONDUCT.md",

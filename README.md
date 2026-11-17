@@ -26,7 +26,7 @@ draft: true # remove to publish
 
 ## Running locally
 
-You need Node 26, the current LTS (`.nvmrc` pins it; `nvm use` picks it up), and pnpm 11 (`npm install -g pnpm@11`). Astro also runs on Node 22.23.4 or later, but not on odd-numbered versions like 25.
+You need Node 26, the current LTS (`.nvmrc` pins it; `nvm use` picks it up), and pnpm 11 (`npm install -g pnpm@11`). Any pnpm 11 works: it switches itself to the exact version in `package.json`'s `packageManager` field, so everyone and CI install the same way. Astro also runs on Node 22.23.4 or later, but not on odd-numbered versions like 25.
 
 ```sh
 pnpm install
@@ -72,7 +72,14 @@ The site is a Cloudflare Worker that serves the static files in `dist/` (config 
 - **Push to `main`:** builds and deploys to https://jamescscott.net.
 - **Pull request:** deploys a preview to https://jamescscott-net-preview.jcscott-iii.workers.dev and comments the link on the PR. Each PR replaces the last preview. Previews tell search engines not to index them.
 
-Both are in `.github/workflows/deploy.yml`, and pull requests also run the checks above.
+Both are in `.github/workflows/deploy.yml`, and pull requests also run the checks above (`.github/workflows/ci.yml`).
+
+### Keeping dependencies current
+
+Dependabot (`.github/dependabot.yml`) opens weekly PRs for npm packages and monthly ones for GitHub Actions, grouped and held for 3 days after each release. Two versions it doesn't touch:
+
+- **pnpm:** run `pnpm self-update` now and then. It installs the latest pnpm and updates `packageManager` in `package.json`; commit that.
+- **Node:** when a new even-numbered release becomes LTS, change `.nvmrc`.
 
 ### One-time setup
 
@@ -116,7 +123,7 @@ Our changes to AstroPaper's own files are kept small so upgrades stay easy:
 | `src/scripts/theme.ts`, `src/components/Header.astro`           | Theme toggle says what it will do         |
 | `src/content.config.ts`                                         | `series`, `seriesPart`, `tutorial` fields |
 
-Files that are ours alone (theme upgrades never touch them): `src/components/ArtCard.astro`, `src/components/OutdatedNotice.astro`, `scripts/`, `.astropaper-version`, `wrangler.jsonc`, `public/_headers`, `.github/workflows/site-checks.yml` and `deploy.yml`, `src/data/`, `src/utils/getSeriesParts.ts`, `src/utils/ogCard.ts`, and everything in `src/custom/`.
+Files that are ours alone (theme upgrades never touch them): `src/components/ArtCard.astro`, `src/components/OutdatedNotice.astro`, `scripts/`, `.astropaper-version`, `wrangler.jsonc`, `public/_headers`, `.github/workflows/`, `.github/dependabot.yml`, `src/data/`, `src/utils/getSeriesParts.ts`, `src/utils/ogCard.ts`, and everything in `src/custom/`.
 
 ## License
 

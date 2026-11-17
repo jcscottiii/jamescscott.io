@@ -1,46 +1,48 @@
 name: CI
 
+# jamescscott.net: every check from AGENTS.md's definition of done.
+# Node comes from .nvmrc and pnpm from package.json's packageManager field,
+# so this, deploy.yml, and local installs all use the same versions.
+
 permissions:
   contents: read
 
 on:
   pull_request:
-    types:
-      - opened
-      - edited
-      - synchronize
-      - reopened
-  workflow_call:
+  workflow_dispatch:
 
 jobs:
-  build:
-    name: Code standards & build
+  checks:
+    name: Lint, build, images, links & accessibility
     runs-on: ubuntu-latest
-    timeout-minutes: 3
+    timeout-minutes: 15
 
     steps:
-      - name: "☁️ Checkout repository"
-        uses: actions/checkout@v7
+      - uses: actions/checkout@v7
 
-      - name: "📦 Install pnpm"
-        uses: pnpm/action-setup@v6
-        with:
-          version: "11.3.0"
+      - uses: pnpm/action-setup@v6
 
-      - name: Use Node.js
-        uses: actions/setup-node@v7
+      - uses: actions/setup-node@v7
         with:
-          node-version: "24"
+          node-version-file: ".nvmrc"
           cache: "pnpm"
 
-      - name: "📦 Install dependencies"
-        run: pnpm install --frozen-lockfile
+      - run: pnpm install --frozen-lockfile
 
-      - name: "🔎 Lint code"
-        run: pnpm run lint
+      - run: pnpm run lint
 
-      - name: "📝 Checking code format"
-        run: pnpm run format:check
+      - run: pnpm run format:check
 
-      - name: "🚀 Build the project"
-        run: pnpm run build
+      - name: Check images (no GPS data, nothing oversized)
+        run: pnpm check:images
+
+      - run: pnpm run build
+
+      - name: Check internal links
+        run: pnpm check:links
+
+      - name: Install Chromium
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Check accessibility (axe, light and dark, desktop and phone)
+        run: pnpm check:a11y

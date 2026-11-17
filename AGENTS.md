@@ -10,7 +10,7 @@ The audience is two groups at once: recruiters (who skim the homepage) and engin
 
 ## Commands
 
-Use **Node 26** (pinned in `.nvmrc`; our workflows read it) and **pnpm 11** (CI pins 11.3.0). AstroPaper's own `ci.yml` stays on its own Node version so theme upgrades apply cleanly. The repo refuses packages published in the last day (`minimumReleaseAge`), so if an install fails with that error, wait or pin an older version. Don't loosen the policy.
+Use **Node 26** and **pnpm 11**. Each version is set in exactly one place: Node in `.nvmrc`, pnpm in `package.json`'s `packageManager` field. CI, deploys, and local pnpm all read those, so never hard-code a version in a workflow. The repo refuses packages published in the last day (`minimumReleaseAge`), so if an install fails with that error, wait or pin an older version. Don't loosen the policy.
 
 ```sh
 pnpm install
@@ -39,7 +39,7 @@ Before calling any change finished, run all of these and make sure they pass:
 5. `pnpm check:links`
 6. `pnpm check:a11y`, or at least the pages you touched, in both themes
 
-CI runs the same checks on every pull request (`.github/workflows/ci.yml` and `site-checks.yml`); `deploy.yml` deploys. Never deploy production by hand unless James asks.
+CI runs the same checks on every pull request (`.github/workflows/ci.yml`); `deploy.yml` deploys. Never deploy production by hand unless James asks.
 
 ## Writing or editing a post
 
