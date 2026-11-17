@@ -1,0 +1,9 @@
+# Cloudflare response headers for the static site (not served as a file).
+
+# Astro fingerprints these files, so they never change: cache for a year.
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin

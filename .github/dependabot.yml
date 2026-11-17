@@ -1,0 +1,41 @@
+# jamescscott.net: weekly dependency updates, grouped to keep PRs few.
+# Covers npm packages and the GitHub Actions in workflows. Dependabot uses
+# package.json's packageManager field to pick which pnpm to run but doesn't
+# bump it; do that with `pnpm self-update` (see README). Node (.nvmrc) is
+# bumped by hand when a new LTS ships.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    # Wait 3 days after a release before proposing it. pnpm already refuses
+    # anything under a day old (minimumReleaseAge); this gives bad releases
+    # time to be pulled. Security fixes skip the wait.
+    cooldown:
+      default-days: 3
+    open-pull-requests-limit: 5
+    groups:
+      minor-and-patch:
+        applies-to: version-updates
+        update-types:
+          - minor
+          - patch
+      security:
+        applies-to: security-updates
+        patterns:
+          - "*"
+
+  # Workflows pin each action to a commit SHA (a tag can be moved to
+  # different code; a SHA can't). Dependabot updates the SHA and the
+  # version comment together.
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    cooldown:
+      default-days: 3
+    groups:
+      actions:
+        patterns:
+          - "*"

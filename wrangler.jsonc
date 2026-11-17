@@ -1,0 +1,27 @@
+// Cloudflare Workers config for jamescscott.net: a static site, no server code.
+// `pnpm run build` writes the site to dist/; `wrangler deploy` uploads it.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "jamescscott-net",
+  "compatibility_date": "2026-11-13",
+  "assets": {
+    "directory": "./dist",
+    // Unknown URLs get the site's 404 page with a 404 status.
+    "not_found_handling": "404-page",
+    // /about -> /about/, matching the URLs Astro and the sitemap use.
+    "html_handling": "auto-trailing-slash",
+  },
+  // Production: the domain lives in this Cloudflare account, so deploying
+  // creates its DNS record and certificate. www and jamesscott.dev are
+  // redirected here with Cloudflare redirect rules (see README).
+  "routes": [{ "pattern": "jamescscott.net", "custom_domain": true }],
+  "workers_dev": false,
+  "env": {
+    // Pull request previews: a separate Worker at
+    // https://jamescscott-net-preview.jcscott-iii.workers.dev. Each PR replaces it.
+    "preview": {
+      "routes": [],
+      "workers_dev": true,
+    },
+  },
+}

@@ -1,0 +1,71 @@
+---
+// Illustrated post card for the homepage (jamescscott.net).
+// Uses the post's ogImage as art, so one image serves both the card and
+// the social preview. Posts without one get a soft gradient instead.
+import type { CollectionEntry } from "astro:content";
+import { Image } from "astro:assets";
+import { getPostUrl } from "@/utils/getPostPaths";
+import Datetime from "./Datetime.astro";
+
+type Props = {
+  post: CollectionEntry<"posts">;
+  index?: number;
+};
+
+const { post, index = 0 } = Astro.props;
+const {
+  title,
+  ogImage,
+  tags,
+  series,
+  seriesPart,
+  pubDatetime,
+  modDatetime,
+  timezone,
+} = post.data;
+const href = getPostUrl(post.id, post.filePath, Astro.currentLocale);
+const eyebrow =
+  series && seriesPart ? `Series · Part ${seriesPart}` : (tags[0] ?? "post");
+const fallbackArt = `var(--art-${(index % 3) + 1})`;
+---
+
+<li class="list-none">
+  <a
+    href={href}
+    class="group text-foreground flex h-full flex-col gap-3 no-underline"
+  >
+    <div
+      class="border-border aspect-[16/9] w-full overflow-hidden rounded-2xl border"
+      style={{ background: fallbackArt }}
+    >
+      {
+        ogImage && typeof ogImage !== "string" && (
+          <Image
+            src={ogImage}
+            alt=""
+            widths={[360, 720]}
+            sizes="(min-width: 768px) 240px, 100vw"
+            class="h-full w-full object-cover [filter:var(--image-dim)] transition-transform duration-300 group-hover:scale-[1.03]"
+          />
+        )
+      }
+      {
+        typeof ogImage === "string" && (
+          <img
+            src={ogImage}
+            alt=""
+            loading="lazy"
+            class="h-full w-full object-cover [filter:var(--image-dim)]"
+          />
+        )
+      }
+    </div>
+    <span class="text-muted-foreground font-mono text-xs">{eyebrow}</span>
+    <span
+      class="group-hover:text-accent text-lg leading-snug font-semibold underline-offset-4 group-hover:underline"
+    >
+      {title}
+    </span>
+    <Datetime {pubDatetime} {modDatetime} {timezone} />
+  </a>
+</li>

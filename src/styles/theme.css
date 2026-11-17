@@ -1,0 +1,73 @@
+/* Register design tokens for Tailwind v4 */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-surface: var(--surface);
+  --color-tag: var(--tag);
+  --color-tag-foreground: var(--tag-foreground);
+  --font-app: var(--font-inter);
+  --font-mono: var(--font-jetbrains-mono);
+}
+
+/*
+ * jamescscott.net palette.
+ * Every text pair below meets WCAG AA (4.5:1) on its background.
+ */
+
+/* Light theme values */
+:root,
+[data-theme="light"] {
+  --background: #fbfbf9;
+  --foreground: #16181d;
+  --accent: #0b5d8c;
+  --accent-foreground: #ffffff;
+  --muted: #ecede8;
+  --muted-foreground: #545a64;
+  --border: #e4e4df;
+  --surface: #ffffff;
+  --tag: #e8f1f7;
+  --tag-foreground: #084566;
+  /* Fallback art for posts without an image */
+  --art-1: linear-gradient(135deg, #cfe0f5, #e7d9f7);
+  --art-2: linear-gradient(135deg, #f4e2d6, #e8e0f6);
+  --art-3: linear-gradient(135deg, #dcefe6, #d7e4f4);
+  --feature-bg: #16181d;
+  --feature-fg: #f4f4f1;
+  --feature-muted: #c9ccd2;
+  --feature-accent: #9fd0f0;
+  --image-dim: none;
+}
+
+/* Dark theme values */
+[data-theme="dark"] {
+  --background: #12151c;
+  --foreground: #e9ecf1;
+  --accent: #7cc4f0;
+  --accent-foreground: #0b1220;
+  --muted: #232834;
+  --muted-foreground: #a9b0bc;
+  --border: #2a303c;
+  --surface: #181c25;
+  --tag: #1c2b3a;
+  --tag-foreground: #b8dcf5;
+  --art-1: linear-gradient(135deg, #24344d, #362a4a);
+  --art-2: linear-gradient(135deg, #43302a, #2f2a46);
+  --art-3: linear-gradient(135deg, #213b33, #22314a);
+  --feature-bg: #1b2030;
+  --feature-fg: #f4f4f1;
+  --feature-muted: #c3c8d2;
+  --feature-accent: #9fd0f0;
+  /* Soften bright images on the dark background */
+  --image-dim: brightness(0.9);
+}
+
+/* jamescscott.net: let long paths and inline code wrap on narrow screens
+   instead of pushing the page wider than the viewport. */
+.app-prose {
+  overflow-wrap: anywhere;
+}
