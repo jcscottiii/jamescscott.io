@@ -10,7 +10,7 @@ The audience is two groups at once: recruiters (who skim the homepage) and engin
 
 ## Commands
 
-Use **Node 26** and **pnpm 11**. Each version is set in exactly one place: Node in `.nvmrc`, pnpm in `package.json`'s `packageManager` field. CI, deploys, and local pnpm all read those, so never hard-code a version in a workflow. The repo refuses packages published in the last day (`minimumReleaseAge`), so if an install fails with that error, wait or pin an older version. Don't loosen the policy.
+Use **Node 26** and **pnpm 11**. Each version is set in exactly one place: Node in `.nvmrc`, pnpm in `package.json`'s `packageManager` field. CI, deploys, and local pnpm all read those, so never hard-code a version in a workflow. Actions in workflows are pinned to a full commit SHA with the version in a comment (`uses: actions/checkout@<sha> # v7.0.1`); keep that form for any new action. The repo refuses packages published in the last day (`minimumReleaseAge`), so if an install fails with that error, wait or pin an older version. Don't loosen the policy.
 
 ```sh
 pnpm install
