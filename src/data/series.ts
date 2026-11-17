@@ -10,14 +10,14 @@ export type Series = {
 
 export const series: Record<string, Series> = {
   "dgx-spark": {
-    title: "An AI supercomputer in my server room",
+    title: "A DGX Spark in my server room",
     description:
-      "Setting up an NVIDIA DGX Spark at home, then putting real numbers on it: speed, accuracy, power, and what it costs next to the cloud.",
+      "Setting up an NVIDIA DGX Spark at home and measuring it: speed, accuracy, power, and what it costs compared with the cloud.",
     planned: [
       "Unboxing and headless setup",
-      "Remote access that just works",
-      "First models, real numbers",
-      "Evaluating local models properly",
+      "Remote access",
+      "First models and benchmarks",
+      "Evaluating local models",
       "Power, noise, heat, and cost",
     ],
   },
