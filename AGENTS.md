@@ -10,7 +10,7 @@ The audience is two groups at once: recruiters (who skim the homepage) and engin
 
 ## Commands
 
-Use **pnpm 11** (CI pins 11.3.0). The repo refuses packages published in the last day (`minimumReleaseAge`), so if an install fails with that error, wait or pin an older version. Don't loosen the policy.
+Use **Node 26** (pinned in `.nvmrc`; our workflows read it) and **pnpm 11** (CI pins 11.3.0). AstroPaper's own `ci.yml` stays on its own Node version so theme upgrades merge cleanly. The repo refuses packages published in the last day (`minimumReleaseAge`), so if an install fails with that error, wait or pin an older version. Don't loosen the policy.
 
 ```sh
 pnpm install

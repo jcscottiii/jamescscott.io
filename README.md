@@ -26,7 +26,7 @@ draft: true # remove to publish
 
 ## Running locally
 
-You need Node 22.23.4 or later and pnpm 11 (`npm install -g pnpm@11`).
+You need Node 26, the current LTS (`.nvmrc` pins it; `nvm use` picks it up), and pnpm 11 (`npm install -g pnpm@11`). Astro also runs on Node 22.23.4 or later, but not on odd-numbered versions like 25.
 
 ```sh
 pnpm install
@@ -67,7 +67,7 @@ AI agents working on the site follow `AGENTS.md` (Claude Code and Gemini CLI loa
 
 ## Deploying
 
-Pushing to `main` builds and deploys to Firebase Hosting. Every pull request gets a Firebase preview link and runs the checks above. The workflows are in `.github/workflows/`.
+Pushing to `main` builds and deploys to Firebase Hosting, using the Node version in `.nvmrc`. Every pull request gets a Firebase preview link and runs the checks above. The workflows are in `.github/workflows/`.
 
 ## What's customized
 
