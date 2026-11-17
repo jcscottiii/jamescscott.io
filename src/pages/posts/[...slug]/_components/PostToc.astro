@@ -13,25 +13,23 @@ const label = t.post.tableOfContents;
 const items = buildTocTree(headings);
 ---
 
-{
-  hasToc(headings) && (
-    <aside class="toc-side" data-pagefind-ignore>
-      <a href="#article" class="toc-skip">
-        {t.a11y.skipTableOfContents}
-      </a>
-      <nav aria-labelledby="toc-side-label" data-toc-nav>
-        <h2 id="toc-side-label" class="toc-label">
-          {label}
-        </h2>
-        <TocList items={items} />
-        <button type="button" class="toc-back-to-top" data-back-to-top>
-          <IconArrowNarrowUp class="size-4" aria-hidden="true" />
-          {t.post.backToTop}
-        </button>
-      </nav>
-    </aside>
-  )
-}
+{hasToc(headings) && (
+  <aside class="toc-side" data-pagefind-ignore>
+    <a href="#article" class="toc-skip">
+      {t.a11y.skipTableOfContents}
+    </a>
+    <nav aria-labelledby="toc-side-label" data-toc-nav>
+      <h2 id="toc-side-label" class="toc-label">
+        {label}
+      </h2>
+      <TocList items={items} />
+      <button type="button" class="toc-back-to-top" data-back-to-top>
+        <IconArrowNarrowUp class="size-4" aria-hidden="true" />
+        {t.post.backToTop}
+      </button>
+    </nav>
+  </aside>
+)}
 
 <script>
   let cleanup: (() => void) | undefined;

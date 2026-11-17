@@ -20,50 +20,48 @@ const meta = key ? series[key] : undefined;
 const parts = key ? await getSeriesParts(key) : [];
 ---
 
-{
-  meta && parts.length > 0 && (
-    <nav
-      aria-labelledby="series-nav-title"
-      class="border-border bg-surface mt-8 rounded-2xl border p-6"
-    >
-      <p class="text-accent font-mono text-xs">
-        Part {post.data.seriesPart} of {parts.length}
-      </p>
-      <h2 id="series-nav-title" class="mt-1 mb-4 text-lg font-semibold">
-        {meta.title}
-      </h2>
-      <ol class="flex flex-col gap-1">
-        {parts.map(p => {
-          const isCurrent = p.post?.id === post.id;
-          return (
-            <li class="flex gap-3 py-1.5">
-              <span class="text-muted-foreground w-6 shrink-0 font-mono text-sm">
-                {String(p.part).padStart(2, "0")}
+{meta && parts.length > 0 && (
+  <nav
+    aria-labelledby="series-nav-title"
+    class="border-border bg-surface mt-8 rounded-2xl border p-6"
+  >
+    <p class="text-accent font-mono text-xs">
+      Part {post.data.seriesPart} of {parts.length}
+    </p>
+    <h2 id="series-nav-title" class="mt-1 mb-4 text-lg font-semibold">
+      {meta.title}
+    </h2>
+    <ol class="flex flex-col gap-1">
+      {parts.map(p => {
+        const isCurrent = p.post?.id === post.id;
+        return (
+          <li class="flex gap-3 py-1.5">
+            <span class="text-muted-foreground w-6 shrink-0 font-mono text-sm">
+              {String(p.part).padStart(2, "0")}
+            </span>
+            {isCurrent ? (
+              <span aria-current="page" class="font-semibold">
+                {p.title}
               </span>
-              {isCurrent ? (
-                <span aria-current="page" class="font-semibold">
-                  {p.title}
-                </span>
-              ) : p.post ? (
-                <a
-                  href={getPostUrl(
-                    p.post.id,
-                    p.post.filePath,
-                    Astro.currentLocale
-                  )}
-                  class="text-accent underline-offset-4 hover:underline"
-                >
-                  {p.title}
-                </a>
-              ) : (
-                <span class="text-muted-foreground">
-                  {p.title} <span class="text-xs">(coming soon)</span>
-                </span>
-              )}
-            </li>
-          );
-        })}
-      </ol>
-    </nav>
-  )
-}
+            ) : p.post ? (
+              <a
+                href={getPostUrl(
+                  p.post.id,
+                  p.post.filePath,
+                  Astro.currentLocale
+                )}
+                class="text-accent underline-offset-4 hover:underline"
+              >
+                {p.title}
+              </a>
+            ) : (
+              <span class="text-muted-foreground">
+                {p.title} <span class="text-xs">(coming soon)</span>
+              </span>
+            )}
+          </li>
+        );
+      })}
+    </ol>
+  </nav>
+)}

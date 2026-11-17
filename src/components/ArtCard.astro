@@ -38,32 +38,26 @@ const fallbackArt = `var(--art-${(index % 3) + 1})`;
       class="border-border aspect-[16/9] w-full overflow-hidden rounded-2xl border"
       style={{ background: fallbackArt }}
     >
-      {
-        ogImage && typeof ogImage !== "string" && (
-          <Image
-            src={ogImage}
-            alt=""
-            widths={[360, 720]}
-            sizes="(min-width: 768px) 240px, 100vw"
-            class="h-full w-full object-cover [filter:var(--image-dim)] transition-transform duration-300 group-hover:scale-[1.03]"
-          />
-        )
-      }
-      {
-        typeof ogImage === "string" && (
-          <img
-            src={ogImage}
-            alt=""
-            loading="lazy"
-            class="h-full w-full object-cover [filter:var(--image-dim)]"
-          />
-        )
-      }
+      {ogImage && typeof ogImage !== "string" && (
+        <Image
+          src={ogImage}
+          alt=""
+          widths={[360, 720]}
+          sizes="(min-width: 768px) 240px, 100vw"
+          class="h-full w-full object-cover [filter:var(--image-dim)] transition-transform duration-300 group-hover:scale-[1.03]"
+        />
+      )}
+      {typeof ogImage === "string" && (
+        <img
+          src={ogImage}
+          alt=""
+          loading="lazy"
+          class="h-full w-full object-cover [filter:var(--image-dim)]"
+        />
+      )}
     </div>
     <span class="text-muted-foreground font-mono text-xs">{eyebrow}</span>
-    <span
-      class="group-hover:text-accent text-lg leading-snug font-semibold underline-offset-4 group-hover:underline"
-    >
+    <span class="group-hover:text-accent text-lg leading-snug font-semibold underline-offset-4 group-hover:underline">
       {title}
     </span>
     <Datetime {pubDatetime} {modDatetime} {timezone} />

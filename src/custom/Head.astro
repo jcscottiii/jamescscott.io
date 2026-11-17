@@ -15,13 +15,11 @@ const loadAnalytics = import.meta.env.PROD;
 const gtagInit = `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","${GA_ID}");`;
 ---
 
-{
-  loadAnalytics && (
-    <script
-      is:inline
-      async
-      src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-    />
-  )
-}
+{loadAnalytics && (
+  <script
+    is:inline
+    async
+    src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+  />
+)}
 {loadAnalytics && <script is:inline set:html={gtagInit} />}

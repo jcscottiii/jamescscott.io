@@ -162,11 +162,9 @@ const ogImage = ogImageUrl
     <div class="sm:my-8 sm:flex sm:items-start sm:justify-between sm:gap-8">
       <div class="mt-4 mb-8 flex items-start justify-between gap-4 sm:my-0">
         <ul class="flex flex-wrap gap-4">
-          {
-            tags.map(tag => (
-              <Tag tag={slugifyStr(tag)} tagName={tag} size="sm" />
-            ))
-          }
+          {tags.map(tag => (
+            <Tag tag={slugifyStr(tag)} tagName={tag} size="sm" />
+          ))}
         </ul>
         <EditPost class="flex-none sm:hidden" {hideEditPost} {post} />
       </div>
