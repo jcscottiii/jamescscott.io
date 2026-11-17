@@ -1,6 +1,6 @@
 name: Site checks
 
-# jamescscott.net: links and accessibility on every page of the built site.
+# jamescscott.net: image metadata, links, and accessibility on every page.
 # Kept separate from AstroPaper's ci.yml so theme upgrades merge cleanly.
 
 permissions:
@@ -12,7 +12,7 @@ on:
 
 jobs:
   site-checks:
-    name: Links & accessibility
+    name: Images, links & accessibility
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
@@ -29,6 +29,9 @@ jobs:
           cache: "pnpm"
 
       - run: pnpm install --frozen-lockfile
+
+      - name: Check images (no GPS data, nothing oversized)
+        run: pnpm check:images
 
       - run: pnpm run build
 

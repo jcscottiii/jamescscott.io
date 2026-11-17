@@ -31,3 +31,6 @@ public/pagefind
 
 # docker compose
 compose.override.yaml
+
+# Raw phone photos; run `pnpm images <slug>` to shrink and clean them
+/photos-inbox/

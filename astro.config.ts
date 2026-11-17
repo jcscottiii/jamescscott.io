@@ -36,6 +36,9 @@ function localLatin(family: string, weights: number[]) {
 
 export default defineConfig({
   site: config.site.url,
+  // jamescscott.net: make Markdown images responsive (several sizes plus
+  // srcset), so phones don't download full-width photos.
+  image: { layout: "constrained" },
   integrations: [
     mdx(),
     sitemap({

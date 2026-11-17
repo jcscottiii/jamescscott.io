@@ -19,6 +19,8 @@ pnpm lint                 # ESLint
 pnpm format               # Prettier, write
 pnpm format:check         # Prettier, check (CI)
 pnpm build                # astro check + build + search index
+pnpm images <slug>        # shrink + strip metadata from photos in photos-inbox/
+pnpm check:images         # no GPS data or oversized images in the repo
 pnpm check:links          # every internal link resolves (after build)
 pnpm check:a11y           # axe on every page, light/dark, desktop/phone, 320px reflow (after build)
 pnpm check:a11y /about/   # just the pages you name
@@ -33,8 +35,9 @@ Before calling any change finished, run all of these and make sure they pass:
 1. `pnpm lint`
 2. `pnpm format:check` (run `pnpm format` to fix)
 3. `pnpm build`
-4. `pnpm check:links`
-5. `pnpm check:a11y`, or at least the pages you touched, in both themes
+4. `pnpm check:images`
+5. `pnpm check:links`
+6. `pnpm check:a11y`, or at least the pages you touched, in both themes
 
 CI runs the same checks on every pull request (`.github/workflows/ci.yml` and `site-checks.yml`).
 
@@ -67,6 +70,20 @@ Rules:
 - **Internal links** use `/posts/<slug>/`.
 - **Tags**: reuse existing ones (`go`, `devops`, `app-engine`, `android`, `docker`, `career`, `reviews`, `gaming`, `dgx-spark`, `homelab`, `local-ai`). Don't create one-off tags.
 - **New series**: add it to `src/data/series.ts` with a title, description, and planned part titles.
+
+## Photos
+
+Never commit a photo straight from a phone. Phone photos are huge and carry the GPS location where they were taken, which for this site is often James's home.
+
+1. Put the originals in `photos-inbox/` (git-ignored).
+2. Run `pnpm images <post-slug>`. It rotates them upright, shrinks them to 2400px on the long side, strips all metadata, and writes them to `src/assets/images/posts/<post-slug>/`. It prints Markdown to paste into the post.
+3. Replace the placeholder alt text, then delete the originals from `photos-inbox/`.
+
+Astro then serves resized WebP copies, so visitors never download the 2400px file.
+
+HEIC (iPhone's default) isn't supported. Export as JPEG first: on a Mac, select the photos in Photos and choose File → Export; or set the iPhone to Settings → Camera → Formats → Most Compatible before shooting. Android phones already save JPEG.
+
+`pnpm check:images` (also in CI) fails if any committed image has GPS data or is over 3 MB.
 
 ## Content rules
 

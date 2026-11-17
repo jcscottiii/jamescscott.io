@@ -15,10 +15,22 @@ tags:
 <!--
 DRAFT. Before publishing:
 - Replace every [TODO] with what actually happened.
-- Add your photos to src/assets/images/posts/ and set ogImage above to the
-  one you want on the homepage card and the LinkedIn preview.
-- Blur the Quick Start sticker, serial numbers, Wi-Fi names, and IPs.
+- Photos: put originals in photos-inbox/, run
+  `pnpm images dgx-spark-headless-setup`, paste the Markdown it prints,
+  and write real alt text.
+- Set ogImage to the card art (see shot list).
+- Blur: Quick Start sticker, serial numbers, MAC addresses, Wi-Fi names,
+  IP addresses, anything with your street address.
 - Set pubDatetime to the real date and remove `draft: true`.
+
+Shot list (landscape, JPEG / "Most Compatible", daylight, plain background):
+1. Sealed box, then box next to a mug or your hand for scale
+2. Contents laid out flat; front and rear ports close up; power brick
+3. Quick Start card (blur the sticker)
+4. Phone screen recording: joining the hotspot and the setup wizard
+5. The Spark in its spot in the server room, cables connected
+6. Terminal: first SSH login and nvidia-smi (blur hostname and IPs)
+7. Card art: one 16:9 AI illustration for ogImage
 -->
 
 I have a server room. I did not want a monitor, keyboard, and mouse in it. The good news: the DGX Spark is designed to be set up without any of them.

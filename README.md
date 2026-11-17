@@ -30,7 +30,8 @@ pnpm install
 pnpm dev       # http://localhost:4321, shows drafts
 pnpm build     # type check, build, and search index
 pnpm preview   # serve the production build
-pnpm check     # internal links + accessibility on every page (after build)
+pnpm images <slug>  # shrink phone photos and strip GPS data (see AGENTS.md)
+pnpm check     # images, internal links, and accessibility (after build)
 ```
 
 AI agents: see `AGENTS.md` (also loaded by `CLAUDE.md` and `GEMINI.md`).
@@ -62,6 +63,7 @@ Our changes to AstroPaper's own files are kept small so merges stay easy:
 | `src/pages/posts/[...slug]/index.astro`                         | Out-of-date notice, section link names    |
 | `src/pages/posts/[...slug]/_components/BackButton.astro`        | Back link in a nav landmark               |
 | `src/pages/search.astro`                                        | Search box label                          |
+| `src/scripts/theme.ts`, `src/components/Header.astro`           | Theme toggle says what it will do         |
 | `src/content.config.ts`                                         | `series`, `seriesPart`, `tutorial` fields |
 
 Files that are ours alone: `src/components/ArtCard.astro`, `src/components/OutdatedNotice.astro`, `scripts/`, `src/data/`, `src/utils/getSeriesParts.ts`, `src/utils/ogCard.ts`, and everything in `src/custom/`.
