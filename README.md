@@ -90,15 +90,17 @@ To deploy by hand: `pnpm build`, then `pnpm exec wrangler login` once and `pnpm 
 
 ## What's customized
 
-AstroPaper was merged in with its full history, so updates can be pulled in later:
+The site started from AstroPaper v7.2.0 the way its README describes (`pnpm create astro@latest --template satnaing/astro-paper`): a copy of its files, without its Git history. `.astropaper-version` records which release it's on.
+
+To take a newer AstroPaper release (see [its releases](https://github.com/satnaing/astro-paper/releases)), start from a clean branch and run:
 
 ```sh
-git remote add astropaper https://github.com/satnaing/astro-paper   # once
-git fetch astropaper --tags
-git merge <new tag, e.g. v7.3.0>
+pnpm upgrade:theme v7.3.0
 ```
 
-Our changes to AstroPaper's own files are kept small so merges stay easy:
+It applies the changes between the two releases as a 3-way patch. Clean changes are staged, conflicts get `<<<<<<<` markers to resolve by hand, and nothing is committed. It skips AstroPaper's sample posts and other files this site removed. Then run `pnpm install`, `pnpm build`, and `pnpm check`, and commit.
+
+Our changes to AstroPaper's own files are kept small so upgrades stay easy:
 
 | File                                                            | Change                                    |
 | --------------------------------------------------------------- | ----------------------------------------- |
@@ -114,7 +116,7 @@ Our changes to AstroPaper's own files are kept small so merges stay easy:
 | `src/scripts/theme.ts`, `src/components/Header.astro`           | Theme toggle says what it will do         |
 | `src/content.config.ts`                                         | `series`, `seriesPart`, `tutorial` fields |
 
-Files that are ours alone (no merge conflicts): `src/components/ArtCard.astro`, `src/components/OutdatedNotice.astro`, `scripts/`, `wrangler.jsonc`, `public/_headers`, `.github/workflows/site-checks.yml` and `deploy.yml`, `src/data/`, `src/utils/getSeriesParts.ts`, `src/utils/ogCard.ts`, and everything in `src/custom/`.
+Files that are ours alone (theme upgrades never touch them): `src/components/ArtCard.astro`, `src/components/OutdatedNotice.astro`, `scripts/`, `.astropaper-version`, `wrangler.jsonc`, `public/_headers`, `.github/workflows/site-checks.yml` and `deploy.yml`, `src/data/`, `src/utils/getSeriesParts.ts`, `src/utils/ogCard.ts`, and everything in `src/custom/`.
 
 ## License
 

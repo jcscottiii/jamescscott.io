@@ -10,7 +10,7 @@ The audience is two groups at once: recruiters (who skim the homepage) and engin
 
 ## Commands
 
-Use **Node 26** (pinned in `.nvmrc`; our workflows read it) and **pnpm 11** (CI pins 11.3.0). AstroPaper's own `ci.yml` stays on its own Node version so theme upgrades merge cleanly. The repo refuses packages published in the last day (`minimumReleaseAge`), so if an install fails with that error, wait or pin an older version. Don't loosen the policy.
+Use **Node 26** (pinned in `.nvmrc`; our workflows read it) and **pnpm 11** (CI pins 11.3.0). AstroPaper's own `ci.yml` stays on its own Node version so theme upgrades apply cleanly. The repo refuses packages published in the last day (`minimumReleaseAge`), so if an install fails with that error, wait or pin an older version. Don't loosen the policy.
 
 ```sh
 pnpm install
@@ -97,7 +97,7 @@ Keep the footer disclaimer. When in doubt, flag it to James rather than writing 
 
 ## Changing the theme (keep upgrades easy)
 
-AstroPaper is merged in with full history so new releases can be merged (`git fetch astropaper --tags && git merge <tag>`). To keep those merges easy:
+The site is a copy of AstroPaper (no shared Git history); `.astropaper-version` records the release, and `pnpm upgrade:theme <tag>` applies a newer one as a 3-way patch (see `README.md`). Don't merge AstroPaper's history into this repo. To keep upgrades easy:
 
 - **Put new code in files that are ours**: `src/custom/` (Head, BodyEnd, PostEnd hooks), `src/components/ArtCard.astro`, `src/components/OutdatedNotice.astro`, `src/data/`, `src/utils/ogCard.ts`, `src/utils/getSeriesParts.ts`, `scripts/`.
 - **Edit AstroPaper's own files only when there's no hook**, keep the change small, and mark it with a `// jamescscott.net:` comment. The current list of edited theme files is in `README.md`; update it when you add one.
