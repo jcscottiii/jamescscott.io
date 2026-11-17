@@ -3,6 +3,8 @@
 // own tags here: analytics, site verification, extra <meta> or <link>,
 // stylesheets. This file is yours: AstroPaper never changes it after
 // release.
+import { buildCommit } from "@/utils/buildInfo";
+
 type Props = {
   title: string;
   description: string;
@@ -14,6 +16,9 @@ const GA_ID = "G-E5HZS08DWM";
 const loadAnalytics = import.meta.env.PROD;
 const gtagInit = `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","${GA_ID}");`;
 ---
+
+{/* Which commit is live. Check it with View Source. */}
+{buildCommit && <meta name="build" content={buildCommit} />}
 
 {loadAnalytics && (
   <script
