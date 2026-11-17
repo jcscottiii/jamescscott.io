@@ -22,23 +22,52 @@ draft: true # remove to publish
 - **Series:** add `series: dgx-spark` and `seriesPart: 2`. Series titles and planned parts live in `src/data/series.ts`.
 - **Tutorials:** add `tutorial: true` to how-to posts. Three years after the post (or its last `modDatetime` update), a notice appears at the top saying it may be out of date. Set `modDatetime` when you refresh one, and the clock resets.
 - **Drafts** (`draft: true`) never appear on the live site.
+- **Images** need alt text describing what they show. See Adding photos below.
 
 ## Running locally
 
+You need Node 22.23.4 or later and pnpm 11 (`npm install -g pnpm@11`).
+
 ```sh
 pnpm install
-pnpm dev       # http://localhost:4321, shows drafts
-pnpm build     # type check, build, and search index
-pnpm preview   # serve the production build
-pnpm images <slug>  # shrink phone photos and strip GPS data (see AGENTS.md)
-pnpm check     # images, internal links, and accessibility (after build)
+pnpm dev            # http://localhost:4321, shows drafts
+pnpm build          # type check, build, and search index
+pnpm preview        # serve the production build
 ```
 
-AI agents: see `AGENTS.md` (also loaded by `CLAUDE.md` and `GEMINI.md`).
+## Adding photos
+
+Don't commit photos straight from your phone. They're large, and they record the GPS location where they were taken.
+
+1. Copy the photos into `photos-inbox/` (Git ignores this folder). They need to be JPEG: on an iPhone, set Settings → Camera → Formats → Most Compatible, or export from Photos as JPEG.
+2. Run `pnpm images <post-slug>`. It turns each photo upright, shrinks it to 2400px, strips all hidden data, and saves it to `src/assets/images/posts/<post-slug>/`.
+3. Paste the Markdown it prints into your post and replace the placeholder with a description of the photo (the alt text).
+4. Delete the originals from `photos-inbox/`.
+
+The site then serves smaller WebP versions in several sizes, so phones download a small one.
+
+## Checking your work
+
+Run these before opening a pull request. CI runs the same ones.
+
+```sh
+pnpm lint           # code style errors
+pnpm format         # fix formatting
+pnpm build
+pnpm check          # images, internal links, and accessibility on every page
+```
+
+`pnpm check` includes:
+
+- `pnpm check:images`: no photo has GPS data or is over 3 MB
+- `pnpm check:links`: every internal link and image exists
+- `pnpm check:a11y`: an accessibility scan of every page in light and dark mode, on desktop and phone (about 3 minutes). Add page paths to check just those, e.g. `pnpm check:a11y /about/`. The first time, install its browser with `pnpm exec playwright install chromium`.
+
+AI agents working on the site follow `AGENTS.md` (Claude Code and Gemini CLI load it through `CLAUDE.md` and `GEMINI.md`). It also has the full rules for posts, which apply to people too.
 
 ## Deploying
 
-Pushing to `main` builds and deploys to Firebase Hosting. Pull requests get a preview link. Both workflows are in `.github/workflows/`.
+Pushing to `main` builds and deploys to Firebase Hosting. Every pull request gets a Firebase preview link and runs the checks above. The workflows are in `.github/workflows/`.
 
 ## What's customized
 
@@ -66,7 +95,7 @@ Our changes to AstroPaper's own files are kept small so merges stay easy:
 | `src/scripts/theme.ts`, `src/components/Header.astro`           | Theme toggle says what it will do         |
 | `src/content.config.ts`                                         | `series`, `seriesPart`, `tutorial` fields |
 
-Files that are ours alone: `src/components/ArtCard.astro`, `src/components/OutdatedNotice.astro`, `scripts/`, `src/data/`, `src/utils/getSeriesParts.ts`, `src/utils/ogCard.ts`, and everything in `src/custom/`.
+Files that are ours alone (no merge conflicts): `src/components/ArtCard.astro`, `src/components/OutdatedNotice.astro`, `scripts/`, `.github/workflows/site-checks.yml`, `src/data/`, `src/utils/getSeriesParts.ts`, `src/utils/ogCard.ts`, and everything in `src/custom/`.
 
 ## License
 
