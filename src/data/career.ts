@@ -23,7 +23,7 @@ export const selectedWork: Work[] = [
   {
     where: "Google",
     title: "Measuring an AI tool's accuracy",
-    body: "wpt-gen is an open-source AI tool that writes browser tests. I defined its benchmark, oversaw the engineer who built it, and set up the pipeline that runs it. It checks whether the tool's AI reviewer is right, consistent, and agrees with human reviewers. The team has used it to choose which model to run.",
+    body: "wpt-gen is an open-source AI tool that writes browser tests. I defined a benchmark for its AI reviewer, oversaw the engineer who built the benchmark harness, and set up the pipeline that runs it. It checks whether the reviewer is right, consistent, and agrees with human reviewers. The team has used it to choose which model to run.",
     link: {
       label: "wpt-gen",
       url: "https://github.com/GoogleChromeLabs/wpt-gen",
